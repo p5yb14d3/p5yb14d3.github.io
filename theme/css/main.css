@@ -1,0 +1,79 @@
+body {
+  font-family: Georgia, serif;
+  font-size: 100%;
+  background-color: white;
+  color: #111;
+  width: 700px;
+  padding: 1em;
+  margin: auto auto;
+  border-radius: 5px;
+  display: block;
+  text-align:justify;
+}
+
+a:link    { color: #333399; text-decoration: none;      }
+a:hover   { color: navy; }
+a:visited { color: #333399;                             }
+
+h1 a { color: inherit !important }
+h2 a { color: inherit !important }
+h3 a { color: inherit !important }
+h4 a { color: inherit !important }
+h5 a { color: inherit !important }
+h6 a { color: inherit !important }
+
+h2 {font-size:40px; margin-bottom:10px;}
+
+#menu li {
+    display: inline;
+}
+
+#post-list {
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+pre {
+    margin: 2em 1em 2em 4em;
+    white-space: pre-wrap;
+}
+
+#banner {
+	padding-bottom:0px;
+	border-bottom: 1px dotted #ddd;
+}
+
+footer {margin-top:0px;}
+
+#contentinfo {
+	margin-top:50px;
+	padding-top:40px;
+	border-top: 1px dotted #ddd;
+	text-align:center;
+}
+
+#social {
+	margin-top: 20px;
+}
+
+.social {
+	display:inline-block;
+	width:auto;
+}
+
+.social:link {
+	color:#888;
+}
+
+.social:hover {
+	color:#444;
+}
+
+.social > i {
+	font-size:30px; 
+}
+
+.social-separator {
+	width: 30px;
+	display:inline-block;
+}
