@@ -3,7 +3,7 @@
  * http://github.com/p5yb14d3/keynav
  *
  * Copyright (c) 2018, p5yb14d3
- * Dual licensed under the MIT or GPL Version 2 licenses.
+ * Released under MIT license.
  * http://github.com/p5yb14d3/keynav/LICENSE
  *
  */
@@ -27,12 +27,18 @@ $(document).ready(function() {
 		// REFRESH SCROLLING
 		keynav.scrollToView();
 		
-		// PLAY SOUND
-		audio_click.play();
+		if (typeof audio_click !== "undefined") {
+			// PLAY SOUND
+			audio_click.play();
+		}
+		else {
+			console.log("iiii");
+			confirm_selection();
+		}
     });
 	
 	// AUDIO: AUDIO_CLICK ON ENDED
 	$audio_click.on('ended', function() {
-		confirm_selection()
+		confirm_selection();
 	});
 });

@@ -3,7 +3,7 @@
  * http://github.com/p5yb14d3/keynav
  *
  * Copyright (c) 2018, p5yb14d3
- * Dual licensed under the MIT or GPL Version 2 licenses.
+ * Released under MIT license.
  * http://github.com/p5yb14d3/keynav/LICENSE
  *
  */
@@ -33,7 +33,7 @@ $(document).ready(function() {
 			// console.log('mouseover detected:'+currentMousePos.x+" old:"+currentMousePos.x_old+","+currentMousePos.y+" old:"+currentMousePos.y_old);
 			keynav.liSelected.removeClass("selected");
 			$(this).addClass("hover");
-			audio_hover.play();
+			if (typeof audio_hover !== "undefined") audio_hover.play();
 			}
     });
 	

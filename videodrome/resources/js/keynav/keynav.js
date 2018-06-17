@@ -3,7 +3,7 @@
  * http://github.com/p5yb14d3/keynav
  *
  * Copyright (c) 2018, p5yb14d3
- * Dual licensed under the MIT or GPL Version 2 licenses.
+ * Released under MIT license.
  * http://github.com/p5yb14d3/keynav/LICENSE
  *
  */
@@ -26,42 +26,44 @@ $(window).on('resize', function(){
 
 // HANDLES KEYDOWN
 $(window).keydown(function(e){
-	currentMousePos.x_old = currentMousePos.x;
-    currentMousePos.y_old = currentMousePos.y;
+	if (typeof currentMousePos !== "undefined") {
+		currentMousePos.x_old = currentMousePos.x;
+		currentMousePos.y_old = currentMousePos.y;
+		}
 	
 	$("li").removeClass("hover");
 	
 	// DOWN
 	if(e.which === 40) {
 		keynav.down(e);
-		audio_hover.play();
 		e.preventDefault();
+		if (typeof audio_hover !== "undefined") audio_hover.play();
 	}
 	// UP
 	else if(e.which === 38) {
 		keynav.up(e);
-		audio_hover.play();
 		e.preventDefault();
+		if (typeof audio_hover !== "undefined") audio_hover.play();
 	}
 	// RIGHT
 	else if (e.which === 39) {
 		keynav.right(e);
-		audio_hover.play();
 		e.preventDefault();
+		if (typeof audio_hover !== "undefined") audio_hover.play();
 	}
 	// LEFT
 	else if (e.which === 37) {
 		keynav.left(e);
-		audio_hover.play();
 		e.preventDefault();
+		if (typeof audio_hover !== "undefined") audio_hover.play();
 	}
 	// ENTER
 	else if (e.which === 13) {
-		audio_click.play();
+		if (typeof audio_click !== "undefined") audio_click.play(); else confirm_selection();;
 	}
 	// ESCAPE
 	else if (e.which === 27) { 
-		audio_back.play();
+		if (typeof audio_hover !== "undefined") audio_back.play();
 	}
 });
 
