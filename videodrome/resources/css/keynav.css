@@ -65,14 +65,32 @@ li  div {
 li .info {
 	border:0px solid blue;
 	width:100%;
-	height:50px;
+	height:90px;
 	overflow:hidden;
 	margin:0;
 	padding:0;	
 	color: #fff;
 	font:12pt helvetica;
-	cursor:pointer;
 }
+
+li .info  span {
+	color: #fff;
+	font:8pt helvetica;
+}
+
+li .info  a {
+	color: #fff;
+	font:10pt helvetica;
+	text-decoration:none;
+}
+
+li .info  img {
+	width:60px;
+	height:auto;
+	border:0px;
+	vertical-align: middle;
+}
+
 
 li .preview {
 	position:relative;
