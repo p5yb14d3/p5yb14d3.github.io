@@ -7,9 +7,95 @@
  * http://github.com/p5yb14d3/keynav/LICENSE
  *
  */
+ 
+ // GLOBAL VARIABLES
+var currentMousePos = { x_old: -1, y_old: -1, x: -1, y: -1};
+var ALLOW_MOUSE_BACK = true;
 
 // INITIALIZE KEYNAV
 $(document).ready(function() {
+	// DOM: ELEMENTS
+	var $item = $('li');
+	var audio_hover = $("audio")[0];
+	var audio_click = $("audio")[1];
+	var audio_back = $("audio")[2];
+	var $audio_click = $("#audio_click");
+	var $audio_back = $("#audio_back");
+	
+	// MOUSE: KEEPS TRACK OF MOUSE POSITION IN ORDER TO DETERMINE IF IT IS STATIONARY
+	$(document).mousemove(function(e) {
+		currentMousePos.x_old = currentMousePos.x;
+        currentMousePos.y_old = currentMousePos.y;
+		currentMousePos.x = e.pageX;
+        currentMousePos.y = e.pageY;
+	});
+ 
+	// MOUSE: ON MOUSEOVER
+    $item.mouseover(function() {
+		// ALLOW MOUSE ACTIVITY ONLY IF MOUSE IS NOT STATIONARY (i.e. MOUSE NEW POSITION IS DIFFERENT FROM OLD POSITION)
+		if ((currentMousePos.x < currentMousePos.x_old-2) || (currentMousePos.x > currentMousePos.x_old+2) || (currentMousePos.y < currentMousePos.y_old-2) || (currentMousePos.y > currentMousePos.y_old+2)) {
+			// console.log('mouseover detected:'+currentMousePos.x+" old:"+currentMousePos.x_old+","+currentMousePos.y+" old:"+currentMousePos.y_old);
+			keynav.liSelected.removeClass("selected");
+			$(this).addClass("hover");
+			if (typeof audio_hover !== "undefined") audio_hover.play();
+			}
+    });
+	
+	// MOUSE: ON MOUSEOUT
+    $item.mouseout(function() {
+		$(this).removeClass("hover");
+    });
+
+	// MOUSE: ON CLICK
+    $item.click(function() {
+		// UPDATES CURRENT POSITION
+		var index = $(this).parent().children().index(this);
+		keynav.position_current = index;
+		
+		// SET SELETECT LI TO CURRENT POSITION
+		keynav.setLISelectedToCurrentPosition($(this));
+	
+		// REFRESH SCROLLING
+		keynav.scrollToView();
+		
+		if (typeof audio_click !== "undefined") {
+			// PLAY SOUND
+			audio_click.play();
+		}
+		else {
+			confirm_selection();
+		}
+    });
+	
+	// MOUSE: STOP CONTEXTMENU
+	document.oncontextmenu = function() {
+		if (ALLOW_MOUSE_BACK) return false; else return true;
+	};
+	// MOUSE: ON RIGHT CLICK
+	$(document).mousedown(function(e) { 
+		if ((e.button == 2) && (ALLOW_MOUSE_BACK)) {
+			e.preventDefault();
+			if (typeof audio_back !== "undefined") {
+				audio_back.play();
+			}
+			else {
+				history.back();
+			}
+			return false; 
+		}
+		return true; 
+	}); 
+	
+	// AUDIO: AUDIO_CLICK ON ENDED
+	$audio_click.on('ended', function() {
+		confirm_selection();
+	});
+	
+	// AUDIO: AUDIO_BACK ON ENDED
+	$audio_back.on('ended', function() {
+		history.back();
+	});
+
 	// KEYBOARD INIT
 	keynav.init($("li"), $('#container2'));
 });
@@ -59,11 +145,11 @@ $(window).keydown(function(e){
 	}
 	// ENTER
 	else if (e.which === 13) {
-		if (typeof audio_click !== "undefined") audio_click.play(); else confirm_selection();;
+		if (typeof audio_click !== "undefined") audio_click.play(); else confirm_selection();
 	}
 	// ESCAPE
 	else if (e.which === 27) { 
-		if (typeof audio_hover !== "undefined") audio_back.play();
+		if (typeof audio_hover !== "undefined") audio_back.play(); else history.back();
 	}
 });
 
@@ -92,20 +178,15 @@ var keynav = new function() {
 		
 		// CALCULATE VARIABLES
 		this.cols = this.countCols(this.li);
-		// console.log("number of cols:" + this.cols);
 		
 		this.rows = Math.ceil(this.li.length/this.cols);
-		// console.log("number of rows:" + this.rows);
 		this.position_second_last_row_last_item = ((this.rows-1) * this.cols)-1;
-		// console.log('position_second_last_row_last_item:'+this.position_second_last_row_last_item);
 		
 		this.items_count = this.li.length;
 		this.position_last_item = this.items_count-1;
-		// console.log('items_count:'+this.items_count);
 		
 		this.last_row_items_count = this.items_count % this.cols;
 		if (this.last_row_items_count == 0) this.last_row_items_count = this.cols;
-		// console.log("last_row_items_count = "+this.last_row_items_count);
 		
 		// HIGHLIGHT INITIAL SELECTION
 		if (!this.liSelected) {
@@ -134,11 +215,9 @@ var keynav = new function() {
 	// CHECK IF IS SECOND LAST ROW
 	this.isSecondLastRow = function() {
 		if ((this.absolutePosition() <= (this.items_count - this.last_row_items_count)) && (this.position_current >= (this.items_count - this.last_row_items_count - this.cols))) {
-			// console.log((this.items_count - this.last_row_items_count - this.cols)+"<"+this.absolutePosition()+"<"+(this.items_count - this.last_row_items_count)+" = true");
 			return true;
 		}
 		else {
-			// console.log((this.items_count - this.last_row_items_count - this.cols)+"<"+this.absolutePosition()+"<"+(this.items_count - this.last_row_items_count)+" = false");
 			return false;
 		}
 	}
@@ -146,11 +225,9 @@ var keynav = new function() {
 	// CHECK IF IS LAST ROW
 	this.isLastRow = function() {
 		if ((this.absolutePosition() <= (this.items_count)) && (this.position_current >= (this.items_count - this.last_row_items_count))) {
-			// console.log("Is LastRow = " + (this.items_count - this.last_row_items_count)+"<"+this.absolutePosition() +"<"+(this.items_count)+" = True");
 			return true;
 		}
 		else {
-			// console.log("Is LastRow = " + (this.items_count - this.last_row_items_count)+"<"+this.absolutePosition() +"<"+(this.items_count)+" = False");
 			return false;
 		}
 	}
@@ -163,11 +240,9 @@ var keynav = new function() {
 	// CHECK IF IS FIRST ROW
 	this.isFirstRow = function() {
 		if (this.absolutePosition() <= this.cols) {
-			// console.log('isFirstRow = (position_cur:' + this.position_current+"-1) <= cols:"+this.cols+" = True");
 			return true;
 		}
 		else {
-			// console.log('isFirstRow = (position_cur:' + this.position_current+"-1) <= cols:"+this.cols+" = False");
 			return false;
 		}
 	}
@@ -225,44 +300,32 @@ var keynav = new function() {
 	// MOVE TO LAST ROW
 	this.moveToLastRow = function() {
 		var last_row_new_col = (this.currentCol() / this.cols) * this.last_row_items_count;
-		// console.log('last_row_new_col = (currentCol:'+this.currentCol()+' / last_row_items_count:'+this.last_row_items_count+') = '+last_row_new_col+' ==> Math.ceil(last_row_new_col):'+(Math.ceil(last_row_new_col)));
 		this.position_current = (this.position_last_item - (this.last_row_items_count - (Math.ceil(last_row_new_col)+1)))-1;
 	}
 	
 	// MOVE TO SECOND LAST ROW
 	this.moveToSecondLastRow = function() {
-		// console.log("moveToSecondLastRow: pos_cur:"+this.position_current+" - cols:"+this.cols+" = "+(this.position_current - this.cols));
 		var new_col = this.currentCol() / this.cols;
-		// console.log('new_col:'+new_col+'... Math.ceil(new_col):'+Math.ceil(new_col));
 		var items_per_division = Math.floor(this.cols / this.last_row_items_count);
-		// console.log('items_per_division:'+items_per_division);
 		var last_row_half_point_measure = (this.currentCol() / this.last_row_items_count);
-		// console.log('last_row_half_point_measure:'+last_row_half_point_measure);
 		var item_start_point =  ((items_per_division * this.currentCol()));
-		// console.log('item_start_point:'+item_start_point);
 		if (last_row_half_point_measure > 0.5) {
-			// console.log('bigger than halfpoint');
 			var position_new_col = this.position_second_last_row_last_item - (this.cols - item_start_point) - (items_per_division-1);
-			// console.log('position_new_col:'+position_new_col);
 		}	
 		else {
-			// console.log('smaller than halfpoint');
 			var position_new_col = this.position_second_last_row_last_item - (this.cols - item_start_point);
-			// console.log('position_new_col:'+position_new_col);
 		}
 		this.position_current = position_new_col;
 	}
 	
 	// MOVE UP
 	this.moveUp = function() {
-		// console.log(this.currentCol()+","+this.last_row_items_count);
 		this.position_current = this.position_current - this.cols;
 		this.rememberCol();
 	}
 	
 	// MOVE DOWN
 	this.moveDown = function() {
-		// console.log(this.currentCol()+","+this.last_row_items_count);
 		this.rememberCol();
 		this.position_current = this.position_current + this.cols;
 	}
@@ -297,7 +360,6 @@ var keynav = new function() {
 	
 	// GET CURRENT COLOUM
 	this.currentCol = function() {
-		// console.log("current_col = position_cur:"+ this.position_current+" % cols:"+this.cols  +"+1 = "+((this.position_current % this.cols)+1));
 		return (this.position_current % this.cols) + 1;
 	}
 	
@@ -338,7 +400,6 @@ var keynav = new function() {
 	// SCROLL TO VIEW FOR UP AND LEFT
 	this.scrollToView = function() {
 		if (this.isItemOutOfViewPort()) {
-			// console.log('00: scroll_new:'+this.scroll_new+', scroll_old:'+this.scroll_old);
 			this.scroll_new = this.liSelected.children('div').offset().top - this.container.offset().top + this.container.scrollTop();
 			this.container.scrollTop(this.scroll_new - this.page_offset_top);
 			this.scroll_old = this.scroll_new;
@@ -349,17 +410,14 @@ var keynav = new function() {
 	this.scrollToView2 = function() {
 		this.scroll_new = this.liSelected.children('div').offset().top - this.container.offset().top + this.container.scrollTop();
 		if ((this.scroll_new > this.scroll_old)) {
-			// console.log('11: scroll_new:'+this.scroll_new+', scroll_old:'+this.scroll_old);
 			this.container.scrollTop(this.scroll_old - this.page_offset_top);
 			this.scroll_old = this.scroll_new;
 		}
 		else if (this.isItemOutOfViewPort()) {
-			// console.log('22: scroll_new:'+this.scroll_new+', scroll_old:'+this.scroll_old);
 			this.container.scrollTop(this.scroll_new - this.page_offset_top);
 			this.scroll_old = this.scroll_new;
 		}
 		else {
-			// console.log('33: scroll_new:'+this.scroll_new+', scroll_old:'+this.scroll_old);
 			this.scroll_old = this.scroll_new;
 		}
 	}
