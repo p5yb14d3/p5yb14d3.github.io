@@ -77,6 +77,11 @@ h6 {
 	font-size: 1rem;
 }
 
+h5 .fa {
+	font-size:20px;
+	margin-right:5px;
+}
+
 .footer {
 	opacity: 0.2;
 	filter: alpha(opacity=20);
@@ -170,13 +175,6 @@ img.img-jumbotron {
  /* For IE8 and earlier */
 	color: white;
 }
-
-.fa {
-	font-size: 4rem;
-	padding-top: 40px;
-	padding-bottom: 40px;
-}
-
 
 /* Large desktops and laptops */
 @media (min-width: 1200px) {
