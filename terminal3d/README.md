@@ -4,7 +4,7 @@ Terminal 3D or T3 is a javascript retro term built with Threejs and HTML5.
 See [demo](http://p5yb14d3.github.io/terminal3d/T3.html) here.
 
 ## Screenshot
-![screenshot](terminal3d/imgs/screenshot.png)
+![screenshot](https://github.com/p5yb14d3/p5yb14d3.github.io/blob/master/terminal3d/imgs/screenshot.png)
 
 ## Controls
 * **Keyboard** to enter commands.
