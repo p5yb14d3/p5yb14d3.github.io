@@ -5,8 +5,8 @@ body {
 	font-size: 18px;
 	font-weight:500;
 	line-height: 30px;
-	background-color: white;
-	color: #111;
+	background-color: black;
+	color: #888;
 	max-width: 780px;
 	padding: 1em;
 	margin: auto auto;
@@ -105,7 +105,7 @@ address {
 
 #banner {
 	padding-bottom:0px;
-	border-bottom: 1px dotted #ddd;
+	border-bottom: 2px solid #333;
 }
 
 footer {margin-top:0px;}
@@ -113,7 +113,7 @@ footer {margin-top:0px;}
 #contentinfo {
 	margin-top:50px;
 	padding-top:40px;
-	border-top: 1px dotted #ddd;
+	border-top: 2px solid #333;
 	text-align:center;
 }
 
@@ -127,15 +127,15 @@ footer {margin-top:0px;}
 }
 
 .social:link {
-	color:#ccc;
+	color:#333;
 }
 
 .social:hover {
-	color:#444;
+	color:#888;
 }
 
 .social > i {
-	font-size:24px; 
+	font-size:36px; 
 }
 
 .social-separator {
