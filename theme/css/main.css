@@ -108,7 +108,10 @@ address {
 	border-bottom: 2px solid #333;
 }
 
-footer {margin-top:0px;}
+footer {
+	margin-top:0px;
+	margin-bottom:50px;
+}
 
 #contentinfo {
 	margin-top:50px;
@@ -127,7 +130,7 @@ footer {margin-top:0px;}
 }
 
 .social:link {
-	color:#222;
+	color:#2a2a2a;
 }
 
 .social:hover {
@@ -135,7 +138,7 @@ footer {margin-top:0px;}
 }
 
 .social > i {
-	font-size:36px; 
+	font-size:26px; 
 }
 
 .social-separator {
