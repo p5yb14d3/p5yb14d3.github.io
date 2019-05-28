@@ -59,7 +59,6 @@ function classHUD(iUI) {
 		data = data.replaceAll("[[", "<div>");
 		data = data.replaceAll("]]", "</div>");
 		var statsArray = data.split("\\r\\n\\r\\n");
-		alert(statsArray.length);
 		stats[ui.space.object_name] = statsArray;
 		
 		RPageCount = Math.ceil(stats[ui.space.object_name].length /6);
