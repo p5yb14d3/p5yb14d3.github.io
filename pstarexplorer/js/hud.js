@@ -46,14 +46,14 @@ function classHUD(iUI) {
 	this.onFileReceivedInfo = function(data) {
 		data = data.replaceAll("[[", "<div>");
 		data = data.replaceAll("]]", "</div>");
-		var infoArray = data.split("\r\r");
-		alert(infoArray.length);
+		// var infoArray = data.split("\r\r");
+		// alert(infoArray.length);
 		var infoArray = data.split("\n\n");
-		alert(infoArray.length);
-		var infoArray = data.split("\r\n\r\n");
-		alert(infoArray.length);
-		var infoArray = data.split("\\r\\n\\r\\n");
-		alert(infoArray.length);
+		//alert(infoArray.length);
+		// var infoArray = data.split("\r\n\r\n");
+		// alert(infoArray.length);
+		// var infoArray = data.split("\\r\\n\\r\\n");
+		// alert(infoArray.length);
 		info[ui.space.object_name] = infoArray;
 
 		let value = info[ui.space.object_name][0];
