@@ -58,7 +58,7 @@ function classHUD(iUI) {
 	this.onFileReceivedStats = function(data) {
 		data = data.replaceAll("[[", "<div>");
 		data = data.replaceAll("]]", "</div>");
-		var statsArray = data.split("\r\n\r\n");
+		var statsArray = data.split("\n\n");
 		stats[ui.space.object_name] = statsArray;
 		
 		RPageCount = Math.ceil(stats[ui.space.object_name].length /6);
