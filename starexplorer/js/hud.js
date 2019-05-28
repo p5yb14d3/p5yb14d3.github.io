@@ -49,7 +49,7 @@ function classHUD(iUI) {
 		// var infoArray = data.split("\r\r");
 		// alert(infoArray.length);
 		var infoArray = data.split("\n\n");
-		//alert(infoArray.length);
+		alert(infoArray.length);
 		// var infoArray = data.split("\r\n\r\n");
 		// alert(infoArray.length);
 		// var infoArray = data.split("\\r\\n\\r\\n");
@@ -65,7 +65,7 @@ function classHUD(iUI) {
 	this.onFileReceivedStats = function(data) {
 		data = data.replaceAll("[[", "<div>");
 		data = data.replaceAll("]]", "</div>");
-		var statsArray = data.split("\\r\\n\\r\\n");
+		var statsArray = data.split("\n\n");
 		stats[ui.space.object_name] = statsArray;
 		
 		RPageCount = Math.ceil(stats[ui.space.object_name].length /6);
