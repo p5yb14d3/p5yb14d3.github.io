@@ -46,7 +46,7 @@ function classHUD(iUI) {
 	this.onFileReceivedInfo = function(data) {
 		data = data.replaceAll("[[", "<div>");
 		data = data.replaceAll("]]", "</div>");
-		var infoArray = data.split("\r\n\r\n");
+		var infoArray = data.split("\n\n");
 		info[ui.space.object_name] = infoArray;
 
 		let value = info[ui.space.object_name][0];
@@ -58,7 +58,7 @@ function classHUD(iUI) {
 	this.onFileReceivedStats = function(data) {
 		data = data.replaceAll("[[", "<div>");
 		data = data.replaceAll("]]", "</div>");
-		var statsArray = data.split("\r\n\r\n");
+		var statsArray = data.split("\n\n");
 		alert(statsArray.length);
 		stats[ui.space.object_name] = statsArray;
 		
