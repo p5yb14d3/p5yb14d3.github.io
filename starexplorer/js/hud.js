@@ -47,6 +47,7 @@ function classHUD(iUI) {
 		data = data.replaceAll("[[", "<div>");
 		data = data.replaceAll("]]", "</div>");
 		var infoArray = data.split("\\r\\n\\r\\n");
+		alert(infoArray.length);
 		info[ui.space.object_name] = infoArray;
 
 		let value = info[ui.space.object_name][0];
