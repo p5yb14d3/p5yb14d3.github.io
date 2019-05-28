@@ -1,7 +1,7 @@
 @font-face {
-    font-family: 'vt323regular';
-    src: url('vt323-regular-webfont.woff2') format('woff2'),
-         url('vt323-regular-webfont.woff') format('woff');
+    font-family: 'vt323';
+    src: url('../fonts/vt323-regular.woff2') format('woff2'),
+         url('../fonts/vt323-regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
