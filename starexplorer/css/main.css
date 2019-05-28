@@ -21,12 +21,13 @@ body {
     margin-bottom: 5px;
 
     font-family: 'Abel', sans-serif;
-    font-family: 'VT323';
+    font-family: 'VT323', sans-serif;
 
     color: #bd998d; /* light orange */
     color: #a9d4d2; /* light blue */
+	color: #ba8db5; /* light pink */
     color: #9da4d8; /* light purple */
-    color: #ba8db5; /* light pink */
+    
 
     padding-left: 15px;
     opacity: 1;
@@ -35,7 +36,7 @@ body {
     -webkit-stroke-width: 5.3px;
     -webkit-stroke-color: #FFFFFF;
     -webkit-fill-color: #FFFFFF;
-    text-shadow: 1px 0 20px orange;
+    text-shadow: 1px 0 20px #ba8db5;
 
     background-color: rgb(100,100,100,0);
 }
@@ -59,13 +60,13 @@ body {
 .textbox > div {
     font-family: 'Russo One', sans-serif;
     font-family: 'Abel', sans-serif;
-    font-family: 'VT323';
+    font-family: 'VT323', sans-serif;
     font-weight: bold;
     color: #b6705a;
     /* sat orange */
     color: #dabd7a;
     /* white orange */
-    color: orange;
+    color: #db681f;
 
     font-size: 120%;
     border: 0 solid blue;
@@ -272,4 +273,8 @@ cursor:pointer;
 
 #navbar  {
 	background-color:transparent;
+}
+
+h1 {
+	display:none;
 }
