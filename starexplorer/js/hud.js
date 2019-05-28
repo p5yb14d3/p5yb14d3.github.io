@@ -46,14 +46,8 @@ function classHUD(iUI) {
 	this.onFileReceivedInfo = function(data) {
 		data = data.replaceAll("[[", "<div>");
 		data = data.replaceAll("]]", "</div>");
-		// var infoArray = data.split("\r\r");
-		// alert('1-'+infoArray.length);
-		var infoArray = data.split("\n\n");
-		// alert('2-'+infoArray.length);
-		// var infoArray = data.split("\r\n\r\n");
-		// alert('3-'+infoArray.length);
-		// var infoArray = data.split("\\r\\n\\r\\n");
-		// alert('4-'+infoArray.length);
+		var infoArray = data.split("\r\n\r\n");
+		if (infoArray.length == 1) infoArray = data.split("\n\n");
 		info[ui.space.object_name] = infoArray;
 
 		let value = info[ui.space.object_name][0];
@@ -65,7 +59,8 @@ function classHUD(iUI) {
 	this.onFileReceivedStats = function(data) {
 		data = data.replaceAll("[[", "<div>");
 		data = data.replaceAll("]]", "</div>");
-		var statsArray = data.split("\n\n");
+		var statsArray = data.split("\r\n\r\n");
+		if (statsArray.length == 1) statsArray = data.split("\n\n");
 		stats[ui.space.object_name] = statsArray;
 		
 		RPageCount = Math.ceil(stats[ui.space.object_name].length /6);
