@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,17 +69,3 @@
 </body>
 
 </html>
-=======
----
-layout: default
----
-
-<h1>Blog Posts</h1>
-<ul>
-{% for post in site.posts %}
-		<li><time>{{ post.date | date: "%b %-d, %Y" }}</time> -- <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
-{% endfor %}
-</ul>
-<!--p>subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p-->
-
->>>>>>> 6f04fe7b05add2326443a87fc61aaf590cc3eb94

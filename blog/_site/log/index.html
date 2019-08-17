@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,10 +5,10 @@
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Start Jekyll</title>
+	<title>Log</title>
 
 	<link rel="stylesheet" href="/startjekyll/css/main.css">
-	<link rel="canonical" href="http://localhost:4000/startjekyll/blog/">
+	<link rel="canonical" href="http://localhost:4000/startjekyll/log/">
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -49,13 +48,11 @@
  
 	<main>
 		<article>
-			<h1>Blog Posts</h1>
-<ul>
+			<h2>Log</h2>
+   
+    <p>Logs content goes here.</p>
 
-		<li><time>Nov 30, 2015</time> -- <a href="/startjekyll/jekyll/update/2015/11/30/welcome-to-jekyll.html">Welcome to Jekyll!</a></li>
-
-</ul>
-<!--p>subscribe <a href="/startjekyll/feed.xml">via RSS</a></p-->
+<p>My e-mail is <a href="mailto:email@something.com">email@something.com</a>.</p>
 
 
 		</article>
@@ -70,17 +67,3 @@
 </body>
 
 </html>
-=======
----
-layout: default
----
-
-<h1>Blog Posts</h1>
-<ul>
-{% for post in site.posts %}
-		<li><time>{{ post.date | date: "%b %-d, %Y" }}</time> -- <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
-{% endfor %}
-</ul>
-<!--p>subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p-->
-
->>>>>>> 6f04fe7b05add2326443a87fc61aaf590cc3eb94
