@@ -39,7 +39,7 @@ h1 {font-family: 'Volkhov', serif; font-size:30px; }
 .entry-item > footer > .category {font-style:italic;}
 
 #all_articles {font-size:24px; margin-top:40px; margin-bottom:10px; visibility:hidden;}
-.article {max-width:680px; margin-left:auto; margin-right:auto; }
+.article {max-width:640px; margin-left:auto; margin-right:auto; }
 
 .article-title {
 	font-size:42px; 
