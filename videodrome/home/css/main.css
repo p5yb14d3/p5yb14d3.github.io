@@ -86,9 +86,8 @@ h5 .fa {
 	opacity: 0.2;
 	filter: alpha(opacity=20);
  /* For IE8 and earlier */
-	position: fixed;
+	position: absolute;
 	bottom: 0;
-	right: 20px;
 }
 
 .flex-container {
