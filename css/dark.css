@@ -15,7 +15,7 @@ body {
   font-family: "Source Sans Pro", sans-serif;
   font-size: 1.42em;
   -webkit-font-smoothing: antialiased;
-  background: #f3f3f3;
+  background: #000;
   /* background: $background url('http://.jpg') repeat fixed center; */ }
 
 h1,
@@ -26,14 +26,14 @@ h3 {
   font-family: "Volkhov", serif; }
 
 h1 {
-  color: #333;
+  color: #fff;
   font-family: "Source Sans Pro", sans-serif;
   font-size: 1.5em;
   font-weight: bold; }
   h1 a,
   h1 a:visited {
     text-decoration: none;
-    color: #333; }
+    color: #fff; }
 
 h2 {
   font-size: 2.4em;
@@ -49,7 +49,7 @@ a:visited {
   font-weight: bold; }
 
 a:hover {
-  color: #333;
+  color: #fff;
   text-decoration: underline; }
 
 header {
@@ -85,7 +85,7 @@ aside {
     text-align: center;
     width: 780px;
     height: 72px;
-    border-bottom: 1px solid rgba(68, 68, 68, 0.1);
+    border-bottom: 1px solid #666;
     text-transform: lowercase;
     margin: 0 auto;
     vertical-align: middle;
@@ -99,7 +99,7 @@ aside {
         text-decoration: none; }
         aside nav div a:hover, aside nav div a:active {
           text-decoration: none;
-          color: #333; }
+          color: #fff; }
     aside nav ul {
       margin: 0;
       padding: 0;
@@ -120,13 +120,13 @@ aside {
           box-shadow: 0; }
           aside nav ul li a:hover, aside nav ul li a:active {
             text-decoration: none;
-            color: #333; }
+            color: #fff; }
           aside nav ul li a .fa {
             padding-right: 5px;
             color: #666; }
 
 footer {
-  border-top: 1px solid rgba(68, 68, 68, 0.1);
+  border-top: 1px solid #666;
   text-align: center;
   padding: 40px;
   width: 780px;
@@ -143,7 +143,7 @@ footer {
       color: #777; }
       footer span a:hover, footer span a:active {
         text-decoration: none;
-        color: #333; }
+        color: #fff; }
   footer ul {
     margin: 0;
     padding: 0;

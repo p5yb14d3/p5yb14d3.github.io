@@ -1,0 +1,51 @@
+
+a:link    { color: #777; text-decoration: none;      }
+a:hover   { color: #fff; }
+a:visited { color: #777;                             }
+
+h2 {float:left; font-size:30px; font-family: 'Source Sans Pro', sans-serif; font-style:italic;}
+ol {list-style:none; margin:0; padding:0;}
+header > pre {color:#777}
+
+img {width: 800px;}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+	text-align:center;
+}
+
+@media only screen and (max-width: 400px) {
+	h1 {
+		font-size: 25px;
+	}
+	nav > ul > li {
+		margin-left:15px;
+	}
+	.entry-title {
+		font-size: 25px;
+	}
+	a {
+		font-size: 25px;
+	}
+	p {
+		font-size: 16px;
+	}
+	footer span {
+		font-size: 16px;
+	}
+	footer span a{
+		font-size: 16px;
+	}
+}
