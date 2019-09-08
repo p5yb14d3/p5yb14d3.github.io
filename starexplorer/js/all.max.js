@@ -7,7 +7,10 @@ $(document).ready(function() {
 	ui.init();
 	ui.space.drawObject();
 	$("html").click(function(){
-		alert('html clicked');
+		if (sound_init == false) {
+			sound_init = true;
+			ui.toggleSound();
+		}
 	}); 
 });
 
