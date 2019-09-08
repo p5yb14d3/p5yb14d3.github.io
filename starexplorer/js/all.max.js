@@ -12,7 +12,6 @@ $(document).ready(function() {
 			ui.toggleSound();
 		}
 	});
-	ui.toggleHUD();
 });
 
 function classSpace(ui) {
