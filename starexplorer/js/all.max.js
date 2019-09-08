@@ -608,7 +608,7 @@ function classHUD(iUI) {
 	var LPage = -1;
 	var RPage = -1;
 	var RPageCount = 0;
-	this.visible = false;
+	this.visible = true;
 	this.font_size_limit = 200; // FONT SIZE IN PERCENTAGE
 
 	this.init = function() {
@@ -944,6 +944,7 @@ function classUI() {
 		$('#saturn .planet').on('click', function() {ui.showPlanetClicked("saturn");})
 		$('#uranus .planet').on('click', function() {ui.showPlanetClicked("uranus");})
 		$('#neptune .planet').on('click', function() {ui.showPlanetClicked("neptune");})
+		ui.toggleHUD();
 	}
 
 	this.update = function() {
