@@ -14,6 +14,7 @@
  
 var ui;
 var sound_init = false;
+var test=1;
 
 $(document).ready(function() { 
 	ui = new classUI();
