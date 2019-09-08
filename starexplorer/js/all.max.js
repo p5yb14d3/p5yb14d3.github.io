@@ -5,6 +5,12 @@ $(document).ready(function() {
 	ui = new classUI();
 	ui.init();
 	ui.space.drawObject();
+	$("html").click(function(){
+		if (sound_init == false) {
+			sound_init = true;
+			ui.toggleSound();
+		}
+	}); 
 });
 
 function classSpace(ui) {
@@ -1306,7 +1312,7 @@ function classUI() {
 
 /* MIXER */
 
-var soundon = true;
+var soundon = false;
 
 var snd1  = new Audio();
 var src1  = document.createElement("source");
