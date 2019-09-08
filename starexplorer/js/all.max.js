@@ -1078,6 +1078,7 @@ function classUI() {
 				$('#textcontainer_L').hide();
 				$('.line').hide();
 				$('h1').hide();
+				$('.blank').hide();
 			}
 			else {
 				
