@@ -1,4 +1,17 @@
-
+/**
+ * Copyright 2018 p5yb14d3. All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ *   1. Redistributions of source code must retain the above copyright notice,
+ *   this list of conditions and the following disclaimer.
+ *
+ *   2. Redistributions in binary form must reproduce the above copyright
+ *   notice, this list of conditions and the following disclaimer in the
+ *   documentation and/or other materials provided with the distribution.
+ */
+ 
 var ui;
 var sound_init = false;
 
@@ -16,8 +29,6 @@ $(document).ready(function() {
 
 function classSpace(ui) {
 	hide3DCssSolarSystem();
-	
-	
 	var space = this;
 	var front = {};
 	var hover = {};
@@ -74,9 +85,6 @@ function classSpace(ui) {
 	var default_segments = 100
 	
 	var scene = new THREE.Scene();
-	// scene.fog = new THREE.FogExp2( 0xffffff, 0.0005 ); // FOR ASTEROIDS
-
-	// var renderer = new THREE.WebGLRenderer();
 	var renderer = new THREE.WebGLRenderer();
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	
@@ -86,7 +94,6 @@ function classSpace(ui) {
 	renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 		
 	var camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 2000 );
-	// var camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 3000 ); // FOR SUN
 	
 	var ambient = new THREE.AmbientLight();
 	scene.add(ambient);
@@ -99,7 +106,6 @@ function classSpace(ui) {
 	controls.maxDistance = 1000;
 	controls.rotateSpeed = 0.005;
 	controls.noPan = true;
-	// var controls = new THREE.OrbitControls(camera, renderer.domElement);
 	
 	// SET UP SHADER
 	var oldTime = new Date().getTime();
@@ -130,33 +136,6 @@ function classSpace(ui) {
 	scene.add(sphere);
 	var material_original = sphere.material;
 	
-	// /* DONT DELETE */
-	// // TO DRAW SUN WITH GLOW USE THIS.
-	// var glow_geometry = new THREE.SphereGeometry(100, 60, 60);
-	// var glow_material = new THREE.ShaderMaterial({
-		// uniforms: {},
-		// vertexShader: document.getElementById('vertexShaderGlow').textContent,
-		// fragmentShader: document.getElementById('fragmentShaderGlow').textContent,
-		// side: THREE.BackSide,
-		// blending: THREE.AdditiveBlending,
-		// transparent: true
-	// });
-	// var sphere_glow = THREE.SceneUtils.createMultiMaterialObject( glow_geometry, [glow_material]);
-	// scene.add(sphere_glow);
-	// sphere_glow.position.set(0, 0, 0);
-	// sphere_glow.scale.x = 9;
-	// sphere_glow.scale.y = 9;
-	// sphere_glow.scale.z = 9;
-
-	// var geometry = new THREE.SphereGeometry( 1, 64, 32 );
-	// var mesh = new THREE.Mesh( geometry, material );
-	// mesh.position.x = 0;
-	// mesh.position.y = 1;
-	// mesh.position.z = 140;
-	
-	// mesh.material = material;
-	// scene.add(mesh);
-	
 	var stars = createStars(1000, 100);
 	scene.add(stars);
 	var ring = createFlatTorus();
@@ -171,12 +150,6 @@ function classSpace(ui) {
 	// SET UP SUN BEGIN
 	scene.fog = new THREE.Fog( 0x000000, 3500, 15000 );
 	scene.fog.color.setHSL( 0.51, 0.4, 0.01 );
-		
-	// var textureFlare0 = THREE.ImageUtils.loadTexture( "./textures/lensflare/lensflare0.png" );
-	// sunflareColor.setHSL( 5, 1, 1 + 0.4 ); // a,b,c+d (d:1~ 0.1 flare magnitude. at 0.1 it turns green, 0.3 = yellow, 0.4 orange, 0.5 orange-red-with-corona)
-											// c:0.5 default, 1: larger corona; 5:even larger
-	// var lensFlare = new THREE.LensFlare( textureFlare0, window.innerWidth, 0.0, THREE.AdditiveBlending, sunflareColor );
-	// lensFlare.name = "lensFlare";
 	
 	// lensflares
 	var textureLoader = new THREE.TextureLoader();
@@ -195,30 +168,11 @@ function classSpace(ui) {
 		
 		// SPHERE POSITION PRESETS
 		object = objects[view][this.object_name];
-		// object = front[object_name];
-		// // // CLOSEUPS: FOR RADIUS 400
-		// // sphere.position.set(0,-320,400); // VERY LOW: GOOD
-		// // sphere.position.set(0,-320,300);
-		// // sphere.position.set(0,-300,300); // GOOD
-		// // sphere.position.set(0,-340,200); // HIGHER: GOOD
-		// // sphere.position.set(0,-320,400); // VERY LOW
-		// // sphere.position.set(0,-320,500); // VERY LOW
-		// // sphere.position.set(0,-320,700); // VERY LOW
-		
-		// // // // CLOSEUPS: FOR RADIUS 40
-		// // sphere.position.set(0,-30,720); // VERY LOW
-		// // sphere.position.set(0,-30,740); // VERY LOW
-		// sphere.position.set(0,-32,740); // VERY LOW //GOOD
-		
-		// // sphere.position.set(0,-43,735); // VERY LOW
-
 
 		if (object.position != "off") {
-			// sphere.position.set(object.position[0],object.position[1],object.position[2]); // VERY LOW object.position[0]
 			sphere.position.z = object.position[2];
 			sphere.position.y = object.position[1];
 			sphere.position.x = object.position[0];
-			// mesh.position.set(object.position[0],object.position[1],object.position[2]); // VERY LOW object.position[0]
 		}
 		
 		// SET CAMERA
@@ -244,32 +198,22 @@ function classSpace(ui) {
 
 		// SET AMBIENT LIGHT
 		ambient.color.setHex(object.ambient_color, object.ambient_intensity);
-		// ambient.color.setHex(0x222222, 0);
 
 		// SET DIRECTIONAL LIGHT
 		if (object.directional_light) { // if light is on
 			light.color.setHex(object.directional_color);
 			light.intensity = object.directional_intensity;
-			// console.log("@@@@@@@@@@@@", object.directional_position);
 			light.position.set(object.directional_position[0], object.directional_position[1], object.directional_position[2],);
 			light.target = sphere;
 		} else { // if light is off
 			light.intensity = 0; // turns off lights
 		}
-		
-		// // TESTING
-		// // light.color.setHex(0xcccccc);
-		// light.position.set(0, 120, -150);
-		// light.target = sphere;
-		// light.intensity = 10;
 			
 		// SET RING MESH
 		if ((object.name == "saturn") && (view == "front"))  {
 			scene.add(ring);
 		}
 		else { // REMOVE RING MESH
-			// var selectedObject = scene.getObjectByName("ring");
-			// scene.remove( selectedObject );
 			scene.remove(ring);
 		}
 		
@@ -292,19 +236,11 @@ function classSpace(ui) {
 		// SET SPHERE 
 		if (object.name == "sun") {
 			scene.add(sphere);
-			// scene.add(mesh);
 		} else if (object.name == "asteroids") {
 			scene.remove(sphere);
 		} else {
-			// console.log("sphere.position", sphere.position);
 			scene.add(sphere);
 		}
-
-		// // SET POINT LIGHT
-		// // Create a light, set its position, and add it to the scene.
-		// var light = new THREE.PointLight(0xffffff);
-		// light.position.set(-100,200,100);
-		// scene.add(light);
 
 		// SET RADIUS (THE 150, AND 200 VALUE HERE ARE ARBITARY
 		var scale = 1;
@@ -317,7 +253,6 @@ function classSpace(ui) {
 			// HERE WE RESET THE ROTATION TO ORIGINAL SO THAT WE CAN MAP THE SUN MATERIAL
 			sphere.rotation.set(0,0,0);
 			sphere.updateMatrix();
-			
 			
 			// MAP MATERIAL
 			sphere.material = material;
@@ -336,7 +271,6 @@ function classSpace(ui) {
 			sphere.material = material_original
 			sphere.material.map = THREE.ImageUtils.loadTexture(object.texture);
 			sphere.material.shininess = 1;
-			// console.log('@@@@@@@@@@@@@@@@@material', sphere.material);
 			// AND AFTER MAPPING THE MATERIAL, AND IF THE VIEW IS HOVER, THEN WE ROTATE THE OBJECT
 			if (view == "hover") rotateObject(sphere, object.rotate[0],object.rotate[1],object.rotate[2]);	
 		}
@@ -348,10 +282,6 @@ function classSpace(ui) {
 			wireframe: true,
 			side: THREE.DoubleSide});
 		}
-		
-		
-		// // SET MATERIAL COLOR
-		// sphere.material.color.setHex(hex);
 			
 		// SET ROTATION
 		if (view == "front") {
@@ -362,9 +292,6 @@ function classSpace(ui) {
 			sphere.rotation.y = object.rotation; 
 			sphere.rotation.x = object.rotation;
 		}
-
-		// report = report + ("camera position:"+camera.position[0]+","+camera.position[1]+","+camera.position[2]);
-		// $("h1").html("$("h1").html("camera position:"+camera.position.x+","+camera.position.y+","+camera.position.z+" sphere position:"+sphere.position.x+","+sphere.position.y+","+sphere.position.z);
 	}
 	
 
@@ -395,11 +322,6 @@ function classSpace(ui) {
 	function animate() {
 		updateRotations();
 		requestAnimationFrame(animate);
-		// console.log('object_name'+object_name);
-		// if (object_name == "sun") {
-			// random_number = (randomInt(1,60) /5000);
-			// sunflareColor.setHSL( 5, 3, (0.7 + random_number) + 0.4);
-		// }
 		renderer.render(scene, camera);
 		controls.update();
 	}
@@ -408,12 +330,9 @@ function classSpace(ui) {
 		return new THREE.Mesh(
 			new THREE.TorusGeometry( 460, 80 , 2 , 160), // 350, 90 , 1.99 ,150 for radisu 200
 			new THREE.MeshPhongMaterial({
-				// map:         THREE.ImageUtils.loadTexture('textures/land_ocean_ice_cloud_2048.jpg'),
-				// map:         THREE.ImageUtils.loadTexture('textures/jupitermap.jpg'),
 				map:         THREE.ImageUtils.loadTexture('textures/saturnringpattern.gif'),
 				transparent	: true,
-				opacity : 0.8,
-				//specular:    new THREE.Color('textures/saturnringpattern.gif')								
+				opacity : 0.8,							
 			})
 		);
 	}
@@ -422,27 +341,12 @@ function classSpace(ui) {
 		return new THREE.Mesh(
 			new THREE.SphereGeometry(radius, segments, segments),
 			new THREE.MeshPhongMaterial({
-				// map:         THREE.ImageUtils.loadTexture('textures/land_ocean_ice_cloud_2048.jpg'),
-				// map:         THREE.ImageUtils.loadTexture('textures/jupitermap.jpg'),
 				map:         THREE.ImageUtils.loadTexture(texture),
-				// bumpMap:     THREE.ImageUtils.loadTexture('images/elev_bump_4k.jpg'),
-				// bumpScale:   0.1,
-				// specularMap: THREE.ImageUtils.loadTexture('images/water_4k.png'),
 				specular:    new THREE.Color('grey'),
 				shininess: 5,				
 			})
 		);
 	}
-
-	// function createClouds(radius, segments) {
-		// return new THREE.Mesh(
-			// new THREE.SphereGeometry(radius + 0.003, segments, segments),			
-			// new THREE.MeshPhongMaterial({
-				// map:         THREE.ImageUtils.loadTexture('images/fair_clouds_4k.png'),
-				// transparent: true
-			// })
-		// );		
-	// }
 
 	function createStars(radius, segments) {
 		return new THREE.Mesh(
@@ -488,7 +392,6 @@ function classSpace(ui) {
 		})
 		var color = '#111111';
 		color = ColorLuminance(color,2+Math.random()*10);
-		// console.log(color);
 		if (space.wireframe) {
 			// WIREFRAME
 			texture = new THREE.MeshPhongMaterial({
@@ -509,8 +412,6 @@ function classSpace(ui) {
 		cube.castShadow = true;
 		cube.receiveShadow = true;
 		cube.scale.set(1+Math.random()*0.4,1+Math.random()*0.8,1+Math.random()*0.4);
-		//cube.rotation.y = Math.PI/4;
-		//cube.rotation.x = Math.PI/4;
 		var x = spreadX/2-Math.random()*spreadX;
 		var centeredness = 1-(Math.abs(x)/(maxWidth/2));
 		var y = (maxHeight/2-Math.random()*maxHeight)*centeredness
@@ -796,7 +697,6 @@ function classHUD(iUI) {
 		var index=0;
 		var start_from = RPage * lines_to_read;
 		for (i=start_from; i < start_from+lines_to_read; i++) {
-			// console.log("......", i, stats[object_name][i]);
 			$("#textbox_R"+index).html(stats[ui.space.object_name][i]);
 			index++;
 		}
@@ -821,7 +721,6 @@ function classHUD(iUI) {
 		var start_from = RPage * lines_to_read;
 		
 		for (i=start_from; i < start_from+lines_to_read; i++) {
-			// console.log("......", i, stats[object_name][i]);
 			$("#textbox_R"+index).html(stats[ui.space.object_name][i]);
 			index++;
 		}
@@ -854,7 +753,6 @@ function classHUD(iUI) {
 		// FIND SMALLEST FONT
 		for (i=0; i < 6; i ++) {
 			size = this.fitFont($("#textbox_R"+i), 0, ($(window).height() * 0.6)/8);
-			// console.log("size:"+smallest_size);
 			if (size < smallest_size) smallest_size = size;
 			}
 			
@@ -874,7 +772,6 @@ function classHUD(iUI) {
 	};
 
 	this.fitFont = function($element, width, height, refinement=10, low=-1, high=-1, percentage = 300, factor=10, steps=0) {
-		// console.log($element.height(), height, low, high, percentage);
 		if (!$element.is(":visible")) { // MAKE SURE ELEMENT IS VISIBLE;
 			return 200;
 		}
@@ -883,13 +780,11 @@ function classHUD(iUI) {
 		}
 		steps++;
 		if (factor < refinement) {
-			// console.log("returning factor:", factor);
 			return percentage;
 		}
 		if ($element.height() > height) {
 			percentage = percentage - factor;
 			if (percentage == low) {
-				// console.log("1continuing recursion factor:", factor, $element.height(), height);
 				return this.fitFont($element, width, height, refinement, percentage, high, percentage, parseInt(factor/2), steps);
 			}
 			$element.css("font-size", this.limitSize(percentage,250)+"%");
@@ -898,7 +793,6 @@ function classHUD(iUI) {
 		else if ($element.height() < height) {
 			percentage = percentage + factor;
 			if (percentage == high) {
-				// console.log("2continuing recursion factor:", factor, $element.height(), height);
 				return this.fitFont($element, width, height, refinement, low, percentage, percentage, parseInt(factor/2), steps);
 			}
 			$element.css("font-size", this.limitSize(percentage,250)+"%");
@@ -970,11 +864,6 @@ function classHUD(iUI) {
 		textcontainer_top = ($(window).height() - textcontainer.outerHeight())/2;
 		textcontainer.css("top", textcontainer_top);
 		textcontainer.css("display", "block");
-		// if ($(window).height() < $(window).width()) {
-			// textcontainer.css("display", "block");
-		// } else {
-			// textcontainer.css("display", "none");
-		// }
 
 		var link = $("#textbox_"+side+index);
 		var offset = link.offset();
@@ -983,12 +872,10 @@ function classHUD(iUI) {
 		var s_left = offset.left;
 		var s_bottom = s_top + link.outerHeight();
 		var s_right = s_left + link.outerWidth();
-		// console.log("s_top:"+s_top+",s_left:"+s_left+",s_bottom:"+s_bottom+",s_right:"+s_right);
 		
 		var textwrapper = $("#textwrapper_"+side);
 		var blankwrapper = $("#blankwrapper_"+side);
 		var textwrapper_top_offset = (textwrapper.outerHeight() - blankwrapper.outerHeight()) /2
-		// console.log("textwrapper_top_offset:"+textwrapper_top_offset);
 		var blankwrapper_top = blankwrapper.offset().top;
 
 		
@@ -999,7 +886,6 @@ function classHUD(iUI) {
 		var e_middle = e_top + (blank.outerHeight()/2);
 		var e_bottom = e_top + blank.outerHeight();
 		var e_right = e_left + blank.outerWidth();
-		// console.log("e_top:"+e_top+",e_left:"+e_left+",e_bottom:"+e_bottom+",e_right:"+e_right);
 		
 		if (start_y == "bottom") {
 			sy = s_bottom-2;
@@ -1028,12 +914,6 @@ function classHUD(iUI) {
 * UI
 */
 
-
-// classUI.prototype.itemSelected = function(callback) {
-    // // Call our callback, but using our own instance as the context
-    // callback.call(this);
-// }
-
 function classUI() {
 	
 	this.selected_item = "";
@@ -1057,7 +937,6 @@ function classUI() {
 		$(window).on('resize', ui.onWindowResize);
 		$(document).keyup(function(e) {documentKeyUp(e);});
 		$(document).mousedown(function(event) {ui.showPanels(event);});
-		// $('#selector').on('change', function() {selectorOnChange();})
 		$(".textcontainer").on("mousedown click", "a", function (e) {ui.linkClicked(e);} );
 		$('#textcontainer_L').mousedown(function(e) {ui.HUDLmousedown(e);});
 		$('#textcontainer_R').mousedown(function(e) {ui.HUDRmousedown(e);});
@@ -1222,8 +1101,6 @@ function classUI() {
 				ui.hud.visible = true;
 				this.highlightTopButtonColor(".fs-hud", "#8f99ba");
 				ui.hud.loadInfoAndStats(space.object_name);
-				// $('#textcontainer_R').show();
-				// $('#textcontainer_L').show();
 				$('.line').show();
 				$('h1').show();
 			}
@@ -1262,7 +1139,6 @@ function classUI() {
 	
 	this.selectorButtonClicked = function() {
 		audioPlay("screen"); 
-		// console.log(parseInt($('.selector').css('bottom')));
 		if (parseInt($('.selector').css('bottom')) < 0) {
 			$('.selector').css('bottom', '0px');
 			$('.selector').css('width', '300px');
@@ -1274,39 +1150,21 @@ function classUI() {
 	
 	this.selectorItemClicked = function(item) {
 		var value = $(item).data("value");
-		// console.log($(this).data("value"));
-		// $(this).addClass("selected");
-		
-		//this.callback.call(value);
 		selectedItemChanged(value);
 		// HIDE MENU
-		// alert('4');
 		$('.selector').css('bottom', '-550px');
-		// event.preventDefault();
 	}
 	
 	function selectedItemChanged(value) {
-		// object_name = value;
-		// if ($('#universe').is(":hidden")) {
-			// drawObject(value);
-		// }
-		// // SELECT 3DCssSolarSystem
-		// select3DCssSolarSystem(value);
-		
 		if ((value != space.object_name) && (typeof value !== "undefined")) {
 			$("h1").html(toProperCase(value));
 			audioPlay("beep"); 
-			// alert('test');
 			if ($('#universe').is(":hidden")) {
 				space.drawObject(value);
-				// alert('1');
 			}
 			// SELECT 3DCssSolarSystem
 			space.select3DCssSolarSystem(value);
-			// alert('2');
-			
 			$('#selector_label').html(space.object_name.toUpperCase());
-			// alert('3');
 		}
 	}
 	
