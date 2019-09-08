@@ -720,7 +720,7 @@ function classHUD(iUI) {
 	var LPage = -1;
 	var RPage = -1;
 	var RPageCount = 0;
-	this.visible = true;
+	this.visible = false;
 	this.font_size_limit = 200; // FONT SIZE IN PERCENTAGE
 
 	this.init = function() {
