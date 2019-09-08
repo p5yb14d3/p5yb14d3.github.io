@@ -1,5 +1,6 @@
 
 var ui;
+var sound_init = false;
 
 $(document).ready(function() { 
 	ui = new classUI();
@@ -10,7 +11,8 @@ $(document).ready(function() {
 			sound_init = true;
 			ui.toggleSound();
 		}
-	}); 
+	});
+	ui.toggleHUD();
 });
 
 function classSpace(ui) {
