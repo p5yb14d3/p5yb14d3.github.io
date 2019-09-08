@@ -14,7 +14,6 @@
  
 var ui;
 var sound_init = false;
-var test=1;
 
 $(document).ready(function() { 
 	ui = new classUI();
@@ -22,6 +21,7 @@ $(document).ready(function() {
 	ui.space.drawObject();
 	$("html").click(function(){
 		if (sound_init == false) {
+			alert('test');
 			sound_init = true;
 			ui.toggleSound();
 		}
