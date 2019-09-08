@@ -944,7 +944,7 @@ function classUI() {
 		$('#saturn .planet').on('click', function() {ui.showPlanetClicked("saturn");})
 		$('#uranus .planet').on('click', function() {ui.showPlanetClicked("uranus");})
 		$('#neptune .planet').on('click', function() {ui.showPlanetClicked("neptune");})
-		ui.toggleHUD();
+		//ui.toggleHUD();
 	}
 
 	this.update = function() {
