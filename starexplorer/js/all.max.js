@@ -730,6 +730,10 @@ function classHUD(iUI) {
 			this.createTextBox("R", i, "");
 			this.drawLine("R", "create", i, "middle");
 		}
+		$('#textcontainer_R').hide();
+		$('#textcontainer_L').hide();
+		$('.line').hide();
+		$('h1').hide();
 	};
 
 	this.reset = function() {
