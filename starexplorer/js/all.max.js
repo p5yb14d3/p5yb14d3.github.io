@@ -1,12 +1,16 @@
 
 var ui;
+var sound_init = false;
 
 $(document).ready(function() { 
 	ui = new classUI();
 	ui.init();
 	ui.space.drawObject();
 	$("html").click(function(){
-	  alert("html was clicked.");
+		if !(sound_init) {
+			sound_init = true;
+			ui.toggleSound();
+		}
 	}); 
 });
 
