@@ -65,8 +65,8 @@ body {
     /* white orange */
     color: #db681f;
 
-    font-size: 1em;
-    border: 0 solid blue;
+    font-size: 0.5em;
+    border: 1 solid blue;
     display: inline-block;
 }
 .textcontainer {
