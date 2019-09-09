@@ -66,11 +66,16 @@ body {
     /* sat orange */
     color: #dabd7a;
     /* white orange */
-    color: #db681f;
 	color: #db681f6e;
+    color: #db681f;
+	
 
-    border: 4 solid blue;
+    border: 0 solid blue;
     display: inline-block;
+	
+	-webkit-box-shadow: -13px 14px 0px -9px rgba(0,0,0,0.64);
+	-moz-box-shadow: -13px 14px 0px -9px rgba(0,0,0,0.64);
+	box-shadow: -13px 14px 0px -9px rgba(0,0,0,0.64);
 }
 .textcontainer {
     position: absolute;
