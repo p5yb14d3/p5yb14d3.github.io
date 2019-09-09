@@ -73,9 +73,7 @@ body {
     border: 0 solid blue;
     display: inline-block;
 	
-	-webkit-box-shadow: -13px 14px 0px -9px rgba(0,0,0,0.64);
-	-moz-box-shadow: -13px 14px 0px -9px rgba(0,0,0,0.64);
-	box-shadow: -13px 14px 0px -9px rgba(0,0,0,0.64);
+	text-shadow: -1px 1px 0px rgba(0, 0, 0, 1);
 }
 .textcontainer {
     position: absolute;
