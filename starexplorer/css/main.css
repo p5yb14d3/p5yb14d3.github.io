@@ -65,8 +65,8 @@ body {
     /* white orange */
     color: #db681f;
 
-    font-size: 0.5em;
-    border: 1 solid blue;
+    font-size: 0.8em;
+    border: 0 solid blue;
     display: inline-block;
 }
 .textcontainer {
@@ -83,12 +83,10 @@ body {
 }
 
 .textbox_L {
-    font-size: 200%;
     border: 0px solid brown;
     padding: 2%;
 }
 .textbox_R {
-    font-size: 200%;
     padding: 2%;
 }
 #textcontainer_L {
