@@ -59,14 +59,13 @@ body {
 
 .textbox > div {
     font-family: "Source Sans Pro", sans-serif;
-    font-weight: bold;
     color: #b6705a;
     /* sat orange */
     color: #dabd7a;
     /* white orange */
     color: #db681f;
 
-    font-size: 120%;
+    font-size: 1em;
     border: 0 solid blue;
     display: inline-block;
 }
