@@ -759,7 +759,6 @@ function classHUD(iUI) {
 		// MAKE ALL FONTS SAME SIZE
 		for (i=0; i < 6; i ++) {
 			$("#textbox_R"+i).css("font-size", this.limitSize(smallest_size,100)+"%");
-			}
 			$("#textbox_L").css("font-size", this.limitSize(smallest_size,100)+"%");
 			}
 		// UPDATE LINES
