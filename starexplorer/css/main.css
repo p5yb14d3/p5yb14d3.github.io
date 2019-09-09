@@ -21,7 +21,8 @@ body {
     margin-bottom: 5px;
 
 
-    font-family: "VT323", monospace;
+    font-family: "Source Sans Pro", monospace;
+	font-weight:bold;
 
     color: #bd998d; /* light orange */
     color: #a9d4d2; /* light blue */
@@ -83,7 +84,7 @@ body {
 .textbox_L {
     border: 0px solid brown;
     padding: 2%;
-	line-height:2%;
+	line-height:130%;
 }
 .textbox_R {
     padding: 2%;
