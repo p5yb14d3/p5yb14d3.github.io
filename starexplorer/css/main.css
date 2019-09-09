@@ -21,7 +21,7 @@ body {
     margin-bottom: 5px;
 
 
-    font-family: "Source Sans Pro", monospace;
+    font-family: "Source Sans Pro", sans-serif;
 	font-weight:bold;
 
     color: #bd998d; /* light orange */
@@ -38,6 +38,7 @@ body {
     -webkit-stroke-color: #FFFFFF;
     -webkit-fill-color: #FFFFFF;
     text-shadow: 1px 0 20px #ba8db5;
+	text-shadow: 1px 0 20px #97693f8a;
 
     background-color: rgb(100,100,100,0);
 }
