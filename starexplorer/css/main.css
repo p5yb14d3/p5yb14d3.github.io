@@ -43,7 +43,7 @@ body {
 	text-shadow: 1px 0 20px #97693f8a;
 
     background-color: rgb(100,100,100,0);
-	text-shadow: -1px 1px 0px rgba(0, 0, 0, 1);
+	text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.5);
 }
 
 .glow {
@@ -67,14 +67,14 @@ body {
     /* sat orange */
     color: #dabd7a;
     /* white orange */
-	color: #db681f6e;
-    color: #db681f;
 	
+    color: #db681f;
+	color: #db681f9c;
 
     border: 0 solid blue;
     display: inline-block;
 	
-	text-shadow: -1px 1px 0px rgba(0, 0, 0, 1);
+	text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.5);
 }
 .textcontainer {
     position: absolute;
