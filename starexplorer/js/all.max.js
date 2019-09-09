@@ -622,7 +622,7 @@ function classHUD(iUI) {
 	var RPage = -1;
 	var RPageCount = 0;
 	this.visible = false;
-	this.font_size_limit = 100; // FONT SIZE IN PERCENTAGE
+	this.font_size_limit = 150; // FONT SIZE IN PERCENTAGE
 
 	this.init = function() {
 		this.createTextBox("L", 0, "");
