@@ -83,6 +83,7 @@ body {
 .textbox_L {
     border: 0px solid brown;
     padding: 2%;
+	line-height:2%;
 }
 .textbox_R {
     padding: 2%;
