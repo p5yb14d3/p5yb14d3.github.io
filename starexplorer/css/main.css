@@ -28,6 +28,8 @@ body {
     color: #a9d4d2; /* light blue */
 	color: #ba8db5; /* light pink */
     color: #9da4d8; /* light purple */
+	color: #9a95bd96;
+	color: #bd998d96;
     
 
     padding-left: 15px;
@@ -40,7 +42,7 @@ body {
     text-shadow: 1px 0 20px #ba8db5;
 	text-shadow: 1px 0 20px #97693f8a;
 
-    background-color: rgb(100,100,100,0);
+    background-color: rgb(100,100,100,0.5);
 }
 
 .glow {
@@ -65,6 +67,7 @@ body {
     color: #dabd7a;
     /* white orange */
     color: #db681f;
+	color: #db681f6e;
 
     border: 4 solid blue;
     display: inline-block;
