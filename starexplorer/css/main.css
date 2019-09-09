@@ -43,6 +43,7 @@ body {
 	text-shadow: 1px 0 20px #97693f8a;
 
     background-color: rgb(100,100,100,0);
+	text-shadow: -1px 1px 0px rgba(0, 0, 0, 1);
 }
 
 .glow {
