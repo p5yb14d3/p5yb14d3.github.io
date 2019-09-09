@@ -22,7 +22,7 @@ body {
 
 
     font-family: "Source Sans Pro", sans-serif;
-	font-size:16px;
+	font-size:150%;
 
     color: #bd998d; /* light orange */
     color: #a9d4d2; /* light blue */
@@ -66,7 +66,7 @@ body {
     /* white orange */
     color: #db681f;
 
-    font-size: 16px;
+    font-size: 150%;
     border: 4 solid blue;
     display: inline-block;
 }
