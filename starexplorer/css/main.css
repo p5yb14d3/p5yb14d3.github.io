@@ -57,7 +57,7 @@ body {
     box-shadow: 0 0 10px #9ecaed;
 }
 
-.textbox > div {
+.textbox > span {
     font-family: "Source Sans Pro", sans-serif;
     color: #b6705a;
     /* sat orange */
@@ -65,7 +65,6 @@ body {
     /* white orange */
     color: #db681f;
 
-    font-size: 100%;
     border: 4 solid blue;
     display: inline-block;
 }
