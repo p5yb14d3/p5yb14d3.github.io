@@ -20,8 +20,8 @@ body {
     display: block;
     margin-bottom: 5px;
 
-    font-family: 'Abel', sans-serif;
-    font-family: 'VT323', sans-serif;
+
+    font-family: "Source Sans Pro", sans-serif;
 
     color: #bd998d; /* light orange */
     color: #a9d4d2; /* light blue */
@@ -58,9 +58,7 @@ body {
 }
 
 .textbox > div {
-    font-family: 'Russo One', sans-serif;
-    font-family: 'Abel', sans-serif;
-    font-family: 'VT323', sans-serif;
+    font-family: "Source Sans Pro", sans-serif;
     font-weight: bold;
     color: #b6705a;
     /* sat orange */
