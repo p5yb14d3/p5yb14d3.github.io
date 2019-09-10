@@ -10,7 +10,12 @@
  *   2. Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
+ *
+ *   3. Audio and sound files cannot be redistributed.
+ *
+ * https://github.com/p5yb14d3/starcommand
  */
+ 
  
 var ui;
 var sound_init = false;
