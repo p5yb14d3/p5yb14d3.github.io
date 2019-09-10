@@ -3,11 +3,11 @@ a:link    { color: #777; text-decoration: none;      }
 a:hover   { color: #fff; }
 a:visited { color: #777;                             }
 
-h2 {float:left; font-size:30px; font-family: 'Source Sans Pro', sans-serif; font-style:italic;}
+h2 {float:left; font-size:24px; font-family: 'Source Sans Pro', sans-serif; font-style:italic;}
 ol {list-style:none; margin:0; padding:0;}
 header > pre {color:#777}
 
-img {width: 800px;}
+img {width: 780px;}
 
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
@@ -28,13 +28,13 @@ img {
 
 @media only screen and (max-width: 400px) {
 	h1 {
-		font-size: 25px;
+		font-size: 22px;
 	}
 	nav > ul > li {
 		margin-left:15px;
 	}
 	.entry-title {
-		font-size: 25px;
+		font-size: 20px;
 	}
 	a {
 		font-size: 25px;
