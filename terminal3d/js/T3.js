@@ -31,7 +31,7 @@ function T3commands(line) {
 	if (terminal.app == "") {
 		switch(command) {
 			case "help":
-				print_buffer = "\t\nHELP:\n1)theme snowflakes\n2)theme starfield\n3)freeze\n4)unfreeze/resume\n5)sound on/off\n6)jot\n7)game";
+				print_buffer = "\t\nHELP:\n1)freeze\n2)unfreeze/resume\n3)sound on/off\n4)jot\n5)game";
 				terminal.print();
 				terminal.sound.beep([[660, 0.1], [660, 0.1], [660, 0.1], [510, 0.1], [660, 0.1], [770, 0.1], [1, 0.1], [380, 0.1]]);
 				break;
@@ -58,8 +58,8 @@ function T3commands(line) {
 				break;
 			case "":
 				break;
-			default:
-				terminal.sound.beep([[500, 0.1]]);
+			//default:
+				//terminal.sound.beep([[500, 0.1]]);
 		}
 		
 	}
