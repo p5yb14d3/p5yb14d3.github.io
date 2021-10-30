@@ -4,9 +4,9 @@
 <meta charset="UTF-8">  
 <style>
    body {
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-	  margin:0px; padding:0px;
-	  overflow:hidden;
+		overflow:hidden;
+		font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+		margin:0px; padding:0px;
    }
    .sample {
       font-size: 25px;
@@ -54,6 +54,14 @@ function call(number) {
 console.log("calling number:" + number)
 }
 
+function line(x1=0, y1=0, x2=600, y2=600) {
+		context.beginPath();
+		context.moveTo(x1, y1);
+		context.lineTo(x2, y2);
+		context.strokeStyle = 'black';
+		context.stroke();
+}
+
 function RunCode() {
 	let code  = document.querySelectorAll('#code')[0].value; // selected by id 
 	console.log(code)
@@ -63,7 +71,7 @@ function RunCode() {
 	var canvas = document.getElementById("myCanvas");
 	var context = canvas.getContext("2d");
 
-	let sampleEle = document.querySelector(".sample");
+	//let sampleEle = document.querySelector(".sample");
 	
 	document.body.addEventListener("mousemove", (event) => {
 		
