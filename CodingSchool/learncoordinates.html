@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">  
+<style>
+   body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	  margin:0px; padding:0px;
+   }
+   .sample {
+      font-size: 25px;
+      font-weight: 500;
+   }
+
+   
+   canvas {
+	border:1px solid #d3d3d3; 
+	margin:0px; padding:0px;
+	z-index: 2;
+   }
+   
+   .main1 {
+   float:left;
+   }
+   
+   .main2 {
+   margin-left: 10px;
+   float:left;
+   width: 400px;
+   height:450px;
+   border:1px solid #d3d3d3;
+   }
+</style>
+</head>
+<body>
+<div class="main1">
+<canvas id="myCanvas" width="650" height="450">Your browser does not support the HTML5 canvas tag.</canvas>
+</div>
+<div class="main2">
+	
+	<h1>Coordinates of mouse</h1>
+	<p class="sample"></p>
+	<h3>Hover the mouse over the screen to get its x and y axis position</h3>
+	<button onclick="RunCode()">RUN</button>
+
+<textarea id="code" name="w3review" rows="10" cols="45">
+At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies.
+</textarea>
+</div>
+<script>
+
+function call(number) {
+console.log("calling number:" + number)
+}
+
+function RunCode() {
+	let code  = document.querySelectorAll('#code')[0].value; // selected by id 
+	console.log(code)
+	eval(code);
+}
+
+	var canvas = document.getElementById("myCanvas");
+	var context = canvas.getContext("2d");
+
+	let sampleEle = document.querySelector(".sample");
+	
+	document.body.addEventListener("mousemove", (event) => {
+		
+		
+		context.clearRect(0, 0, canvas.width, canvas.height);
+		
+		// draw ruler background x
+		for (i=0; i <= 50; i += 1) {
+			context.beginPath();
+			context.moveTo(0, i);
+			context.lineTo(canvas.width, i);
+			context.strokeStyle = '#cccccc';
+			context.stroke();
+		}
+		
+		// draw ruler background y
+		for (i=0; i <= 50; i += 1) {
+			context.beginPath();
+			context.moveTo(i, 0);
+			context.lineTo(i, canvas.height);
+			context.strokeStyle = '#cccccc';
+			context.stroke();
+		}
+		
+		context.beginPath();
+		context.fillStyle = "blue";
+		context.fillText("X", 30, 10); 
+	
+		// draw ruler
+		context.beginPath();
+		context.moveTo(0, 50);
+		context.lineTo(canvas.width, 50);
+		context.strokeStyle = 'black';
+		context.stroke();
+		
+		// draw long markers
+		var margin_x = 50
+		for (i=margin_x; i <= canvas.width; i += 50) {
+			context.beginPath();
+			context.moveTo(i, 30);
+			context.lineTo(i, 50);
+			context.strokeStyle = 'black';
+			context.stroke();
+			context.textAlign = "right";
+			context.font = "10px Arial";
+			context.fillText(i-margin_x, i, 10); 
+			context.fillStyle = "blue";
+		}
+		
+		// draw short markers
+		for (i=50; i <= canvas.width; i += 10) {
+			context.beginPath();
+			context.moveTo(i, 40);
+			context.lineTo(i, 50);
+			context.strokeStyle = 'black';
+			context.stroke();
+		}
+		
+
+		// draw current line
+		if (event.x >= margin_x) {
+			context.beginPath();
+			context.moveTo(event.x, 0);
+			context.lineTo(event.x, canvas.width);
+			context.strokeStyle = 'blue';
+			context.stroke();
+		}
+		
+
+		context.beginPath();
+		context.fillStyle = "red";
+		context.fillText("Y", 10, 35); 
+		
+		// draw ruler
+		context.beginPath();
+		context.moveTo(50, 0);
+		context.lineTo(50, canvas.height);
+		context.strokeStyle = 'black';
+		context.stroke();
+		
+		// draw long markers
+		var margin_y = 50
+		for (i=margin_x; i <= canvas.height; i += 50) {
+			context.beginPath();
+			context.moveTo(30, i);
+			context.lineTo(50, i);
+			context.strokeStyle = 'black';
+			context.stroke();
+			context.textAlign = "left";
+			context.font = "10px Arial";
+			context.fillText(i-margin_x, 10, i); 
+			context.fillStyle = "red";
+		}
+		
+		// draw short markers
+		for (i=50; i <= canvas.height; i += 10) {
+			context.beginPath();
+			context.moveTo(40, i);
+			context.lineTo(50, i);
+			context.strokeStyle = 'black';
+			context.stroke();
+		}
+		
+
+		// draw current line
+		if (event.y >= margin_y) {
+			context.beginPath();
+			context.moveTo(0, event.y);
+			context.lineTo(canvas.width, event.y);
+			context.strokeStyle = 'red';
+			context.stroke();
+		}
+		
+		if ((event.x >= margin_x) && (event.y >= margin_y) && (event.x <= canvas.width) && (event.y <= canvas.height)) {
+			// draw x coordinate value
+			context.textAlign = "right";
+			context.font = "10px Arial";
+			context.fillStyle = "blue";
+			context.fillText("x = " + (event.x-margin_x), event.x, 25); 
+		
+			// draw y coordinate value
+			context.textAlign = "left";
+			context.font = "10px Arial";
+			context.fillStyle = "red";
+			context.fillText("y = " + (event.y-margin_y), 10, event.y); 
+		
+			// draw both x,y coordinate point
+			var x_placement = 0;
+			var y_placement = 0;
+			var align = "left";
+			
+			if (event.x < margin_x + (canvas.width / 2)) {
+				// context.fillText("dot (  x,    y  )", (event.x + 5), (event.y))
+				x_placement = (event.x + 5);
+				}
+			else {
+				x_placement = (event.x - 5);
+			}
+			
+			if (event.y < margin_y + (canvas.height / 2)) {
+				y_placement = (event.y + 10);
+				}
+			else {
+				y_placement = (event.y - 5);
+			}
+			
+			if (event.x > margin_x + (canvas.width / 2)) {
+				align = "right";
+			}
+			
+			context.font = "10px Arial";
+			context.fillStyle = "black";
+			context.textAlign = align;
+			context.fillText("dot (" + (event.x-margin_x) + ", " +(event.y-margin_y) + ")", x_placement, y_placement)
+			
+			//sampleEle.innerHTML = "X axis: " + event.x + " Y axis: " + event.y;
+			
+			sampleEle.innerHTML = "dot (" + (event.x-margin_x) + ", " +(event.y-margin_y) + ")"
+		}
+
+   });
+</script>
+</body>
+</html>
