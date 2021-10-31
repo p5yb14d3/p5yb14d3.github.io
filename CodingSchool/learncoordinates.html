@@ -59,7 +59,7 @@ function line(x1=0, y1=0, x2=600, y2=600, width=1, color='black') {
 		context.moveTo(x1, y1);
 		context.lineTo(x2, y2);
 		context.strokeStyle = color;
-		context.lineWidth = 10;
+		context.lineWidth = width;
 		context.stroke();
 }
 
@@ -72,6 +72,7 @@ function line(x1=0, y1=0, x2=600, y2=600, width=1, color='black') {
 		
 		
 		context.clearRect(0, 0, canvas.width, canvas.height);
+		context.lineWidth = 1;
 		
 		// draw ruler background x
 		for (i=0; i <= 50; i += 1) {
