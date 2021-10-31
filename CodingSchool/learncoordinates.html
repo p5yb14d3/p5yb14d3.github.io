@@ -17,11 +17,26 @@
    canvas {
 	border:1px solid #d3d3d3; 
 	margin:0px; padding:0px;
-	z-index: 2;
+	background-color:white;
+   }
+   
+   #myCanvas {
+		position:absolute;
+		left:0;
+		top:0;
+		z-index: 3;
+   }
+   
+    #myCanvas2 {
+		position:absolute;
+		left:0;
+		top:0;
+		z-index: 2;
    }
    
    .main1 {
    float:left;
+   
    }
    
    .main2 {
@@ -36,6 +51,7 @@
 <body>
 <div class="main1">
 <canvas id="myCanvas" width="650" height="450">Your browser does not support the HTML5 canvas tag.</canvas>
+<canvas id="myCanvas2" width="650" height="450">Your browser does not support the HTML5 canvas tag.</canvas>
 </div>
 <!--div class="main2">
 	
@@ -76,6 +92,18 @@ function line(x1=0, y1=0, x2=600, y2=600, width=5, color='black') {
 
 	var canvas = document.getElementById("myCanvas");
 	var context = canvas.getContext("2d");
+	
+	var canvas2 = document.getElementById("myCanvas2");
+	var context2 = canvas.getContext("2d");
+	
+	context2.beginPath();
+	context2.moveTo(0 + ruler_margin, 0 + ruler_margin);
+	context2.lineTo(100 + ruler_margin, 100 + ruler_margin);
+	context2.strokeStyle = "green";
+	context2.lineWidth = 5;
+	context2.stroke();
+	context2.beginPath();
+	context2.lineWidth = 1;
 
 	//let sampleEle = document.querySelector(".sample");
 	
