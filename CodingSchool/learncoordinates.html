@@ -56,13 +56,13 @@ function call(number) {
 console.log("calling number:" + number)
 }
 
-function dot(x=0, y=0, size=1) {
+function dot(x=0, y=0, size=10) {
 	context.beginPath();
-	context.fillRect(x,y,size,size);
+	context.fillRect(x + ruler_margin, y + ruler_margin, size, size);
 	context.beginPath();
 }
 
-function line(x1=0, y1=0, x2=600, y2=600, width=1, color='black') {
+function line(x1=0, y1=0, x2=600, y2=600, width=5, color='black') {
 		context.beginPath();
 		context.moveTo(x1 + ruler_margin, y1 + ruler_margin);
 		context.lineTo(x2 + ruler_margin, y2 + ruler_margin);
