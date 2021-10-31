@@ -40,7 +40,7 @@
 	<button onclick="RunCode()">RUN</button>
 
 <textarea id="code" name="w3review" rows="10" cols="45">
-At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies.
+line(0,0,100,100)
 </textarea>
 </div>
 <script>
@@ -75,6 +75,7 @@ function injectJS(code) {
 function RunCode() {
 	let code  = document.querySelectorAll('#code')[0].value; // selected by id 
 	injectJS(code);
+	//document.getElementById("myiframe").contentWindow.Reset();
 	//console.log(code);
 }
 
