@@ -61,6 +61,8 @@ function line(x1=0, y1=0, x2=600, y2=600, width=1, color='black') {
 		context.strokeStyle = color;
 		context.lineWidth = width;
 		context.stroke();
+		context.beginPath();
+		context.lineWidth = 1;
 }
 
 	var canvas = document.getElementById("myCanvas");
@@ -72,7 +74,6 @@ function line(x1=0, y1=0, x2=600, y2=600, width=1, color='black') {
 		
 		
 		context.clearRect(0, 0, canvas.width, canvas.height);
-		context.lineWidth = 1;
 		
 		// draw ruler background x
 		for (i=0; i <= 50; i += 1) {
