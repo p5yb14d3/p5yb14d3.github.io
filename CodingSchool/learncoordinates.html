@@ -56,8 +56,9 @@ function call(number) {
 console.log("calling number:" + number)
 }
 
-function dot(x=0, y=0, size=10) {
+function dot(x=0, y=0, size=10, color='black') {
 	context.beginPath();
+	context.fillStyle = color;
 	context.fillRect(x + ruler_margin, y + ruler_margin, size, size);
 	context.beginPath();
 }
