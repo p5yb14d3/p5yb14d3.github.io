@@ -50,6 +50,8 @@ At w3schools.com you will learn how to make a website. They offer free tutorials
 </div-->
 <script>
 
+var ruler_margin = 50
+
 function call(number) {
 console.log("calling number:" + number)
 }
@@ -62,8 +64,8 @@ function dot(x=0, y=0, size=1) {
 
 function line(x1=0, y1=0, x2=600, y2=600, width=1, color='black') {
 		context.beginPath();
-		context.moveTo(x1, y1);
-		context.lineTo(x2, y2);
+		context.moveTo(x1 + ruler_margin, y1 + ruler_margin);
+		context.lineTo(x2 + ruler_margin, y2 + ruler_margin);
 		context.strokeStyle = color;
 		context.lineWidth = width;
 		context.stroke();
