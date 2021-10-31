@@ -62,12 +62,6 @@ function line(x1=0, y1=0, x2=600, y2=600) {
 		context.stroke();
 }
 
-function RunCode() {
-	let code  = document.querySelectorAll('#code')[0].value; // selected by id 
-	console.log(code)
-	eval(code);
-}
-
 	var canvas = document.getElementById("myCanvas");
 	var context = canvas.getContext("2d");
 
@@ -231,7 +225,7 @@ function RunCode() {
 			
 			//sampleEle.innerHTML = "dot (" + (event.x-margin_x) + ", " +(event.y-margin_y) + ")"
 		}
-
+	parent.RunCode();
    });
 </script>
 </body>
