@@ -124,20 +124,15 @@ for (i=0; i<100; i += 20) {
 
 function readTextFile(file)
 {
-	alert(file);
     var rawFile = new XMLHttpRequest();
     rawFile.open("GET", file, false);
     rawFile.onreadystatechange = function ()
     {
-	alert("1");
         if(rawFile.readyState === 4)
         {
-		alert("2");
             if(rawFile.status === 200 || rawFile.status == 0)
             {
-			alert("3");
                 var contents = rawFile.responseText;
-				alert(contents);
                 var element = document.getElementById('lessons');
 				element.innerHTML = contents;
             }
