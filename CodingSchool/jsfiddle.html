@@ -42,7 +42,6 @@
 		margin-left: 10px;
 		float:left;
 		width: 400px;
-		height:450px;
 		border:1px solid #d3d3d3;
 		padding-left:20px;
 		padding-right:20px;
@@ -59,6 +58,7 @@
 		width: 400px;
 		background-color:#efefef;
 		margin-top:20px;
+		margin-bottom:20px;
    }
    
    #buttonRunCode {
@@ -69,6 +69,19 @@
 		align:right
 		font-weight: bold;
 		cursor:pointer;
+   }
+   
+    .lessons {
+		border:1px solid blue;
+		position:relative;
+		width: 400px;
+		height: 400px;
+   }
+   
+   .lesson {
+		position:absolute;
+		top:0px;
+		left:0px;
    }
    
 
@@ -87,12 +100,11 @@
 	<!--canvas id="myCanvas" width="650" height="450">Your browser does not support the HTML5 canvas tag.</canvas-->
 	</div>
 	<div class="main2">
-	
-		<h1>Coordinates of mouse</h1>
-		<p class="sample"></p>
-		<h3>Hover the mouse over the screen to get its x and y axis position</h3>
-		
+		<div class="lessons">
 
+			
+
+		</div>
 <textarea id="code" name="w3review" rows="10" cols="47">
 dot(x=200, y=200, width=10, color='red')
 line(x1=0, y1=0, x2=0, y2=400, width=5, color='blue')
@@ -109,6 +121,32 @@ for (i=0; i<100; i += 20) {
 <script>
 
 //window.frames["myiframe"].src = "https://www.yahoo.com";
+
+function readTextFile(file)
+{
+	alert(file);
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    rawFile.onreadystatechange = function ()
+    {
+	alert("1");
+        if(rawFile.readyState === 4)
+        {
+		alert("2");
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+			alert("3");
+                var contents = rawFile.responseText;
+				alert(contents);
+                var element = document.getElementById('lessons');
+				element.innerHTML = contents;
+            }
+        }
+    }
+    rawFile.send(null);
+}
+
+readTextFile("lesson1.js")
 
 function call(number) {
 console.log("calling number:" + number)
