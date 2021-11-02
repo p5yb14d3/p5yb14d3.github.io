@@ -6,4 +6,7 @@
 	<p>The blue ruler's width is 600 pixels wide, and the red ruler's height is 400 pixels tall.</p>
 
 	<h3></h3>
+	<div id="buttons">
+		<button id="Lesson2" onclick="readTextFile('lesson2.js')">Lesson 2</button>
+	</div>
 </div>
