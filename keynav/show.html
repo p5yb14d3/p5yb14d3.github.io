@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Keynav Demo</title>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="./css/keynav.css">
+	
+	<script src="./lib/jquery/jquery-3.2.1.min.js"></script>
+	
+	<script src="./src/keynav.js"></script>
+<style>
+#header {
+	text-align:center;
+	font:18pt Helvetica, Arial;
+	padding:30px;
+	color:#888;
+	}
+#img {
+	text-align:center;
+	width:100%;
+	}
+img {
+	height:80%;
+	height:auto;
+	border: 10px solid white;
+	}
+</style>
+</head>
+
+<body id="index" class="home">
+	<div id="header">
+	Keynav Demo. Hit [ESC] or right click to go back.
+	</div>
+	<div id="img"><img src=""></div>
+	<script>
+	$(document).ready(function() {
+		// GET AND PROCESS PARAM
+		var i = getURLParameter('i');
+		if (i !== undefined) {
+			$('img').attr('src', i);
+		}
+	});
+	
+	function getURLParameter(name) {
+		return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+	}
+		
+	</script>
+</body>
+</html>
