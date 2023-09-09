@@ -10,7 +10,7 @@ body {
 }
 
 .dust {
-	background-image:url('../../imgs/dust.png');
+	background-image:url('static/dust.png');
 	/*background-repeat: no-repeat;
 	background-size: 100% 100vh;*/
 }
