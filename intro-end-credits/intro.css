@@ -1,0 +1,223 @@
+body {
+	background-color: #000;
+	color:#fff;
+	overflow:hidden;
+	/*background-image:url('../../imgs/dust.png');
+	
+	background-image:url('../../imgs/dust.png');
+	background-repeat: no-repeat;
+	background-size: 100% 100vh;*/
+}
+
+.dust {
+	background-image:url('../../imgs/dust.png');
+	/*background-repeat: no-repeat;
+	background-size: 100% 100vh;*/
+}
+
+#outer {
+  display: table;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border:0px solid green;
+}
+
+#middle {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+#inner {
+  margin-left: auto;
+  margin-right: auto;
+  width: 600px;
+  /*whatever width you want*/
+  border:0px solid red;
+  position:relative;
+  text-align:center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size:34px;
+  margin-top:-40px;
+}
+
+
+#fadeinout > div {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+    z-index: 0;
+    -webkit-animation: fadeinout 5s ease-in forwards;
+    animation: fadeinout 5s ease-in forwards;
+    opacity: 0;
+}
+
+
+@keyframes fadeinout {
+  /*50% { opacity: 1; }*/
+  
+
+    50% { opacity: 1; animation-timing-function: ease-in; }
+
+}
+
+
+
+#fadeinout > div:nth-child(2)  {
+    -webkit-animation-delay: 6s;
+    -moz-animation-delay: 6s;
+    -o-animation-delay: 6s;
+    -ms-animation-delay: 6s;
+    animation-delay: 6s; 
+}
+#fadeinout > div:nth-child(3) {
+    -webkit-animation-delay: 12s;
+    -moz-animation-delay: 12s;
+    -o-animation-delay: 12s;
+    -ms-animation-delay: 12s;
+    animation-delay: 12s; 
+}
+#fadeinout > div:nth-child(4) {
+    animation-delay: 31.5s; 
+	animation-duration: 12s; 
+}
+#fadeinout > div:nth-child(5) {
+    animation-delay: 44s; 
+}
+#fadeinout > div:nth-child(6) {
+    animation-delay: 50s; 
+}
+
+#fadeinout > div:nth-child(7) {
+    animation-delay: 66s; 
+}
+
+#title_image {
+	width:600px;
+	height:auto;
+
+}
+
+.title_images {
+	width:100%;
+	height:100vh;
+}
+
+.eyes {
+	width:100%;
+	height:auto;
+	margin-left:auto;
+	margin-right:auto;
+	border:0px solid blue;
+	
+}
+
+#crossfade {
+	width:100%;
+	height:100vh;
+	z-index:-1;
+	border:0px solid green;
+	position:relative;
+}
+
+#crossfade > div { 
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+    z-index: 0;
+    -webkit-backface-visibility: hidden;
+    /*animation: imageAnimation 40s linear 1 20s; */
+	
+
+}
+
+
+
+#crossfade > div:nth-child(1)  {
+ animation-delay: 17.5s;  
+   /*  animation-delay: 2s; */
+	animation-duration: 4.5s;
+	animation-iteration-count: 1;
+	animation-name: imageAnimationDragon;
+	animation-fill-mode: forwards;
+}
+
+
+#crossfade > div:nth-child(2) {
+    animation-delay: 20s; 
+	animation-duration: 11s;
+	animation-iteration-count: 1;
+	animation-name: imageAnimation;
+	animation-fill-mode: forwards;
+	z-index:10;
+}
+
+#crossfade > div:nth-child(3)  {
+	animation-name: imageAnimationDust;
+	animation-delay: 21s;
+	animation-duration: 10s;
+	animation-iteration-count: 1;
+	animation-timing-function: linear;
+	animation-fill-mode: forwards;
+}
+
+#crossfade > div:nth-child(4)  {
+	animation-name: imageAnimationDust;
+	animation-delay: 31s;
+	animation-duration: 40s;
+	animation-iteration-count: 1;
+	animation-timing-function: linear;
+	animation-fill-mode: forwards;
+}
+
+/*
+#crossfade > div:nth-child(4) {
+    -webkit-animation-delay: 18s;
+    -moz-animation-delay: 18s;
+    -o-animation-delay: 18s;
+    -ms-animation-delay: 18s;
+    animation-delay: 18s; 
+}
+#crossfade > div:nth-child(5) {
+    -webkit-animation-delay: 24s;
+    -moz-animation-delay: 24s;
+    -o-animation-delay: 24s;
+    -ms-animation-delay: 24s;
+    animation-delay: 24s; 
+}
+*/
+
+@keyframes imageAnimation { 
+    0% { opacity: 0;
+    animation-timing-function: ease-in; }
+    8% { opacity: 1;
+         animation-timing-function: ease-out; }
+    17% { opacity: 1 }
+    25% { opacity: 0 }
+    100% { opacity: 0 }
+}
+
+@keyframes imageAnimationDragon { 
+    0% { opacity: 0; transform: scale(0.95)}
+    60% { opacity: 1;}
+	50% { opacity: 1; }
+    99% { opacity: 1; }
+    100% { opacity: 0; transform: scale(1)}
+}
+
+@keyframes imageAnimationDust { 
+    0% { opacity: 0;
+    animation-timing-function: ease-in; }
+    8% { opacity: 1;
+         animation-timing-function: ease-out; }
+    75% { opacity: 1 }
+    100% { opacity: 0 }
+}

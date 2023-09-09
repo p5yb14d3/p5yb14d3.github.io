@@ -1,0 +1,113 @@
+body {
+	background-color: #000;
+	color:#fff;
+	overflow:hidden;
+	background-image:url('../../imgs/dust.png');
+	
+	background-image:url('../../imgs/dust.png');
+	background-repeat: no-repeat;
+	background-size: 100% 100vh;
+}
+
+#outer {
+  display: table;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border:0px solid green;
+}
+
+#middle {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+#inner {
+  margin-left: auto;
+  margin-right: auto;
+  width: 600px;
+  /*whatever width you want*/
+  border:0px solid red;
+  position:relative;
+  text-align:center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size:34px;
+  margin-top:-40px;
+}
+
+
+#fadeinout > div {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+    z-index: 0;
+    -webkit-animation: fadeinout 5s ease-in forwards;
+    animation: fadeinout 5s ease-in forwards;
+    opacity: 0;
+}
+
+
+@keyframes fadeinout {
+  /*50% { opacity: 1; }*/
+  
+
+    50% { opacity: 1; animation-timing-function: ease-in; }
+
+}
+
+
+
+#fadeinout > div:nth-child(2)  {
+    -webkit-animation-delay: 6s;
+    -moz-animation-delay: 6s;
+    -o-animation-delay: 6s;
+    -ms-animation-delay: 6s;
+    animation-delay: 6s; 
+}
+#fadeinout > div:nth-child(3) {
+    -webkit-animation-delay: 12s;
+    -moz-animation-delay: 12s;
+    -o-animation-delay: 12s;
+    -ms-animation-delay: 12s;
+    animation-delay: 12s; 
+}
+#fadeinout > div:nth-child(4) {
+    -webkit-animation-delay: 18s;
+    -moz-animation-delay: 18s;
+    -o-animation-delay: 18s;
+    -ms-animation-delay: 18s;
+    animation-delay: 18s; 
+}
+#fadeinout > div:nth-child(5) {
+    -webkit-animation-delay: 24s;
+    -moz-animation-delay: 24s;
+    -o-animation-delay: 24s;
+    -ms-animation-delay: 24s;
+    animation-delay: 24s; 
+}
+#fadeinout > div:nth-child(6) {
+    -webkit-animation-delay: 30s;
+    -moz-animation-delay: 30s;
+    -o-animation-delay: 30s;
+    -ms-animation-delay: 30s;
+    animation-delay: 30s; 
+}
+
+#fadeinout > div:nth-child(7) {
+    -webkit-animation-delay: 36s;
+    -moz-animation-delay: 36s;
+    -o-animation-delay: 36s;
+    -ms-animation-delay: 36s;
+    animation-delay: 36s; 
+}
+
+#title_image {
+	width:600px;
+	height:auto;
+
+}
