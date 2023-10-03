@@ -10,5 +10,12 @@
 }
 
 /* main.css */
-body,html {margin:0;padding:0;background-color:black;}
-#file_browser {display:none;}
+body,html {
+    margin:0;
+    padding:0;
+    background-color:black;
+    overflow:hidden;
+}
+#file_browser {
+    display:none;
+}
