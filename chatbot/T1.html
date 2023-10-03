@@ -8,8 +8,35 @@
 		<style>
 		</style>
 	</head>
-	<body>
+	<body onclick="setFocusInput();">
+	<div id="inputbar">
+		<div id="statusbar">
+			<div></div>
+		</div>
+		<input id="input"autofocus>
+		</div>
 	<div id="audio"></div>
 	<script src="js/T1.js"></script>
+	<script>
+    	const inputElement = document.getElementById("input");
+
+        inputElement.addEventListener("keydown", function(event) {
+            //alert(event.keyCode);
+            if (event.keyCode === 13) {
+                clearInput();
+            }
+        });
+        
+        function clearInput() {
+            inputElement.value = "";
+        }
+            
+    	function setFocusInput() {
+            document.getElementById("input").focus();
+        }
+            
+        clearInput();
+        setFocusInput();
+	</script>
 	</body>
 </html>
