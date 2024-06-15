@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psyblade's Walkthru Street</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Inter:wght@400;700&family=Open+Sans:wght@400;700&family=Lato:wght@400;700&family=Abel&family=Montserrat:wght@400;700&family=Poppins:wght@400;700&family=Noto+Sans:wght@400;700&family=Raleway:wght@400;700&family=Source+Sans+Pro:wght@400;700&family=Merriweather:wght@400;700&family=Oswald:wght@400;700&family=Barlow:wght@400;700&family=Assistant:wght@400;700&family=Urbanist:wght@400;700&display=swap">
+    <style>
+        body {
+            background-color: #03080e;
+            color: #fff;
+            font-family: Source Sans Pro, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+			text-align:center;
+        }
+		
+		#navbar {
+			height:0px;
+		}
+		
+        .responsive-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto; /* Optional: Centers the image */
+        }
+
+		.logo {
+			font-size: 1.5em;
+			font-weight: bold;
+			min-width:100px;
+		}
+		
+		#logo {
+			align:center;
+			max-width:500px;
+		}
+		
+		h1, h2, h3, h4 {
+			color:#fff;
+		}
+		
+		h1 {
+			font-family:lato;
+			font-size:40px;
+		}
+		
+		h2 {
+			font-family:abel;
+			font-size:30px;
+			opacity:0.7;
+		}
+		
+		h3 {
+			font-family:abel;
+			font-size:50px;
+		}
+		
+		h4 {
+			font-family:abel;
+			font-size:30px;
+		}
+
+        .jumbotron-webpage {
+            background-image: url('./imgs/walkthru-street2.jpg'); /* Add your image URL here */
+            background-size: cover;
+			background-position: center -600px;
+			background-repeat: no-repeat;
+            height: 850px;
+			text-align: center; /* Center-align text */
+        }
+		
+		.jumbotron-webpage h1 {
+			opacity:0.7;
+		}
+		
+		.jumbotron-webpage h2 {
+			opacity:0.7;
+			text-shadow: -1px -1px 0 #333, 1px -1px 0 #333, -1px 1px 0 #333, 1px 1px 0 #333;
+		}
+
+        header {
+            text-align: center;
+			height:40px;
+        }
+		
+        header h2{
+            font-family:Urbanist;
+			font-weight:400;
+			color:#aaa;
+        }
+
+
+        .main-content {
+            padding: 0px;
+			width:100%;
+            margin: 0 auto;
+			color:#ddd;
+			position:absolute;
+			top:700px;
+			z-index:10;
+        }
+		
+		section {
+			width:100%;
+		}
+		
+		.container {
+			padding: 20px;
+		    max-width: 1200px;
+			margin: 0 auto;
+		}
+
+        .image-section {
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        .image-section img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+		
+		.green-tint {
+			filter: sepia(40%) hue-rotate(150deg) saturate(140%);
+		}
+
+        .section-title {
+            text-align: center;
+            margin: 20px 0;
+			padding-top:50px;
+        }
+		
+        .single-column-section-webpage p {
+            width: 100%;
+			text-align:center;
+			margin-bottom:20px;
+			font-size:20px;
+        }
+		
+		.single-column-section-webpage {
+			text-align:center;
+		}
+		
+		.single-column-section-webpage img {
+			max-width:100%;
+		}
+		
+        .two-column-section-webpage {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+			font-size:20px;
+        }
+
+        .two-column-section-webpage div {
+            width: calc(50% - 20px);
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+		
+		.justify_left {
+			text-align:left;
+		}
+		
+		.justify_right {
+			text-align:right;
+		}
+		
+		.float-left {
+			float:left;
+		}
+		
+		.float-right {
+			float:right;
+		}
+		
+        .three-column-section {
+            padding: 50px 20px;
+            text-align: left;
+        }
+		
+		.three-column-section h4 {
+			text-align: center;
+		}
+
+        .column {
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            box-sizing: border-box;
+			
+        }
+
+        .column img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        .column h4 {
+            margin-bottom: 10px;
+        }
+
+        .column p {
+            font-size: 18px;
+        }
+		
+		.column a {
+			text-decoration:none;
+		}
+		
+		#section-main-concourse img {
+			width:100%;
+		}
+		
+		#section-side-concourse .column {
+			max-width:800px;
+		}
+		
+		#section-cafeteria .column {
+			max-width:800px;
+		}
+		
+        .footer-image {
+            background-image: url('./imgs/design/building2.jpg'); /* Add your image URL here */
+            background-size: cover;
+            background-position: center;
+			background-repeat: no-repeat;
+            height: 100px;
+			text-align: center; /* Center-align text */
+			margin-top:100px;
+        }
+
+        @media (min-width: 768px) {
+            .three-column-section {
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+            }
+
+            .column {
+                width: calc(33.33% - 20px);
+                margin-bottom: 20px;
+            }
+        }
+		
+		footer {
+			background-color: #000;
+			padding: 20px;
+			color: #fff;
+			text-align: center;
+		}
+		
+		.footer-logos {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-around;
+			border-bottom:2px dotted #333;
+			margin-top:20px;
+			margin-bottom:40px;
+			align-items: center;
+		}
+		
+		.footer-logos a img {
+			filter: grayscale(100%);
+		}
+		
+		.footer-links {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-around;
+		}
+
+		.footer-column {
+			flex: 1;
+			text-align: center;
+			margin-bottom: 20px;
+		}
+
+		footer a {
+			color: #fff;
+			text-decoration: none;
+			display: block;
+			margin-bottom: 8px;
+		}
+
+		.social-icons {
+			margin-top: 0px;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            margin: 0 10px;
+            color: #fff;
+            font-size: 24px;
+            text-decoration: none;
+        }
+
+		.small-logo {
+			height:80px;
+			margin-top:0px;
+		}
+
+		@media (max-width: 768px) {
+			.column {
+				margin-bottom:100px;
+			}
+		
+			.footer-links {
+				flex-direction: column;
+				text-align: center;
+			}
+
+			.footer-column {
+				flex: 1;
+				text-align: center;
+				margin-bottom: 20px;
+			}
+			
+		.jumbotron-webpage {
+			background-position: center center;
+			}
+		}
+		
+		/* Style the popup */
+		.popup {
+			display: none; /* Initially hide the popup */
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+			z-index: 999;
+		}
+
+		/* Base style for the popup content */
+		.popup-content {
+			position: absolute;
+			background-color: #221f1f;
+			padding: 20px;
+			border-radius: 8px;
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+			overflow: hidden;
+		}
+
+		/* Style the YouTube video iframe */
+		#youtubeVideo {
+			width: 100%; /* Full width of the popup content */
+			height: 100%; /* Full height of the popup content */
+		}
+
+		/* Video styling */
+		#localVideo {
+			width: 100%; /* Full width of popup content */
+			height: 100%; /* Full height of popup content */
+		}
+    </style>
+</head>
+<body>
+	<div id="navbar">
+	</div>
+
+    <div class="jumbotron-webpage">
+
+    </div>
+    <div class="main-content">
+	
+	    <header>
+			<h2>Enter the Unknown</h2>
+		</header>
+	
+	    <section class="single-column-section-webpage">
+			<div class="container">
+				<!--h2>Psyblade's Walkthru Street</h2-->
+				<p>Navigate the chilling landscapes of your favorite horror games with our video guides that unravel the most complex and terrifying challenges. Each guide provides a comprehensive step-by-step journey, ensuring you can conquer the darkest and most enigmatic horror games on Roblox. </p>
+			</div>
+        </section>
+	
+
+		<!--section class="image-section">
+			<div class="container">
+				<img id="logo" class="logo responsive-image" src="./imgs/starnogenlogo.png" alt="logo"> 
+				<h2 class="section-title">Our Studio</h2>
+				
+				<div class="two-column-section-webpage">
+					<div class="justify_right">
+						<p>Starnogen Music beckons artists worldwide to its tranquil shores, nestled among swaying palm trees and crystal-clear waters. Amidst this tropical paradise, creatives discover an environment where nature's beauty intertwines with the rhythm of artistic expression, inspiring boundless creativity and passion.</p>
+					</div>
+					<div class="justify_left">
+						<p>Starnogen Music offers a place where artists immerse themselves in their craft, free from the distractions of the outside world. Surrounded by lush greenery and the soothing melody of the wind and waves, musicians find the perfect setting to explore new depths of creativity and bring their artistic visions to life.</p>
+					</div>
+				</div>
+			</div>
+		</section-->
+
+
+		
+
+		<section id="building-places">
+			
+			<div class="container three-column-section">
+				<div class="column">
+					<img src="./imgs/evelyn.jpg" alt="Evelyn (Chapter 1 - Full Gameplay + Walktrough) - Roblox Horror" class="trigger green-tint" data-video-src="https://www.youtube.com/watch?v=KfyWWYpP-sQ" style="cursor: pointer;">
+					<h4 class="trigger" data-video-src="https://www.youtube.com/watch?v=KfyWWYpP-sQ" style="cursor: pointer;">Evelyn - Chapter 1</h4>
+					<p>In the immersive horror experience of "Evelyn: Chapter 1" on Roblox, players are thrust into a chilling mystery set in a seemingly abandoned mansion. As a detective, you are tasked with uncovering the truth behind the enigmatic disappearance of Evelyn, a young girl whose fate is shrouded in eerie circumstances. The game combines atmospheric storytelling with intricate puzzles, requiring players to explore detailed environments, find hidden clues, and solve challenging riddles to piece together Evelyn's story. The suspenseful ambiance and engaging narrative make "Evelyn: Chapter 1" a gripping adventure for fans of horror and mystery genres on Roblox.</p>
+				</div>
+				
+				<div class="column">
+					<img src="./imgs/The Lost Episodes.jpg" alt="The Lost Episodes (Episode 1 - Full Gameplay + Walktrough) - Roblox Horror" class="trigger green-tint" data-video-src="https://www.youtube.com/watch?v=INboqS6JKiQ" style="cursor: pointer;">
+					<h4 class="trigger" data-video-src="https://www.youtube.com/watch?v=INboqS6JKiQ" style="cursor: pointer;">The Lost Episodes</h4>
+					<p>"The Lost Episodes" on Roblox plunges players into a spine-tingling horror adventure where they must unravel the secrets of a series of eerie, forgotten television episodes. Each episode contains its own unique story filled with creepy environments, unsettling characters, and mysterious puzzles. As players navigate through these haunting broadcasts, they must uncover clues, solve riddles, and survive the chilling encounters that await. With its immersive atmosphere and captivating narrative, "The Lost Episodes" offers a thrilling experience for those who enjoy a blend of horror and mystery on Roblox.</p>
+				</div>
+				
+				<div class="column">
+					<img src="./imgs/Where I Call Home.jpg" alt="Where I Call Home (Part 1+2 - Full Gameplay + Walktrough) - Roblox Horror" class="trigger green-tint" data-video-src="https://www.youtube.com/watch?v=dvjPDFq5wwo" style="cursor: pointer;">
+					<h4 class="trigger" data-video-src="https://www.youtube.com/watch?v=dvjPDFq5wwo" style="cursor: pointer;">Where I Call Home</h4>
+					<p>"Where I Call Home" on Roblox is a touching narrative-driven adventure that invites players to explore the meaning of home and belonging. Set in a charming, beautifully crafted world, the game follows the journey of a young protagonist as they navigate through various environments, uncovering memories and stories that shape their understanding of what home truly means. Players interact with unique characters, solve gentle puzzles, and immerse themselves in a heartfelt story that emphasizes themes of family, friendship, and self-discovery. "Where I Call Home" offers a poignant and reflective gaming experience that resonates with players of all ages.</p>
+				</div>
+			</div>
+			
+			<div class="container three-column-section">
+				<div class="column">
+					<img src="./imgs/The Asylum.jpg" alt="The Asylum (Chapter 1 - Full Gameplay + Walktrough) - Roblox Horror" class="trigger green-tint" data-video-src="https://www.youtube.com/watch?v=dM-RRDzjnyo" style="cursor: pointer;">
+					<h4 class="trigger" data-video-src="https://www.youtube.com/watch?v=dM-RRDzjnyo" style="cursor: pointer;">The Asylum</h4>
+					<p>"The Asylum" on Roblox is a gripping horror game that thrusts players into the eerie confines of an abandoned psychiatric hospital. As you explore the dark, dilapidated halls and rooms, you must uncover the unsettling secrets and mysteries that lie within. Players must navigate through jump scares, solve intricate puzzles, and avoid the lurking dangers that haunt the asylum. The game's atmospheric design, chilling sound effects, and immersive storytelling create a deeply suspenseful experience that keeps players on edge. "The Asylum" is perfect for those seeking a thrilling and terrifying adventure on Roblox.</p>
+				</div>
+
+				<div class="column">
+					<img src="./imgs/Dead Silence.jpg" alt="Dead Silence (Full Gameplay + Walkthrough) - Roblox Horror" class="trigger green-tint" data-video-src="https://www.youtube.com/watch?v=V5pYnH59iUg" style="cursor: pointer;">
+					<h4 class="trigger" data-video-src="https://www.youtube.com/watch?v=V5pYnH59iUg" style="cursor: pointer;">Dead Silence</h4>
+					<p>"Dead Silence" on Roblox is a terrifying horror game based on the popular movie of the same name. Players find themselves investigating the mysterious and ominous legend of Mary Shaw, a vengeful spirit associated with a creepy ventriloquist doll. As you explore dark, atmospheric environments, you must gather clues, solve puzzles, and avoid sinister entities to uncover the truth behind the haunting. With its chilling ambiance, jump scares, and suspenseful gameplay, "Dead Silence" offers a bone-chilling experience that keeps players on the edge of their seats, making it a must-play for horror enthusiasts on Roblox.</p>
+				</div>
+
+				<div class="column">
+					<img src="./imgs/The Truth Untold.jpg" alt="The Truth Untold (Part 1 - Full Gameplay + Walktrough) - Roblox Horror" class="trigger green-tint" data-video-src="https://www.youtube.com/watch?v=gXFjaK9pe7Q" style="cursor: pointer;">
+					<h4 class="trigger" data-video-src=".https://www.youtube.com/watch?v=gXFjaK9pe7Q" style="cursor: pointer;">The Truth Untold</h4>
+					<p>"The Truth Untold" on Roblox is a captivating mystery-adventure game that plunges players into a world filled with secrets and intrigue. As a detective, you are tasked with uncovering the hidden truths behind a series of enigmatic events in a small, eerie town. Players must explore detailed environments, interact with unique characters, and solve challenging puzzles to piece together the story. The game’s rich narrative, atmospheric design, and immersive gameplay create a gripping experience that keeps players engaged as they unravel the mysteries and uncover "The Truth Untold."</p>
+				</div>
+			</div>
+			
+			<div class="container three-column-section">
+				<div class="column">
+					<img src="./imgs/A Midnight Stroll.jpg" alt="A Midnight Stroll (Full Gameplay + Walktrough) - Roblox Horror" class="trigger green-tint" data-video-src="https://www.youtube.com/watch?v=tP4Y_sRR_zY" style="cursor: pointer;">
+					<h4 class="trigger" data-video-src="https://www.youtube.com/watch?v=tP4Y_sRR_zY" style="cursor: pointer;">A  Midnight Stroll</h4>
+					<p>"A Midnight Stroll" on Roblox is a suspenseful horror adventure that invites players to take a seemingly innocent walk through a dark, mysterious forest. As you venture deeper into the night, you encounter eerie sights and unsettling sounds that hint at a lurking danger. Players must navigate through the dense woods, solve puzzles, and stay alert to survive the hidden threats that emerge from the shadows. With its atmospheric graphics, chilling sound effects, and intense gameplay, "A Midnight Stroll" offers a spine-tingling experience perfect for fans of horror and suspense on Roblox.</p>
+				</div>
+
+				<div class="column">
+					<img src="./imgs/It Lurks.jpg" alt="It Lurks (Chapter 1-6 Full Gameplay + Walkthrough) - Roblox Horror" class="trigger green-tint" data-video-src="https://www.youtube.com/watch?v=V0tiyRnsGdA" style="cursor: pointer;">
+					<h4 class="trigger" data-video-src="https://www.youtube.com/watch?v=V0tiyRnsGdA" style="cursor: pointer;">It Lurks</h4>
+					<p>"It Lurks" on Roblox is a spine-chilling horror game that thrusts players into a terrifying journey through a haunted house. As you explore the dark and eerie environment, you must uncover the sinister secrets that lie within while evading the malevolent entity that lurks in the shadows. The game features a gripping narrative, immersive sound effects, and strategically placed jump scares that keep players on edge. With its suspenseful atmosphere and challenging puzzles, "It Lurks" offers a thrilling and unsettling experience for horror enthusiasts on Roblox.</p>
+				</div>
+
+				<div class="column">
+					<img src="" alt="" class="trigger" data-video-src="" style="cursor: pointer;">
+					<h4 class="trigger" data-video-src="" style="cursor: pointer;"></h4>
+					<p></p>
+				</div>
+			</div>
+			
+
+		</section>
+
+    </div> <!-- End main-content div -->
+	
+	<!-- Popup div that contains the YouTube video -->
+	<div id="popup" class="popup">
+	  <div class="popup-content">
+		<iframe id="youtubeVideo" frameborder="0" allow="autoplay; fullscreen; encrypted-media; gyroscope" style="display: none;"></iframe>
+		<video id="localVideo" controls loop style="display: none;"></video>
+	  </div>
+	</div>
+	
+
+    <div class="footer-image">
+    </div>
+	
+	<!--footer>
+		<div class="footer-links">
+			<div class="footer-column social-icons">
+				<a href="https://twitter.com/StarnogenMusic" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+				<a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+				<a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+				<a href="#" target="_blank" title="Soundcloud"><i class="fab fa-soundcloud"></i></a>
+			</div>
+			<div class="footer-column">
+				<img src="./imgs/starnogenmusic-long.png" alt="Small Logo" class="small-logo">
+			</div>
+			<div class="footer-column social-icons">
+				<a href="#" target="_blank" title="Apple Music"><i class="fab fa-apple"></i></a>
+				<a href="#" target="_blank" title="Spotify"><i class="fab fa-spotify"></i></a>
+				<a href="#" target="_blank" title="YouTube Music"><i class="fab fa-youtube"></i></a>
+				<a href="#" target="_blank" title="LastFM"><i class="fab fa-lastfm"></i></a>
+			</div>
+		</div>
+		<p>&copy; Copyright Starnogen 2024. All Rights Reserved</p>
+		
+	</footer-->
+
+    <!-- Font Awesome icons (you can include this in your project or use a CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+	<script>
+		// Get elements
+		const triggers = document.querySelectorAll('.trigger');
+		const popup = document.getElementById('popup');
+		const popupContent = document.querySelector('.popup-content');
+		const youtubeVideo = document.getElementById('youtubeVideo');
+		const localVideo = document.getElementById('localVideo');
+
+		// Function to calculate and set popup dimensions
+		function setPopupDimensions() {
+		  // Get screen width and height
+		  const screenWidth = window.innerWidth;
+		  const screenHeight = window.innerHeight;
+
+		  if (screenWidth > screenHeight) {
+			// Width is greater than height
+			const popupHeight = screenHeight * 0.7; // 70% of screen height
+			popupContent.style.height = `${popupHeight}px`;
+			popupContent.style.width = `${popupHeight}px`; // Set width same as height to make it square
+		  } else {
+			// Height is greater than or equal to width
+			const popupWidth = screenWidth * 0.7; // 70% of screen width
+			popupContent.style.width = `${popupWidth}px`;
+			popupContent.style.height = `${popupWidth}px`; // Set height same as width to make it square
+		  }
+
+		  // Center the popup content on the screen
+		  popupContent.style.top = '50%';
+		  popupContent.style.left = '50%';
+		  popupContent.style.transform = 'translate(-50%, -50%)';
+		}
+
+		// Function to determine whether the video source is a YouTube link
+		function isYouTubeURL(videoSrc) {
+		  return videoSrc.includes('youtube.com') || videoSrc.includes('youtu.be');
+		}
+
+		// Function to open the popup and play the video
+		function openPopup(event) {
+		  // Set popup dimensions
+		  setPopupDimensions();
+		
+		  // Get the video source from the clicked element's data attribute
+		  const videoSrc = event.currentTarget.dataset.videoSrc;
+
+		  // Check whether the video source is a YouTube URL
+		  if (isYouTubeURL(videoSrc)) {
+			// If YouTube URL, set iframe src and display the iframe
+			youtubeVideo.src = videoSrc.replace('watch?v=', 'embed/') + '?autoplay=1';
+			youtubeVideo.style.display = 'block';
+			localVideo.style.display = 'none';
+		  } else {
+			// If local video file, set video src and display the video element
+			localVideo.src = videoSrc;
+			localVideo.style.display = 'block';
+			youtubeVideo.style.display = 'none';
+			// Play the local video
+			localVideo.play();
+		  }
+
+		  // Display the popup
+		  popup.style.display = 'block';
+		}
+
+		// Function to close the popup and stop the video
+		function closePopup() {
+		  // Hide the popup
+		  popup.style.display = 'none';
+
+		  // Hide both video elements
+		  youtubeVideo.style.display = 'none';
+		  localVideo.style.display = 'none';
+
+		  // Reset and stop YouTube video
+		  youtubeVideo.src = ''; // This resets the YouTube video
+
+		  // Pause the local video and reset its current time
+		  localVideo.pause();
+		  localVideo.currentTime = 0;
+		}
+		
+		// Add event listeners to all trigger elements
+		triggers.forEach(trigger => {
+		  trigger.addEventListener('click', openPopup);
+		});
+
+		// Add event listener to the entire popup to handle closing when clicking outside the popup content
+		popup.addEventListener('click', function(event) {
+		  // Close the popup if the click occurred outside the popup content (but still within the popup)
+		  if (event.target === popup) {
+			closePopup();
+		  }
+		});
+
+		// Optionally, handle popup dimension updates on window resize
+		window.addEventListener('resize', setPopupDimensions);
+	</script>
+</body>
+</html>
