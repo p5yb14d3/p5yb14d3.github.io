@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>80s Blue CRT Terminal</title>
+    <style>
+        body {
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'VT323', monospace;
+        }
+        @font-face {
+            font-family: 'VT323';
+            src: url('https://fonts.gstatic.com/s/vt323/v17/pxiKyp0ihIEF2isfFJU.woff2') format('woff2');
+        }
+        #terminal {
+            background-color: #000020;
+            color: #8989db;
+            width: 80%;
+            height: 80%;
+            padding: 20px;
+            font-size: 36px;
+            line-height: 1.4;
+            overflow-y: scroll;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            border: 2px solid #4040ff;
+            box-shadow: 0 0 10px #4040ff, 0 0 20px #4040ff inset;
+            position: relative;
+            animation: textShadowPulse 2s infinite;
+        }
+        #terminal::-webkit-scrollbar {
+            display: none;
+        }
+        #terminal::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: 
+                linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 4px, 3px 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+        #cursor {
+            display: inline-block;
+            width: 18px;
+            height: 36px;
+            background-color: #8989db;
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        @keyframes textShadowPulse {
+            0% { text-shadow: 0 0 4px #4040ff; }
+            50% { text-shadow: 0 0 4px #4040ff, 0 0 10px #4040ff; }
+            100% { text-shadow: 0 0 4px #4040ff; }
+        }
+    </style>
+</head>
+<body>
+    <div id="terminal" tabindex="0">
+        <div id="content">
+            <span id="text"></span><span id="cursor"></span>
+        </div>
+    </div>
+    
+	<audio id="printSound" src="./sounds/!sci_fi_computer_text-long.wav" preload="auto"></audio>
+    <audio id="typeSound" src="./sounds/keyboard-typing-5997.mp3" preload="auto"></audio>
+
+    <script>
+var _0x3fbe5e=_0x4f7d;(function(_0x22f3ac,_0x4e4fc4){var _0x4536d7=_0x4f7d,_0x3319d5=_0x22f3ac();while(!![]){try{var _0x2e4a25=-parseInt(_0x4536d7(0x79))/0x1*(parseInt(_0x4536d7(0xac))/0x2)+parseInt(_0x4536d7(0xc4))/0x3+parseInt(_0x4536d7(0xc5))/0x4*(parseInt(_0x4536d7(0xb5))/0x5)+-parseInt(_0x4536d7(0x77))/0x6*(parseInt(_0x4536d7(0x98))/0x7)+-parseInt(_0x4536d7(0x93))/0x8*(-parseInt(_0x4536d7(0xc3))/0x9)+parseInt(_0x4536d7(0xb8))/0xa*(parseInt(_0x4536d7(0x81))/0xb)+-parseInt(_0x4536d7(0x76))/0xc;if(_0x2e4a25===_0x4e4fc4)break;else _0x3319d5['push'](_0x3319d5['shift']());}catch(_0xb0cb47){_0x3319d5['push'](_0x3319d5['shift']());}}}(_0x131b,0x79a81));class Terminal{constructor(_0xa059e0,_0x2e5827){var _0x5c0029=_0x4f7d;this['terminal']=document[_0x5c0029(0x86)](_0xa059e0),this[_0x5c0029(0x7b)]=document[_0x5c0029(0x86)](_0x5c0029(0x7b)),this[_0x5c0029(0xa1)]=document['getElementById'](_0x5c0029(0xae)),this[_0x5c0029(0xae)]='',this[_0x5c0029(0x9c)]=![],this[_0x5c0029(0x82)]=![],this[_0x5c0029(0xb2)]=document[_0x5c0029(0x86)]('printSound'),this['typeSound']=document[_0x5c0029(0x86)](_0x5c0029(0xbc)),this[_0x5c0029(0xb2)][_0x5c0029(0xa6)]=!![],this[_0x5c0029(0xbc)][_0x5c0029(0xa6)]=!![],this['typingTimer']=null,this[_0x5c0029(0xa8)]=null,this[_0x5c0029(0x78)]=window[_0x5c0029(0x78)],this[_0x5c0029(0x9d)]=new SpeechSynthesisUtterance(),this[_0x5c0029(0x83)]=_0x2e5827,this[_0x5c0029(0xaa)]='',this[_0x5c0029(0xc9)]=[],this[_0x5c0029(0x99)]=[{'role':_0x5c0029(0xb9),'content':'You\x20are\x20a\x20robot\x20programmed\x20by\x20Jasmine\x27s\x20Uncle\x20named\x20Edwin\x20speaking\x20to\x20a\x20girl\x20named\x20Jasmine\x20who\x20is\x208\x20years\x20old.\x20The\x20time\x20now\x20is\x207pm\x20and\x20the\x20date\x20is\x2026\x20June\x202024.'}],this['terminal'][_0x5c0029(0xab)](_0x5c0029(0xbf),this[_0x5c0029(0x80)][_0x5c0029(0xcc)](this)),this[_0x5c0029(0xa7)][_0x5c0029(0xab)](_0x5c0029(0xa3),this[_0x5c0029(0x8e)][_0x5c0029(0xcc)](this)),this[_0x5c0029(0xa7)]['addEventListener'](_0x5c0029(0x87),()=>this[_0x5c0029(0xa7)]['focus']());}[_0x3fbe5e(0x80)](_0x27e5cf){var _0x1ec928=_0x3fbe5e;if(this['isPrinting'])return;if(_0x27e5cf[_0x1ec928(0x90)]===_0x1ec928(0xb7))this[_0x1ec928(0x95)](),this[_0x1ec928(0xaa)]=this[_0x1ec928(0xaa)][_0x1ec928(0xb3)](0x0,-0x1),this[_0x1ec928(0xae)]=this[_0x1ec928(0xae)][_0x1ec928(0xb3)](0x0,-0x1);else{if(_0x27e5cf[_0x1ec928(0x90)]==='Enter')this['text']+='\x0a',this[_0x1ec928(0x95)](),this['sendToAPI'](this['userInput']),this[_0x1ec928(0xaa)]='';else _0x27e5cf[_0x1ec928(0x90)][_0x1ec928(0xc8)]===0x1&&(this[_0x1ec928(0xaa)]+=_0x27e5cf['key'],this[_0x1ec928(0xae)]+=_0x27e5cf['key'],this[_0x1ec928(0x95)]());}this[_0x1ec928(0xa1)][_0x1ec928(0x88)]=this[_0x1ec928(0xae)][_0x1ec928(0x7c)](/\n/g,_0x1ec928(0xbb)),this[_0x1ec928(0xad)]();}['handleKeyUp'](){}['scrollToBottom'](){var _0x4202d9=_0x3fbe5e;this[_0x4202d9(0xa7)]['scrollTop']=this[_0x4202d9(0xa7)][_0x4202d9(0x92)];}[_0x3fbe5e(0xa0)](){var _0xaa0238=_0x3fbe5e;console[_0xaa0238(0xca)](_0xaa0238(0xbd),!this[_0xaa0238(0xa8)]),!this[_0xaa0238(0x9c)]&&this[_0xaa0238(0x97)]();}['stopPrintSound'](){var _0x5674b2=_0x3fbe5e;this[_0x5674b2(0xb2)]['pause']();}[_0x3fbe5e(0x95)](){var _0x4954ba=_0x3fbe5e;console['log'](_0x4954ba(0x7f),this['typingTimer']),this[_0x4954ba(0x9a)]==null&&(console[_0x4954ba(0xca)](_0x4954ba(0x7f),this[_0x4954ba(0x9a)]),this[_0x4954ba(0xa2)]()),clearTimeout(this[_0x4954ba(0x9a)]),this[_0x4954ba(0x9a)]=setTimeout(()=>this[_0x4954ba(0xc1)](),0x12c);}[_0x3fbe5e(0xc1)](){var _0x55ea40=_0x3fbe5e;console[_0x55ea40(0xca)](_0x55ea40(0xc7)),this[_0x55ea40(0xbc)][_0x55ea40(0xa9)]=0x0,this[_0x55ea40(0xbc)][_0x55ea40(0xc6)](),this[_0x55ea40(0x9a)]=null;}['playPrintSound'](){var _0x46f7ff=_0x3fbe5e;this['printSound'][_0x46f7ff(0xa9)]=0x0,this[_0x46f7ff(0xb2)][_0x46f7ff(0xcb)]();}[_0x3fbe5e(0xa2)](){var _0x413c06=_0x3fbe5e;this[_0x413c06(0xbc)]['currentTime']=0x0,this['typeSound'][_0x413c06(0xcb)]();}['speak'](_0x2b32b7){var _0x3a442c=_0x3fbe5e;this[_0x3a442c(0x78)][_0x3a442c(0x84)](),this[_0x3a442c(0x9d)][_0x3a442c(0xae)]=_0x2b32b7,this['speechSynthesis'][_0x3a442c(0xa5)](this['speechUtterance']);}[_0x3fbe5e(0xa4)](_0x4d6106,_0x4a2348=0x32){var _0x1eaea0=_0x3fbe5e;this[_0x1eaea0(0xc9)][_0x1eaea0(0x8f)]({'text':_0x4d6106,'speed':_0x4a2348}),!this[_0x1eaea0(0x9c)]&&this[_0x1eaea0(0x8b)]();}async[_0x3fbe5e(0x8b)](){var _0x3a6b74=_0x3fbe5e;while(this[_0x3a6b74(0xc9)][_0x3a6b74(0xc8)]>0x0&&!this['isPrinting']){const {text:_0x154fbb,speed:_0x5d9a92}=this[_0x3a6b74(0xc9)][_0x3a6b74(0x7a)]();await this[_0x3a6b74(0x85)](_0x154fbb,_0x5d9a92);}}async[_0x3fbe5e(0x85)](_0x3e5bf8,_0xc65970=0x32){var _0x55f92a=_0x3fbe5e;console['log'](_0x3e5bf8);_0x3e5bf8[_0x55f92a(0x7c)](/\n/g,'')!=_0x55f92a(0xb6)&&(console[_0x55f92a(0xca)](_0x55f92a(0xb0),'\x27'+_0x3e5bf8+'\x27'),this[_0x55f92a(0xa5)](_0x3e5bf8));this['isPrinting']=!![],this['playPrintSound']();for(let _0x38e0f7 of _0x3e5bf8){this[_0x55f92a(0xae)]+=_0x38e0f7,this['textSpan'][_0x55f92a(0x88)]=this['text'][_0x55f92a(0x7c)](/\n/g,_0x55f92a(0xbb)),this[_0x55f92a(0xad)](),await new Promise(_0x155dcd=>setTimeout(_0x155dcd,_0xc65970));}this[_0x55f92a(0x9c)]=![],this[_0x55f92a(0xbe)]();}async['sendToAPI'](_0x1793c2){var _0x41a0f4=_0x3fbe5e;this[_0x41a0f4(0xa4)](_0x41a0f4(0xb1));try{this[_0x41a0f4(0x99)]['push']({'role':'user','content':_0x1793c2});const _0x1a7cb1=await fetch(_0x41a0f4(0xba),{'method':_0x41a0f4(0xc0),'headers':{'Content-Type':_0x41a0f4(0xaf),'Authorization':_0x41a0f4(0x8c)+this[_0x41a0f4(0x83)]},'body':JSON[_0x41a0f4(0xcd)]({'model':_0x41a0f4(0x8d),'messages':this[_0x41a0f4(0x99)]})});if(!_0x1a7cb1['ok'])throw new Error(_0x41a0f4(0x94)+_0x1a7cb1[_0x41a0f4(0x7d)]);const _0x18160d=await _0x1a7cb1[_0x41a0f4(0x8a)](),_0x148777=_0x18160d[_0x41a0f4(0x9b)][0x0][_0x41a0f4(0x96)][_0x41a0f4(0x7b)];this['messageHistory'][_0x41a0f4(0x8f)]({'role':'assistant','content':_0x148777}),this[_0x41a0f4(0xa4)](_0x148777+'\x0a\x0a');}catch(_0x2f2dca){console['error'](_0x41a0f4(0xc2),_0x2f2dca),this[_0x41a0f4(0xa4)](_0x41a0f4(0x9f));}}}var k4=_0x3fbe5e(0x9e),k1=_0x3fbe5e(0x89),k3=_0x3fbe5e(0x7e),k2=_0x3fbe5e(0xb4),OPENAI_API_KEY=k1+k2+k3+k4;const term=new Terminal('terminal',OPENAI_API_KEY);function _0x4f7d(_0x4ce9c2,_0x4cba97){var _0x131b16=_0x131b();return _0x4f7d=function(_0x4f7ddf,_0x5ecc0b){_0x4f7ddf=_0x4f7ddf-0x76;var _0x32311e=_0x131b16[_0x4f7ddf];return _0x32311e;},_0x4f7d(_0x4ce9c2,_0x4cba97);}function _0x131b(){var _0x45ea1a=['content','replace','status','HJT3BlbkFJVL','this.typingTimer=','handleKeyDown','4994eZyJDk','isTyping','apiKey','cancel','print','getElementById','click','innerHTML','sk-d9nDlXz','json','processQueue','Bearer\x20','gpt-3.5-turbo','handleKeyUp','push','key','processing...\x0a\x0a','scrollHeight','232CprNTH','HTTP\x20error!\x20status:\x20','startTypeSound','message','playPrintSound','2405963YZZlYu','messageHistory','typingTimer','choices','isPrinting','speechUtterance','zSRYw0ajk9MMu2ihOn','\x0aAn\x20error\x20occurred\x20while\x20communicating\x20with\x20the\x20API.\x0a\x0a','startPrintSound','textSpan','playTypeSound','keyup','queuePrint','speak','loop','terminal','typeInterval','currentTime','userInput','addEventListener','1020WhlYWu','scrollToBottom','text','application/json','speaking:','\x0aprocessing...\x0a','printSound','slice','IQtPapmQysK','4191695gHEIBP','processing...','Backspace','13810bYlJKy','system','https://api.openai.com/v1/chat/completions','<br>','typeSound','this.typeInterval=','stopPrintSound','keydown','POST','stopTypeSound','Error:','206595lYoVwe','1601631SeOYot','4XDaWRU','pause','STOPPING\x20SOUND','length','printQueue','log','play','bind','stringify','10001652xXoYJZ','6OnIDwe','speechSynthesis','1940WTONmO','shift'];_0x131b=function(){return _0x45ea1a;};return _0x131b();}term['print'](_0x3fbe5e(0x91));
+    </script>
+</body>
+</html>
