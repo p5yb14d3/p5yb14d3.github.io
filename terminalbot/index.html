@@ -75,11 +75,13 @@
 			height: 0;
 			width: 0;
 		}
+		
+		#hiddenInitiator
     </style>
 </head>
 <body>
-    <input type="text" id="text-to-speak" placeholder="Enter text here">
-    <button onclick="speaktts()">Speak</button>
+    <input type="text" id="hiddenInitiator" value="Hello Jasmine">
+    <!--button onclick="speaktts()">Speak</button-->
     <div id="terminal" tabindex="0">
         <div id="content">
             <span id="text"></span><span id="cursor"></span>
@@ -359,9 +361,9 @@
             }
         }
 	
-        function speaktts() {
+        function initTTS() {
             // Get the text input
-            const text = document.getElementById('text-to-speak').value;
+            const text = document.getElementById('hiddenInitiator').value;
             
             // Check if the browser supports the Web Speech API
             if ('speechSynthesis' in window) {
@@ -380,6 +382,8 @@
                 alert('Sorry, your browser does not support text-to-speech.');
             }
         }
+		
+		initTTS();
     </script>
 </body>
 </html>
