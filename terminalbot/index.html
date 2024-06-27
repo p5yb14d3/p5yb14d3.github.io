@@ -135,6 +135,10 @@
                 this.hiddenInput.addEventListener('input', this.handleInput.bind(this));
                 this.hiddenInput.addEventListener('keydown', this.handleKeyDown.bind(this));
 				
+				this.isOnMobileDevice = this.isOnMobileDevice.bind(this);
+				this.resizeOnFocus = this.resizeOnFocus.bind(this);
+				this.resizeOnBlur = this.resizeOnBlur.bind(this);
+				
 				// Focus hidden input on load
                 this.focusHiddenInput();
             }
@@ -145,40 +149,35 @@
 				} else {
 					console.log('You are not using a mobile device');
 				}
-				
 				// Get the position of the div from the top of the page
-				terminal = document.getElementById("terminal");
-				var rect = terminal.getBoundingClientRect();
+				var rect = this.terminal.getBoundingClientRect();
 				var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-				marginTop = Math.floor(rect.top + scrollTop);
-				console.log("marginTop:" + marginTop);
+				this.marginTop = Math.floor(rect.top + scrollTop);
+				console.log("marginTop:", this.marginTop);
 			}
 			
 			isOnMobileDevice() {
 				var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 				return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent.toLowerCase());
 			}
-			
+
 			resizeOnFocus() {
 				if (this.isOnMobileDevice()) {
-					terminal = document.getElementById("terminal");
-					// Adjust to 80% of half the current viewport height
 					const viewportHeight = Math.floor((document.documentElement.clientHeight/2) * 0.8);
-					terminal.style.height = `${viewportHeight}px`;
-					terminal.style.position = `absolute`;
-					console.log("marginTop:" + marginTop);
-					terminal.style.top = `${marginTop}px`;\
+					this.terminal.style.height = `${viewportHeight}px`;
+					this.terminal.style.position = 'absolute';
+					console.log("marginTop:", this.marginTop);
+					this.terminal.style.top = `${this.marginTop}px`;
 					this.scrollToBottom();
 				}
 			}
-			
+
 			resizeOnBlur() {
 				if (this.isOnMobileDevice()) {
-					terminal = document.getElementById("terminal");
-					terminal.style.position = `absolute`;
-					terminal.style.height = `80%`;
-					console.log("marginTop:" + marginTop);
-					terminal.style.top = `${marginTop}px`;
+					this.terminal.style.position = 'absolute';
+					this.terminal.style.height = '80%';
+					console.log("marginTop:", this.marginTop);
+					this.terminal.style.top = `${this.marginTop}px`;
 					this.scrollToBottom();
 				}
 			}
@@ -317,7 +316,6 @@
 				if ((text.replace(/\n/g, '') != "processing...") && (text.replace(/\n/g, '') != "Hello Jasmine...")) {
 					console.log ("speaking:",  "'" + text + "'");
 					this.speak(text);
-					// speak2(text);
 				}
 				
 				this.isPrinting = true;
@@ -380,14 +378,6 @@
 		
 		// Initialize the terminal with your API key
         const term = new Terminal('terminal', OPENAI_API_KEY);
-
-        // Example usage
-        // term.print("Welcome to the 80s Blue CRT Terminal!\nType your commands below:\n\n");
-		
-		// initTTS();
-		
-		// Add the event listener for the window onload event
-        // window.addEventListener('load', initTTS());
 		
 		document.getElementById('fullscreen-button').addEventListener('click', function() {
 			this.style.display = 'none';
@@ -395,26 +385,6 @@
             term.focusHiddenInput();
 		});
 
-        function speak2(text) {
-            
-            // Check if the browser supports the Web Speech API
-            if ('speechSynthesis' in window) {
-                // Create a new SpeechSynthesisUtterance object
-                const utterance = new SpeechSynthesisUtterance(text);
-                
-                // Set the voice properties (optional)
-                utterance.lang = 'en-US';
-                utterance.pitch = 1; // Range between 0 and 2
-                utterance.rate = 1; // Range between 0.1 and 10
-                utterance.volume = 1; // Range between 0 and 1
-                
-                // Speak the text
-                window.speechSynthesis.speak(utterance);
-            } else {
-                alert('Sorry, your browser does not support text-to-speech.');
-            }
-        }
-		
         function speaktts() {
             // Get the text input
             const text = "Hello Jasmine 1.10...";
@@ -439,20 +409,12 @@
             }
         }
 
-		var marginTop = 0;
-
 		// Optional: Adjust div size when focus or blur events occur on input elements
 		document.querySelectorAll('input, textarea').forEach(element => {
 			element.addEventListener('focus', term.resizeOnFocus);
 			element.addEventListener('blur', term.resizeOnBlur);
 		});
-
-
-
-
-
-		// Add the event listener for the window onload event
-		window.addEventListener('load', term.init);
+		window.addEventListener('load', term.init.bind(term));
     </script>
 </body>
 </html>
