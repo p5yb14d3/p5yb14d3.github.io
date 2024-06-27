@@ -342,7 +342,10 @@
         // Example usage
         // term.print("Welcome to the 80s Blue CRT Terminal!\nType your commands below:\n\n");
 		term.print("Hello Jasmine...\n\n");
-		initTTS();
+		// initTTS();
+		
+		// Add the event listener for the window onload event
+        window.addEventListener('load', initTTS());
 
         function speak2(text) {
             
