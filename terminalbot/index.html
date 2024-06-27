@@ -405,10 +405,10 @@ function adjustDivSize() {
 function adjustDivSizeFocus() {
     const adjustableDiv = document.getElementById('terminal');
     // Get the current viewport height and adjust it to 80%
-    const viewportHeight = Math.floor((window.innerHeight/2) * 0.8);
+    const viewportHeight = Math.floor((document.documentElement.clientHeight/2) * 0.8);
     adjustableDiv.style.height = `${viewportHeight}px`;
 	term.print("adjusting height to " + viewportHeight + "...\n\n");
-	const viewportMarginTop = Math.floor(window.innerHeight * 0.1);
+	const viewportMarginTop = Math.floor(document.documentElement.clientHeight * 0.1);
 	adjustableDiv.style.position = `absolute`;
 	adjustableDiv.style.top = `${viewportMarginTop}px`;
 }
@@ -416,10 +416,10 @@ function adjustDivSizeFocus() {
 function adjustDivSizeBlur() {
     const adjustableDiv = document.getElementById('terminal');
     // Get the current viewport height and adjust it to 80%
-    const viewportHeight = Math.floor(window.innerHeight * 0.8);
+    const viewportHeight = Math.floor(document.documentElement.clientHeight * 0.8);
     adjustableDiv.style.height = `${viewportHeight}px`;
 	term.print("adjusting height to " + viewportHeight + "...\n\n");
-	const viewportMarginTop = Math.floor((window.innerHeight * 0.1));
+	const viewportMarginTop = Math.floor((document.documentElement.clientHeight * 0.1));
 	adjustableDiv.style.position = `absolute`;
 	adjustableDiv.style.top = `${viewportMarginTop}px`;
 }
