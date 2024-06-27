@@ -399,29 +399,61 @@ function adjustDivSize() {
     // Get the current viewport height and adjust it to 80%
     const viewportHeight = Math.floor(window.innerHeight * 0.8);
     adjustableDiv.style.height = `${viewportHeight}px`;
-	term.print("adjusting height to " + viewportHeight + "...\n\n");
+	// term.print("adjusting height to " + viewportHeight + "...\n\n");
+	
+	// Select the div using its id, class, or any other selector
+	var div = document.getElementById('terminal');
+
+	// Get the position of the div from the top of the page
+	var rect = div.getBoundingClientRect();
+	var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+	var divTopPosition = Math.floor(rect.top + scrollTop);
+	term.print("divTopPosition = " + divTopPosition + "\n");
 }
 
 function adjustDivSizeFocus() {
-    const adjustableDiv = document.getElementById('terminal');
-    // Get the current viewport height and adjust it to 80%
-    const viewportHeight = Math.floor((document.documentElement.clientHeight/2) * 0.8);
-    adjustableDiv.style.height = `${viewportHeight}px`;
-	term.print("adjusting height to " + viewportHeight + "...\n\n");
-	const viewportMarginTop = Math.floor(document.documentElement.clientHeight * 0.1);
-	adjustableDiv.style.position = `absolute`;
-	adjustableDiv.style.top = `${viewportMarginTop}px`;
+	// Select the div using its id, class, or any other selector
+	var div = document.getElementById('terminal');
+
+	// Get the position of the div from the top of the page
+	var rect = div.getBoundingClientRect();
+	var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+	var divTopPosition = Math.floor(rect.top + scrollTop);
+	// term.print("divTopPosition = " + divTopPosition + "\n");
+
+	if (isMobileDevice()) {
+		const adjustableDiv = document.getElementById('terminal');
+		// Get the current viewport height and adjust it to 80%
+		const viewportHeight = Math.floor((document.documentElement.clientHeight/2) * 0.8);
+		adjustableDiv.style.height = `${viewportHeight}px`;
+		const viewportMarginTop = Math.floor(document.documentElement.clientHeight * 0.1);
+		viewportMarginTop = divTopPosition;
+		term.print("adjusting viewportMarginTop to " + viewportMarginTop + "...\n\n");
+		adjustableDiv.style.position = `absolute`;
+		adjustableDiv.style.top = `${viewportMarginTop}px`;
+		}
 }
 
 function adjustDivSizeBlur() {
-    const adjustableDiv = document.getElementById('terminal');
-    // Get the current viewport height and adjust it to 80%
-    const viewportHeight = Math.floor(document.documentElement.clientHeight * 0.8);
-    adjustableDiv.style.height = `${viewportHeight}px`;
-	term.print("adjusting height to " + viewportHeight + "...\n\n");
-	const viewportMarginTop = Math.floor((document.documentElement.clientHeight * 0.1));
-	adjustableDiv.style.position = `absolute`;
-	adjustableDiv.style.top = `${viewportMarginTop}px`;
+	if (isMobileDevice()) {
+		const adjustableDiv = document.getElementById('terminal');
+		// Get the current viewport height and adjust it to 80%
+		//const viewportHeight = Math.floor(document.documentElement.clientHeight * 0.8);
+		//adjustableDiv.style.height = `${viewportHeight}px`;
+		//term.print("adjusting height to " + viewportHeight + "...\n\n");
+		//const viewportMarginTop = Math.floor((document.documentElement.clientHeight * 0.1));
+		adjustableDiv.style.position = `relative`;
+		adjustableDiv.style.height = `80%`;
+		
+		// Select the div using its id, class, or any other selector
+		var div = document.getElementById('terminal');
+
+		// Get the position of the div from the top of the page
+		var rect = div.getBoundingClientRect();
+		var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+		var divTopPosition = Math.floor(rect.top + scrollTop);
+		term.print("divTopPosition = " + divTopPosition + "\n");
+	}
 }
 
 // Adjust div size on initial load
@@ -435,6 +467,17 @@ document.querySelectorAll('input, textarea').forEach(element => {
     element.addEventListener('focus', adjustDivSizeFocus);
     element.addEventListener('blur', adjustDivSizeBlur);
 });
+
+function isMobileDevice() {
+    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent.toLowerCase());
+}
+
+if (isMobileDevice()) {
+    console.log('You are using a mobile device');
+} else {
+    console.log('You are not using a mobile device');
+}
     </script>
 </body>
 </html>
