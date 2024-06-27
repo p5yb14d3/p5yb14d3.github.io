@@ -118,6 +118,7 @@
 				this.typeSound.loop = true; 
                 this.typingTimer = null;
                 this.typeInterval = null;
+				this.marginTop = 0;
 				this.speechSynthesis = window.speechSynthesis;
 				this.speechUtterance = new SpeechSynthesisUtterance();
                 this.apiKey = apiKey;
@@ -137,6 +138,37 @@
 				// Focus hidden input on load
                 this.focusHiddenInput();
             }
+			
+			init() {
+				// Get the position of the div from the top of the page
+				terminal = document.getElementById("terminal");
+				var rect = terminal.getBoundingClientRect();
+				var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+				marginTop = Math.floor(rect.top + scrollTop);
+				console.log("marginTop:" + marginTop);
+			}
+			
+			resizeOnFocus() {
+				if (isMobileDevice()) {
+					terminal = document.getElementById("terminal");
+					// Adjust to 80% of half the current viewport height
+					const viewportHeight = Math.floor((document.documentElement.clientHeight/2) * 0.8);
+					terminal.style.height = `${viewportHeight}px`;
+					terminal.style.position = `absolute`;
+					console.log("marginTop:" + marginTop);
+					terminal.style.top = `${marginTop}px`;
+				}
+			}
+			
+			resizeOnBlur() {
+				if (isMobileDevice()) {
+					terminal = document.getElementById("terminal");
+					terminal.style.position = `absolute`;
+					terminal.style.height = `80%`;
+					console.log("marginTop:" + marginTop);
+					terminal.style.top = `${marginTop}px`;
+				}
+			}
 
             focusHiddenInput() {
                 this.hiddenInput.focus();
@@ -372,7 +404,7 @@
 		
         function speaktts() {
             // Get the text input
-            const text = "Hello Jasmine 1.9...";
+            const text = "Hello Jasmine 1.10...";
 			
 			term.print("Hello Jasmine...\n\n");
             
@@ -393,95 +425,28 @@
                 alert('Sorry, your browser does not support text-to-speech.');
             }
         }
-		
-var topMargin = 0;
 
-function adjustDivSize() {
-    const adjustableDiv = document.getElementById('terminal');
-    // Get the current viewport height and adjust it to 80%
-    const viewportHeight = Math.floor(window.innerHeight * 0.8);
-    adjustableDiv.style.height = `${viewportHeight}px`;
-	// term.print("adjusting height to " + viewportHeight + "...\n\n");
-	
-	// Select the div using its id, class, or any other selector
-	var div = document.getElementById('terminal');
+		var marginTop = 0;
 
-	// Get the position of the div from the top of the page
-	var rect = div.getBoundingClientRect();
-	var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-	var divTopPosition = Math.floor(rect.top + scrollTop);
-	term.print("divTopPosition = " + divTopPosition + "\n");
-}
+		// Optional: Adjust div size when focus or blur events occur on input elements
+		document.querySelectorAll('input, textarea').forEach(element => {
+			element.addEventListener('focus', term.resizeOnFocus);
+			element.addEventListener('blur', term.resizeOnBlur);
+		});
 
-function adjustDivSizeFocus() {
-
-
-	if (isMobileDevice()) {
-		const adjustableDiv = document.getElementById('terminal');
-		// Get the current viewport height and adjust it to 80%
-		const viewportHeight = Math.floor((document.documentElement.clientHeight/2) * 0.8);
-		adjustableDiv.style.height = `${viewportHeight}px`;
-		// const viewportMarginTop = Math.floor(document.documentElement.clientHeight * 0.1);
-		const viewportMarginTop = topMargin;
-		term.print("adjusting viewportMarginTop to " + viewportMarginTop + "...\n\n");
-		adjustableDiv.style.position = `absolute`;
-		adjustableDiv.style.top = `${viewportMarginTop}px`;
+		function isMobileDevice() {
+			var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+			return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent.toLowerCase());
 		}
-}
 
-function adjustDivSizeBlur() {
-	if (isMobileDevice()) {
-		const adjustableDiv = document.getElementById('terminal');
-		// Get the current viewport height and adjust it to 80%
-		//const viewportHeight = Math.floor(document.documentElement.clientHeight * 0.8);
-		//adjustableDiv.style.height = `${viewportHeight}px`;
-		//term.print("adjusting height to " + viewportHeight + "...\n\n");
-		//const viewportMarginTop = Math.floor((document.documentElement.clientHeight * 0.1));
-		adjustableDiv.style.position = `absolute`;
-		adjustableDiv.style.height = `80%`;
-		adjustableDiv.style.top = `${topMargin}px`;
-	}
-}
+		if (isMobileDevice()) {
+			console.log('You are using a mobile device');
+		} else {
+			console.log('You are not using a mobile device');
+		}
 
-// Adjust div size on initial load
-adjustDivSize();
-
-// Adjust div size when window is resized
-window.addEventListener('resize', adjustDivSize);
-
-// Optional: Adjust div size when focus or blur events occur on input elements
-document.querySelectorAll('input, textarea').forEach(element => {
-    element.addEventListener('focus', adjustDivSizeFocus);
-    element.addEventListener('blur', adjustDivSizeBlur);
-});
-
-function isMobileDevice() {
-    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent.toLowerCase());
-}
-
-if (isMobileDevice()) {
-    console.log('You are using a mobile device');
-} else {
-    console.log('You are not using a mobile device');
-}
-
-function init() {
-	// Select the div using its id, class, or any other selector
-	var div = document.getElementById('terminal');
-
-	// Get the position of the div from the top of the page
-	var rect = div.getBoundingClientRect();
-	var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-	var divTopPosition = Math.floor(rect.top + scrollTop);
-	// term.print("divTopPosition = " + divTopPosition + "\n");
-	
-	topMargin = divTopPosition;
-	console.log("topMargin:" + topMargin);
-}
-
-// Add the event listener for the window onload event
-window.addEventListener('load', init);
+		// Add the event listener for the window onload event
+		window.addEventListener('load', term.init);
     </script>
 </body>
 </html>
