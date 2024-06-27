@@ -83,7 +83,7 @@
 </head>
 <body>
     <input type="text" id="hiddenInitiator" value="Hello Jasmine">
-    <button onclick="speaktts()">Speak</button><br>
+    <button id="myButton" onclick="speaktts()">Speak</button><br>
     <div id="terminal" tabindex="0">
         <div id="content">
             <span id="text"></span><span id="cursor"></span>
@@ -341,11 +341,11 @@
 
         // Example usage
         // term.print("Welcome to the 80s Blue CRT Terminal!\nType your commands below:\n\n");
-		term.print("Hello Jasmine 1.1...\n\n");
+		term.print("Hello Jasmine 1.2...\n\n");
 		// initTTS();
 		
 		// Add the event listener for the window onload event
-        window.addEventListener('load', initTTS());
+        // window.addEventListener('load', initTTS());
 
         function speak2(text) {
             
@@ -411,7 +411,17 @@
             }
         }
 		
-		
+        // Function to simulate a button click
+        function simulateButtonClick() {
+            // Get the button element
+            var button = document.getElementById('myButton');
+            
+            // Simulate a click event
+            button.click();
+        }
+
+        // Assign the function to window.onload
+        window.onload = simulateButtonClick;
     </script>
 </body>
 </html>
