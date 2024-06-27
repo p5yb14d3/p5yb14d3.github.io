@@ -370,7 +370,7 @@
 		
         function speaktts() {
             // Get the text input
-            const text = "Hello Jasmine 1.6...";
+            const text = "Hello Jasmine 1.7...";
 			
 			term.print("Hello Jasmine...\n\n");
             
@@ -397,6 +397,18 @@ function adjustDivSize() {
     adjustableDiv.style.height = `80%`;
 }
 
+function adjustDivSizeFocus() {
+    const adjustableDiv = document.getElementById('terminal');
+    adjustableDiv.style.height = `80%`;
+	term.print("Window resize focus...\n\n");
+}
+
+function adjustDivSizeBlur() {
+    const adjustableDiv = document.getElementById('terminal');
+    adjustableDiv.style.height = `80%`;
+	term.print("Window resize blur...\n\n");
+}
+
 // Adjust div size on initial load
 adjustDivSize();
 
@@ -405,8 +417,8 @@ window.addEventListener('resize', adjustDivSize);
 
 // Optional: Adjust div size when focus or blur events occur on input elements
 document.querySelectorAll('input, textarea').forEach(element => {
-    element.addEventListener('focus', adjustDivSize);
-    element.addEventListener('blur', adjustDivSize);
+    element.addEventListener('focus', adjustDivSizeFocus);
+    element.addEventListener('blur', adjustDivSizeBlur);
 });
     </script>
 </body>
