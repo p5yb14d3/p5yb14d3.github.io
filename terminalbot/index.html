@@ -140,6 +140,12 @@
             }
 			
 			init() {
+				if (this.isOnMobileDevice()) {
+					console.log('You are using a mobile device');
+				} else {
+					console.log('You are not using a mobile device');
+				}
+				
 				// Get the position of the div from the top of the page
 				terminal = document.getElementById("terminal");
 				var rect = terminal.getBoundingClientRect();
@@ -148,25 +154,32 @@
 				console.log("marginTop:" + marginTop);
 			}
 			
+			isOnMobileDevice() {
+				var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+				return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent.toLowerCase());
+			}
+			
 			resizeOnFocus() {
-				if (isMobileDevice()) {
+				if (this.isOnMobileDevice()) {
 					terminal = document.getElementById("terminal");
 					// Adjust to 80% of half the current viewport height
 					const viewportHeight = Math.floor((document.documentElement.clientHeight/2) * 0.8);
 					terminal.style.height = `${viewportHeight}px`;
 					terminal.style.position = `absolute`;
 					console.log("marginTop:" + marginTop);
-					terminal.style.top = `${marginTop}px`;
+					terminal.style.top = `${marginTop}px`;\
+					this.scrollToBottom();
 				}
 			}
 			
 			resizeOnBlur() {
-				if (isMobileDevice()) {
+				if (this.isOnMobileDevice()) {
 					terminal = document.getElementById("terminal");
 					terminal.style.position = `absolute`;
 					terminal.style.height = `80%`;
 					console.log("marginTop:" + marginTop);
 					terminal.style.top = `${marginTop}px`;
+					this.scrollToBottom();
 				}
 			}
 
@@ -434,16 +447,9 @@
 			element.addEventListener('blur', term.resizeOnBlur);
 		});
 
-		function isMobileDevice() {
-			var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-			return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent.toLowerCase());
-		}
 
-		if (isMobileDevice()) {
-			console.log('You are using a mobile device');
-		} else {
-			console.log('You are not using a mobile device');
-		}
+
+
 
 		// Add the event listener for the window onload event
 		window.addEventListener('load', term.init);
