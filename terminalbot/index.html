@@ -79,11 +79,22 @@
 		#hiddenInitiator {
 
 		}
+		
+		#fullscreen-button {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: transparent;
+			border: none;
+			cursor: pointer;
+		}
     </style>
 </head>
 <body>
     <input type="text" id="hiddenInitiator" value="Hello Jasmine">
-    <button id="myButton" onclick="speaktts()">Speak</button><br>
+    <button id="fullscreen-button" onclick="initTTS()">Speak</button><br>
     <div id="terminal" tabindex="0">
         <div id="content">
             <span id="text"></span><span id="cursor"></span>
@@ -341,11 +352,15 @@
 
         // Example usage
         // term.print("Welcome to the 80s Blue CRT Terminal!\nType your commands below:\n\n");
-		term.print("Hello Jasmine 1.2...\n\n");
+		term.print("Hello Jasmine 1.3...\n\n");
 		// initTTS();
 		
 		// Add the event listener for the window onload event
         // window.addEventListener('load', initTTS());
+		
+		document.getElementById('fullscreen-button').addEventListener('click', function() {
+			this.style.display = 'none';
+		});
 
         function speak2(text) {
             
@@ -414,7 +429,7 @@
         // Function to simulate a button click
         function simulateButtonClick() {
             // Get the button element
-            var button = document.getElementById('myButton');
+            var button = document.getElementById('fullscreen-button');
             
             // Simulate a click event
             button.click();
