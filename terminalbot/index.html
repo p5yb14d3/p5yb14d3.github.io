@@ -78,6 +78,8 @@
     </style>
 </head>
 <body>
+    <input type="text" id="text-to-speak" placeholder="Enter text here">
+    <button onclick="speaktts()">Speak</button>
     <div id="terminal" tabindex="0">
         <div id="content">
             <span id="text"></span><span id="cursor"></span>
@@ -212,6 +214,44 @@
                 this.typeSound.play();
             }
 			
+            //speak(text) {
+            //    this.speechSynthesis.cancel(); // Stop any ongoing speech
+            //    this.speechUtterance.text = text;
+            //    this.speechSynthesis.speak(this.speechUtterance);
+            //}
+			
+			speak(text) {            
+				// Check if the browser supports the Web Speech API
+				if ('speechSynthesis' in window) {
+					// Create a new SpeechSynthesisUtterance object
+					 const utterance = new SpeechSynthesisUtterance(text);
+					
+					// Set the voice properties (optional)
+					utterance.lang = 'en-US';
+					utterance.pitch = 1; // Range between 0 and 2
+					utterance.rate = 1; // Range between 0.1 and 10
+					utterance.volume = 1; // Range between 0 and 1
+					utterance.text = text;
+					
+					// Speak the text
+					window.speechSynthesis.speak(utterance);
+					
+					// Set the voice properties (optional)
+					//this.speechUtterance.lang = 'en-US';
+					//this.speechUtterance.pitch = 1; // Range between 0 and 2
+					//this.speechUtterance.rate = 1; // Range between 0.1 and 10
+					//this.speechUtterance.volume = 1; // Range between 0 and 1
+					//this.speechUtterance.text = text;
+					
+					// Speak the text
+					//window.speechSynthesis.speak(utterance);
+					//this.speechSynthesis.cancel(); // Stop any ongoing speech
+					//this.speechSynthesis.speak(this.speechUtterance);
+				} else {
+					alert('Sorry, your browser does not support text-to-speech.');
+				}
+			}
+			
             queuePrint(text, speed = 50) {
                 this.printQueue.push({ text, speed });
                 if (!this.isPrinting) {
@@ -231,7 +271,7 @@
 				if (text.replace(/\n/g, '') != "processing...") {
 					console.log ("speaking:",  "'" + text + "'");
 					// this.speak(text);
-					speak(text);
+					speak2(text);
 				}
 				
 				this.isPrinting = true;
@@ -299,7 +339,29 @@
         // term.print("Welcome to the 80s Blue CRT Terminal!\nType your commands below:\n\n");
 		term.print("Hello Jasmine...\n\n");
 
-        function speak(text) {
+        function speak2(text) {
+            
+            // Check if the browser supports the Web Speech API
+            if ('speechSynthesis' in window) {
+                // Create a new SpeechSynthesisUtterance object
+                const utterance = new SpeechSynthesisUtterance(text);
+                
+                // Set the voice properties (optional)
+                utterance.lang = 'en-US';
+                utterance.pitch = 1; // Range between 0 and 2
+                utterance.rate = 1; // Range between 0.1 and 10
+                utterance.volume = 1; // Range between 0 and 1
+                
+                // Speak the text
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert('Sorry, your browser does not support text-to-speech.');
+            }
+        }
+	
+        function speaktts() {
+            // Get the text input
+            const text = document.getElementById('text-to-speak').value;
             
             // Check if the browser supports the Web Speech API
             if ('speechSynthesis' in window) {
