@@ -89,7 +89,254 @@
     <audio id="typeSound" src="./sounds/keyboard-typing-5997.mp3" preload="auto"></audio>
 
     <script>
-const _0x543cfb=_0x1208;(function(_0x403463,_0x3d5e7b){const _0x4068ab=_0x1208,_0x3f74f8=_0x403463();while(!![]){try{const _0x53303f=parseInt(_0x4068ab(0x14e))/0x1+-parseInt(_0x4068ab(0x128))/0x2*(parseInt(_0x4068ab(0x162))/0x3)+parseInt(_0x4068ab(0x140))/0x4*(-parseInt(_0x4068ab(0x163))/0x5)+-parseInt(_0x4068ab(0x180))/0x6*(parseInt(_0x4068ab(0x12b))/0x7)+parseInt(_0x4068ab(0x13e))/0x8*(-parseInt(_0x4068ab(0x134))/0x9)+parseInt(_0x4068ab(0x172))/0xa+parseInt(_0x4068ab(0x168))/0xb*(parseInt(_0x4068ab(0x13b))/0xc);if(_0x53303f===_0x3d5e7b)break;else _0x3f74f8['push'](_0x3f74f8['shift']());}catch(_0x3ab6f2){_0x3f74f8['push'](_0x3f74f8['shift']());}}}(_0x424b,0x4b77e));class Terminal{constructor(_0x1e83a5,_0x4e0960){const _0x2f88a3=_0x1208;this['terminal']=document[_0x2f88a3(0x16c)](_0x1e83a5),this[_0x2f88a3(0x148)]=document[_0x2f88a3(0x16c)]('content'),this[_0x2f88a3(0x153)]=document['getElementById'](_0x2f88a3(0x12f)),this[_0x2f88a3(0x164)]=document[_0x2f88a3(0x16c)](_0x2f88a3(0x164)),this[_0x2f88a3(0x12f)]='',this[_0x2f88a3(0x15d)]=![],this[_0x2f88a3(0x16b)]=![],this[_0x2f88a3(0x152)]=document['getElementById'](_0x2f88a3(0x152)),this[_0x2f88a3(0x127)]=document[_0x2f88a3(0x16c)](_0x2f88a3(0x127)),this[_0x2f88a3(0x152)]['loop']=!![],this[_0x2f88a3(0x127)][_0x2f88a3(0x173)]=!![],this[_0x2f88a3(0x171)]=null,this['typeInterval']=null,this['speechSynthesis']=window[_0x2f88a3(0x17e)],this['speechUtterance']=new SpeechSynthesisUtterance(),this['apiKey']=_0x4e0960,this[_0x2f88a3(0x135)]='',this[_0x2f88a3(0x13c)]=[],this[_0x2f88a3(0x130)]=[{'role':'system','content':_0x2f88a3(0x136)}],this[_0x2f88a3(0x151)][_0x2f88a3(0x14d)](_0x2f88a3(0x137),this[_0x2f88a3(0x16a)][_0x2f88a3(0x15f)](this)),this[_0x2f88a3(0x164)][_0x2f88a3(0x14d)](_0x2f88a3(0x169),this[_0x2f88a3(0x12a)][_0x2f88a3(0x15f)](this)),this[_0x2f88a3(0x164)][_0x2f88a3(0x14d)](_0x2f88a3(0x143),this[_0x2f88a3(0x13f)][_0x2f88a3(0x15f)](this)),this[_0x2f88a3(0x16a)]();}[_0x543cfb(0x16a)](){const _0xf43168=_0x543cfb;this[_0xf43168(0x164)][_0xf43168(0x154)]();}['handleInput'](_0xd99e2b){const _0x173d38=_0x543cfb,_0x1763d1=_0xd99e2b['target'][_0x173d38(0x142)];this[_0x173d38(0x135)]+=_0x1763d1,this['text']+=_0x1763d1,this['textSpan'][_0x173d38(0x126)]=this[_0x173d38(0x12f)][_0x173d38(0x179)](/\n/g,'<br>'),this[_0x173d38(0x160)](),this[_0x173d38(0x15c)](),this['hiddenInput']['value']='';}[_0x543cfb(0x13f)](_0x4be6d4){const _0x5ecb32=_0x543cfb;if(this[_0x5ecb32(0x15d)])return;if(_0x4be6d4[_0x5ecb32(0x175)]===_0x5ecb32(0x12c))_0x4be6d4['preventDefault'](),this[_0x5ecb32(0x15c)](),this[_0x5ecb32(0x135)]=this['userInput'][_0x5ecb32(0x14b)](0x0,-0x1),this['text']=this[_0x5ecb32(0x12f)][_0x5ecb32(0x14b)](0x0,-0x1);else _0x4be6d4['key']===_0x5ecb32(0x17b)&&(_0x4be6d4[_0x5ecb32(0x13d)](),this[_0x5ecb32(0x12f)]+='\x0a',this['startTypeSound'](),this['sendToAPI'](this[_0x5ecb32(0x135)]),this[_0x5ecb32(0x135)]='');this[_0x5ecb32(0x153)][_0x5ecb32(0x126)]=this[_0x5ecb32(0x12f)][_0x5ecb32(0x179)](/\n/g,_0x5ecb32(0x17c)),this[_0x5ecb32(0x160)]();}[_0x543cfb(0x17f)](){}[_0x543cfb(0x160)](){const _0x3de656=_0x543cfb;this[_0x3de656(0x151)][_0x3de656(0x159)]=this[_0x3de656(0x151)][_0x3de656(0x167)];}[_0x543cfb(0x139)](){const _0x2fb5a1=_0x543cfb;console[_0x2fb5a1(0x15b)]('this.typeInterval=',!this[_0x2fb5a1(0x170)]),!this[_0x2fb5a1(0x15d)]&&this[_0x2fb5a1(0x16f)]();}['stopPrintSound'](){this['printSound']['pause']();}[_0x543cfb(0x15c)](){const _0x51f284=_0x543cfb;console[_0x51f284(0x15b)](_0x51f284(0x123),this[_0x51f284(0x171)]),this[_0x51f284(0x171)]==null&&(console['log'](_0x51f284(0x123),this[_0x51f284(0x171)]),this[_0x51f284(0x178)]()),clearTimeout(this[_0x51f284(0x171)]),this[_0x51f284(0x171)]=setTimeout(()=>this[_0x51f284(0x121)](),0x12c);}['stopTypeSound'](){const _0x4c41d9=_0x543cfb;console['log']('STOPPING\x20SOUND'),this[_0x4c41d9(0x127)][_0x4c41d9(0x129)]=0x0,this['typeSound'][_0x4c41d9(0x12d)](),this[_0x4c41d9(0x171)]=null;}[_0x543cfb(0x16f)](){const _0x46fcad=_0x543cfb;this[_0x46fcad(0x152)][_0x46fcad(0x129)]=0x0,this[_0x46fcad(0x152)][_0x46fcad(0x13a)]();}['playTypeSound'](){const _0x3322c9=_0x543cfb;this[_0x3322c9(0x127)][_0x3322c9(0x129)]=0x0,this['typeSound']['play']();}[_0x543cfb(0x132)](_0x5300de){const _0x4fddbf=_0x543cfb;_0x4fddbf(0x17e)in window?(this[_0x4fddbf(0x144)][_0x4fddbf(0x124)]=_0x4fddbf(0x145),this[_0x4fddbf(0x144)]['pitch']=0x1,this['speechUtterance'][_0x4fddbf(0x122)]=0x1,this['speechUtterance'][_0x4fddbf(0x138)]=0x1,this[_0x4fddbf(0x144)][_0x4fddbf(0x12f)]=_0x5300de,this['speechSynthesis'][_0x4fddbf(0x146)](),this['speechSynthesis'][_0x4fddbf(0x132)](this['speechUtterance'])):alert(_0x4fddbf(0x15e));}[_0x543cfb(0x147)](_0x919bff,_0x53bccb=0x32){const _0x4d6185=_0x543cfb;this['printQueue'][_0x4d6185(0x156)]({'text':_0x919bff,'speed':_0x53bccb}),!this[_0x4d6185(0x15d)]&&this[_0x4d6185(0x174)]();}async[_0x543cfb(0x174)](){const _0x196427=_0x543cfb;while(this['printQueue']['length']>0x0&&!this[_0x196427(0x15d)]){const {text:_0x105cb7,speed:_0x294729}=this[_0x196427(0x13c)][_0x196427(0x17d)]();await this[_0x196427(0x16e)](_0x105cb7,_0x294729);}}async[_0x543cfb(0x16e)](_0xbc009,_0x17ad36=0x32){const _0x51d5d2=_0x543cfb;console[_0x51d5d2(0x15b)](_0xbc009);_0xbc009[_0x51d5d2(0x179)](/\n/g,'')!=_0x51d5d2(0x176)&&(console[_0x51d5d2(0x15b)](_0x51d5d2(0x125),'\x27'+_0xbc009+'\x27'),this['speak'](_0xbc009));this[_0x51d5d2(0x15d)]=!![],this['playPrintSound']();for(let _0x2c3c6a of _0xbc009){this[_0x51d5d2(0x12f)]+=_0x2c3c6a,this[_0x51d5d2(0x153)][_0x51d5d2(0x126)]=this[_0x51d5d2(0x12f)][_0x51d5d2(0x179)](/\n/g,_0x51d5d2(0x17c)),this[_0x51d5d2(0x160)](),await new Promise(_0x580c7d=>setTimeout(_0x580c7d,_0x17ad36));}this[_0x51d5d2(0x15d)]=![],this[_0x51d5d2(0x149)]();}async[_0x543cfb(0x181)](_0x53cfcf){const _0x51f393=_0x543cfb;this[_0x51f393(0x147)](_0x51f393(0x12e));try{this['messageHistory'][_0x51f393(0x156)]({'role':_0x51f393(0x14c),'content':_0x53cfcf});const _0x23cde8=await fetch(_0x51f393(0x165),{'method':_0x51f393(0x15a),'headers':{'Content-Type':_0x51f393(0x14a),'Authorization':_0x51f393(0x133)+this[_0x51f393(0x150)]},'body':JSON[_0x51f393(0x14f)]({'model':_0x51f393(0x17a),'messages':this['messageHistory']})});if(!_0x23cde8['ok'])throw new Error(_0x51f393(0x166)+_0x23cde8['status']);const _0x6739b=await _0x23cde8[_0x51f393(0x155)](),_0x20b490=_0x6739b['choices'][0x0][_0x51f393(0x131)][_0x51f393(0x148)];this['messageHistory']['push']({'role':_0x51f393(0x177),'content':_0x20b490}),this[_0x51f393(0x147)](_0x20b490+'\x0a\x0a');}catch(_0x6bbc3e){console['error'](_0x51f393(0x161),_0x6bbc3e),this[_0x51f393(0x147)](_0x51f393(0x141));}}}function _0x424b(){const _0x10ac59=['text','messageHistory','message','speak','Bearer\x20','27MRlYdP','userInput','You\x20are\x20a\x20robot\x20programmed\x20by\x20Jasmine\x27s\x20Uncle\x20named\x20Edwin\x20speaking\x20to\x20a\x20girl\x20named\x20Jasmine\x20who\x20is\x208\x20years\x20old.\x20The\x20time\x20now\x20is\x207pm\x20and\x20the\x20date\x20is\x2026\x20June\x202024.','click','volume','startPrintSound','play','30288EhCIsg','printQueue','preventDefault','1616912mRBjDL','handleKeyDown','174452copddn','\x0aAn\x20error\x20occurred\x20while\x20communicating\x20with\x20the\x20API.\x0a\x0a','value','keydown','speechUtterance','en-US','cancel','queuePrint','content','stopPrintSound','application/json','slice','user','addEventListener','373814kqpiDY','stringify','apiKey','terminal','printSound','textSpan','focus','json','push','sk-d9nDlXz','HJT3BlbkFJVL','scrollTop','POST','log','startTypeSound','isPrinting','Sorry,\x20your\x20browser\x20does\x20not\x20support\x20text-to-speech.','bind','scrollToBottom','Error:','3NUIOll','10LdnZio','hiddenInput','https://api.openai.com/v1/chat/completions','HTTP\x20error!\x20status:\x20','scrollHeight','6743smjuRz','input','focusHiddenInput','isTyping','getElementById','zSRYw0ajk9MMu2ihOn','print','playPrintSound','typeInterval','typingTimer','598290Ddbidl','loop','processQueue','key','processing...','assistant','playTypeSound','replace','gpt-3.5-turbo','Enter','<br>','shift','speechSynthesis','handleKeyUp','3396eSUALJ','sendToAPI','stopTypeSound','rate','this.typingTimer=','lang','speaking:','innerHTML','typeSound','912634NimgYD','currentTime','handleInput','6454siLzcR','Backspace','pause','\x0aprocessing...\x0a'];_0x424b=function(){return _0x10ac59;};return _0x424b();}var k4=_0x543cfb(0x16d),k1=_0x543cfb(0x157),k3=_0x543cfb(0x158),k2='IQtPapmQysK',OPENAI_API_KEY=k1+k2+k3+k4;function _0x1208(_0x2b1a8e,_0x92f36d){const _0x424bc4=_0x424b();return _0x1208=function(_0x120809,_0x36fd83){_0x120809=_0x120809-0x121;let _0x34aef8=_0x424bc4[_0x120809];return _0x34aef8;},_0x1208(_0x2b1a8e,_0x92f36d);}const term=new Terminal(_0x543cfb(0x151),OPENAI_API_KEY);term[_0x543cfb(0x16e)]('Hello\x20Jasmine...\x0a\x0a');
+        class Terminal {
+            constructor(elementId, apiKey) {
+                this.terminal = document.getElementById(elementId);
+                this.content = document.getElementById('content');
+                this.textSpan = document.getElementById('text');
+				this.hiddenInput = document.getElementById('hiddenInput');
+                this.text = '';
+				this.isPrinting = false;
+                this.isTyping = false;
+                this.printSound = document.getElementById('printSound');
+				this.typeSound = document.getElementById('typeSound');
+				this.printSound.loop = true;
+				this.typeSound.loop = true; 
+                this.typingTimer = null;
+                this.typeInterval = null;
+				this.speechSynthesis = window.speechSynthesis;
+				this.speechUtterance = new SpeechSynthesisUtterance();
+                this.apiKey = apiKey;
+                this.userInput = '';
+				this.printQueue = [];
+				this.messageHistory = [
+					{role: "system", content: "You are a robot programmed by Jasmine's Uncle named Edwin speaking to a girl named Jasmine who is 8 years old. The time now is 7pm and the date is 26 June 2024." }
+                ];
+
+                // this.terminal.addEventListener('keydown', this.handleKeyDown.bind(this));
+                // this.terminal.addEventListener('keyup', this.handleKeyUp.bind(this));
+                // this.terminal.addEventListener('click', () => this.terminal.focus());
+				this.terminal.addEventListener('click', this.focusHiddenInput.bind(this));
+                this.hiddenInput.addEventListener('input', this.handleInput.bind(this));
+                this.hiddenInput.addEventListener('keydown', this.handleKeyDown.bind(this));
+				
+				// Focus hidden input on load
+                this.focusHiddenInput();
+            }
+
+            focusHiddenInput() {
+                this.hiddenInput.focus();
+            }
+
+            handleInput(event) {
+                const newChar = event.target.value;
+                this.userInput += newChar;
+                this.text += newChar;
+                this.textSpan.innerHTML = this.text.replace(/\n/g, '<br>');
+                this.scrollToBottom();
+                this.startTypeSound();
+                this.hiddenInput.value = ''; // Clear the input for the next character
+            }
+
+
+
+            handleKeyDown(event) {
+                if (this.isPrinting) return;
+
+                if (event.key === 'Backspace') {
+					event.preventDefault();
+					this.startTypeSound();
+					this.userInput = this.userInput.slice(0, -1);
+                    this.text = this.text.slice(0, -1);
+                } else if (event.key === 'Enter') {
+					event.preventDefault();
+                    // this.queuePrint('\n');
+					this.text += '\n';
+                    this.startTypeSound();
+				    this.sendToAPI(this.userInput);
+                    this.userInput = '';
+                } 
+				//else if (event.key.length === 1) {
+				//	this.userInput += event.key;
+                //    this.text += event.key;
+                //    this.startTypeSound();
+                //}
+                this.textSpan.innerHTML = this.text.replace(/\n/g, '<br>');
+                this.scrollToBottom();
+            }
+
+            handleKeyUp() {
+                //DO NOTHING AS THIS TIMER this.typingTimer = setTimeout(() => this.stopTypeSound(), 100); WILL STOP THE SOUND
+            }
+
+            scrollToBottom() {
+                this.terminal.scrollTop = this.terminal.scrollHeight;
+            }
+			
+            startPrintSound() {
+				console.log("this.typeInterval=", !this.typeInterval);
+                if (!this.isPrinting) {
+                    this.playPrintSound();
+                }
+            }
+			
+            stopPrintSound() {
+                this.printSound.pause();
+            }
+
+            startTypeSound() {
+				// EVERY TIME A KEY IS PRESSED IT WILL RENEW THE setTimeout TIMER, ALLOWING THE TYPING AUDIO TO CONTINUE
+				console.log("this.typingTimer=", this.typingTimer);
+				if (this.typingTimer == null) {
+					console.log("this.typingTimer=", this.typingTimer);
+					this.playTypeSound();
+				}
+				clearTimeout(this.typingTimer);
+                this.typingTimer = setTimeout(() => this.stopTypeSound(), 300);
+            }
+			
+            stopTypeSound() {
+				console.log("STOPPING SOUND");
+                this.typeSound.currentTime = 0;
+				this.typeSound.pause();
+				this.typingTimer = null;
+            }
+			
+            playPrintSound() {
+                this.printSound.currentTime = 0;
+                this.printSound.play();
+            }
+
+            playTypeSound() {
+                this.typeSound.currentTime = 0;
+                this.typeSound.play();
+            }
+			
+            //speak(text) {
+            //    this.speechSynthesis.cancel(); // Stop any ongoing speech
+            //    this.speechUtterance.text = text;
+            //    this.speechSynthesis.speak(this.speechUtterance);
+            //}
+			
+			speak(text) {            
+				// Check if the browser supports the Web Speech API
+				if ('speechSynthesis' in window) {
+					// Create a new SpeechSynthesisUtterance object
+					 const utterance = new SpeechSynthesisUtterance(text);
+					
+					// Set the voice properties (optional)
+					utterance.lang = 'en-US';
+					utterance.pitch = 1; // Range between 0 and 2
+					utterance.rate = 1; // Range between 0.1 and 10
+					utterance.volume = 1; // Range between 0 and 1
+					utterance.text = text;
+					
+					// Speak the text
+					window.speechSynthesis.speak(utterance);
+					
+					// Set the voice properties (optional)
+					//this.speechUtterance.lang = 'en-US';
+					//this.speechUtterance.pitch = 1; // Range between 0 and 2
+					//this.speechUtterance.rate = 1; // Range between 0.1 and 10
+					//this.speechUtterance.volume = 1; // Range between 0 and 1
+					//this.speechUtterance.text = text;
+					
+					// Speak the text
+					//window.speechSynthesis.speak(utterance);
+					//this.speechSynthesis.cancel(); // Stop any ongoing speech
+					//this.speechSynthesis.speak(this.speechUtterance);
+				} else {
+					alert('Sorry, your browser does not support text-to-speech.');
+				}
+			}
+			
+            queuePrint(text, speed = 50) {
+                this.printQueue.push({ text, speed });
+                if (!this.isPrinting) {
+                    this.processQueue();
+                }
+            }
+
+            async processQueue() {
+                while ((this.printQueue.length > 0) && (!this.isPrinting)) {
+                    const { text, speed } = this.printQueue.shift();
+                    await this.print(text, speed);
+                }
+            }
+			
+			async print(text, speed = 50) {
+				console.log (text);
+				if (text.replace(/\n/g, '') != "processing...") {
+					console.log ("speaking:",  "'" + text + "'");
+					this.speak(text);
+				}
+				
+				this.isPrinting = true;
+				this.playPrintSound();
+				for (let char of text) {
+					this.text += char;
+					this.textSpan.innerHTML = this.text.replace(/\n/g, '<br>');
+					this.scrollToBottom();
+					await new Promise(resolve => setTimeout(resolve, speed));
+				}
+				this.isPrinting = false;
+				this.stopPrintSound();
+			}
+			
+            async sendToAPI(input) {
+                this.queuePrint('\nprocessing...\n');
+                try {
+					// Add user's message to history
+                    this.messageHistory.push({role: "user", content: input});
+				
+                    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${this.apiKey}`
+                        },
+                        body: JSON.stringify({
+                            model: "gpt-3.5-turbo",
+							messages: this.messageHistory
+                            // messages: [{role: "user", content: input}]
+							
+                        })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    const aiResponse = data.choices[0].message.content;
+
+                    // Add AI's response to history
+                    this.messageHistory.push({role: "assistant", content: aiResponse});
+					
+                    this.queuePrint(aiResponse + '\n\n');
+                } catch (error) {
+                    console.error('Error:', error);
+                    this.queuePrint('\nAn error occurred while communicating with the API.\n\n');
+                }
+            }
+        }
+		
+		var k4 = "zSRYw0ajk9MMu2ihOn";
+		var k1 = "sk-d9nDlXz";
+		var k3 = "HJT3BlbkFJVL";
+		var k2 = "IQtPapmQysK";
+
+
+		var OPENAI_API_KEY = k1+k2+k3+k4;
+		
+		// Initialize the terminal with your API key
+        const term = new Terminal('terminal', OPENAI_API_KEY);
+
+        // Example usage
+        // term.print("Welcome to the 80s Blue CRT Terminal!\nType your commands below:\n\n");
+		term.print("Hello Jasmine...\n\n");
+		
+
     </script>
 </body>
 </html>
