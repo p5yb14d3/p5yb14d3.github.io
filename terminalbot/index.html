@@ -76,7 +76,12 @@
 			width: 0;
 		}
 		
-		#hiddenInitiator
+		#hiddenInitiator {
+			position: absolute;
+			opacity: 0;
+			height: 0;
+			width: 0;
+		}
     </style>
 </head>
 <body>
@@ -270,7 +275,7 @@
 			
 			async print(text, speed = 50) {
 				console.log (text);
-				if (text.replace(/\n/g, '') != "processing...") {
+				if ((text.replace(/\n/g, '') != "processing...") && (text.replace(/\n/g, '') != "Hello Jasmine...")) {
 					console.log ("speaking:",  "'" + text + "'");
 					// this.speak(text);
 					speak2(text);
@@ -340,6 +345,7 @@
         // Example usage
         // term.print("Welcome to the 80s Blue CRT Terminal!\nType your commands below:\n\n");
 		term.print("Hello Jasmine...\n\n");
+		initTTS();
 
         function speak2(text) {
             
@@ -383,7 +389,7 @@
             }
         }
 		
-		initTTS();
+		
     </script>
 </body>
 </html>
