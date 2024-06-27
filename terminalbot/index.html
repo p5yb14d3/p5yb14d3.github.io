@@ -76,10 +76,6 @@
 			width: 0;
 		}
 		
-		#hiddenInitiator {
-
-		}
-		
 		#fullscreen-button {
 			position: fixed;
 			top: 0;
@@ -239,30 +235,19 @@
 			speak(text) {            
 				// Check if the browser supports the Web Speech API
 				if ('speechSynthesis' in window) {
-					// Create a new SpeechSynthesisUtterance object
-					 const utterance = new SpeechSynthesisUtterance(text);
+
 					
 					// Set the voice properties (optional)
-					utterance.lang = 'en-US';
-					utterance.pitch = 1; // Range between 0 and 2
-					utterance.rate = 1; // Range between 0.1 and 10
-					utterance.volume = 1; // Range between 0 and 1
-					utterance.text = text;
+					this.speechUtterance.lang = 'en-US';
+					this.speechUtterance.pitch = 1; // Range between 0 and 2
+					this.speechUtterance.rate = 1; // Range between 0.1 and 10
+					this.speechUtterance.volume = 1; // Range between 0 and 1
+					this.speechUtterance.text = text;
 					
 					// Speak the text
 					window.speechSynthesis.speak(utterance);
-					
-					// Set the voice properties (optional)
-					//this.speechUtterance.lang = 'en-US';
-					//this.speechUtterance.pitch = 1; // Range between 0 and 2
-					//this.speechUtterance.rate = 1; // Range between 0.1 and 10
-					//this.speechUtterance.volume = 1; // Range between 0 and 1
-					//this.speechUtterance.text = text;
-					
-					// Speak the text
-					//window.speechSynthesis.speak(utterance);
-					//this.speechSynthesis.cancel(); // Stop any ongoing speech
-					//this.speechSynthesis.speak(this.speechUtterance);
+					this.speechSynthesis.cancel(); // Stop any ongoing speech
+					this.speechSynthesis.speak(this.speechUtterance);
 				} else {
 					alert('Sorry, your browser does not support text-to-speech.');
 				}
@@ -286,8 +271,8 @@
 				console.log (text);
 				if ((text.replace(/\n/g, '') != "processing...") && (text.replace(/\n/g, '') != "Hello Jasmine...")) {
 					console.log ("speaking:",  "'" + text + "'");
-					// this.speak(text);
-					speak2(text);
+					this.speak(text);
+					// speak2(text);
 				}
 				
 				this.isPrinting = true;
@@ -385,7 +370,7 @@
 		
         function speaktts() {
             // Get the text input
-            const text = "Hello Jasmine...";
+            const text = "Hello Jasmine 1.5...";
 			
 			term.print("Hello Jasmine...\n\n");
             
@@ -407,6 +392,22 @@
             }
         }
 
+function adjustDivSize() {
+    const adjustableDiv = document.getElementById('terminal');
+    adjustableDiv.style.height = `80%`;
+}
+
+// Adjust div size on initial load
+adjustDivSize();
+
+// Adjust div size when window is resized
+window.addEventListener('resize', adjustDivSize);
+
+// Optional: Adjust div size when focus or blur events occur on input elements
+document.querySelectorAll('input, textarea').forEach(element => {
+    element.addEventListener('focus', adjustDivSize);
+    element.addEventListener('blur', adjustDivSize);
+});
     </script>
 </body>
 </html>
