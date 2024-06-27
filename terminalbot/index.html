@@ -393,6 +393,8 @@
                 alert('Sorry, your browser does not support text-to-speech.');
             }
         }
+		
+var topMargin = 0;
 
 function adjustDivSize() {
     const adjustableDiv = document.getElementById('terminal');
@@ -412,22 +414,15 @@ function adjustDivSize() {
 }
 
 function adjustDivSizeFocus() {
-	// Select the div using its id, class, or any other selector
-	var div = document.getElementById('terminal');
 
-	// Get the position of the div from the top of the page
-	var rect = div.getBoundingClientRect();
-	var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-	var divTopPosition = Math.floor(rect.top + scrollTop);
-	// term.print("divTopPosition = " + divTopPosition + "\n");
 
 	if (isMobileDevice()) {
 		const adjustableDiv = document.getElementById('terminal');
 		// Get the current viewport height and adjust it to 80%
 		const viewportHeight = Math.floor((document.documentElement.clientHeight/2) * 0.8);
 		adjustableDiv.style.height = `${viewportHeight}px`;
-		const viewportMarginTop = Math.floor(document.documentElement.clientHeight * 0.1);
-		viewportMarginTop = divTopPosition;
+		// const viewportMarginTop = Math.floor(document.documentElement.clientHeight * 0.1);
+		const viewportMarginTop = topMargin;
 		term.print("adjusting viewportMarginTop to " + viewportMarginTop + "...\n\n");
 		adjustableDiv.style.position = `absolute`;
 		adjustableDiv.style.top = `${viewportMarginTop}px`;
@@ -442,17 +437,9 @@ function adjustDivSizeBlur() {
 		//adjustableDiv.style.height = `${viewportHeight}px`;
 		//term.print("adjusting height to " + viewportHeight + "...\n\n");
 		//const viewportMarginTop = Math.floor((document.documentElement.clientHeight * 0.1));
-		adjustableDiv.style.position = `relative`;
+		adjustableDiv.style.position = `absolute`;
 		adjustableDiv.style.height = `80%`;
-		
-		// Select the div using its id, class, or any other selector
-		var div = document.getElementById('terminal');
-
-		// Get the position of the div from the top of the page
-		var rect = div.getBoundingClientRect();
-		var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-		var divTopPosition = Math.floor(rect.top + scrollTop);
-		term.print("divTopPosition = " + divTopPosition + "\n");
+		adjustableDiv.style.top = `${topMargin}px`;
 	}
 }
 
@@ -478,6 +465,23 @@ if (isMobileDevice()) {
 } else {
     console.log('You are not using a mobile device');
 }
+
+function init() {
+	// Select the div using its id, class, or any other selector
+	var div = document.getElementById('terminal');
+
+	// Get the position of the div from the top of the page
+	var rect = div.getBoundingClientRect();
+	var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+	var divTopPosition = Math.floor(rect.top + scrollTop);
+	// term.print("divTopPosition = " + divTopPosition + "\n");
+	
+	topMargin = divTopPosition;
+	console.log("topMargin:" + topMargin);
+}
+
+// Add the event listener for the window onload event
+window.addEventListener('load', init);
     </script>
 </body>
 </html>
