@@ -245,7 +245,7 @@
 					this.speechUtterance.text = text;
 					
 					// Speak the text
-					window.speechSynthesis.speak(utterance);
+					// window.speechSynthesis.speak(this.speechUtterance);
 					this.speechSynthesis.cancel(); // Stop any ongoing speech
 					this.speechSynthesis.speak(this.speechUtterance);
 				} else {
@@ -346,6 +346,8 @@
 		
 		document.getElementById('fullscreen-button').addEventListener('click', function() {
 			this.style.display = 'none';
+			// Focus hidden input on load
+            term.focusHiddenInput();
 		});
 
         function speak2(text) {
@@ -370,7 +372,7 @@
 		
         function speaktts() {
             // Get the text input
-            const text = "Hello Jasmine 1.7...";
+            const text = "Hello Jasmine 1.8...";
 			
 			term.print("Hello Jasmine...\n\n");
             
@@ -394,19 +396,8 @@
 
 function adjustDivSize() {
     const adjustableDiv = document.getElementById('terminal');
-    adjustableDiv.style.height = `80%`;
-}
-
-function adjustDivSizeFocus() {
-    const adjustableDiv = document.getElementById('terminal');
-    adjustableDiv.style.height = `80%`;
-	term.print("Window resize focus...\n\n");
-}
-
-function adjustDivSizeBlur() {
-    const adjustableDiv = document.getElementById('terminal');
-    adjustableDiv.style.height = `80%`;
-	term.print("Window resize blur...\n\n");
+    adjustableDiv.style.height = "80%";
+	term.print("adjusting size...\n\n");
 }
 
 // Adjust div size on initial load
@@ -417,8 +408,8 @@ window.addEventListener('resize', adjustDivSize);
 
 // Optional: Adjust div size when focus or blur events occur on input elements
 document.querySelectorAll('input, textarea').forEach(element => {
-    element.addEventListener('focus', adjustDivSizeFocus);
-    element.addEventListener('blur', adjustDivSizeBlur);
+    element.addEventListener('focus', adjustDivSize);
+    element.addEventListener('blur', adjustDivSize);
 });
     </script>
 </body>
