@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Screen YouTube Video on Loop</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        .video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .jumbotron {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+        }
+        .jumbotron iframe {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            width: 100vw;
+            height: 100vh; /* 16:9 aspect ratio */
+            transform: translate(-50%, -50%);
+        }
+        .jumbotron .content {
+            position: absolute;
+            bottom: 0%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 1;
+        }
+        .jumbotron .content h1 {
+            font-size: 4rem;
+            margin: 0;
+        }
+        .jumbotron .content p {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+	<div class="jumbotron">
+		<div class="video-container">
+			<iframe id="video-background" 
+				src="https://www.youtube.com/embed/755F16aef9w?autoplay=1&loop=1&controls=0&showinfo=0&rel=0&playlist=755F16aef9w" 
+				frameborder="0" allow="autoplay; fullscreen">
+			</iframe>
+		</div>
+	</div>
+	
+    <script>
+        function resizeIframe() {
+            var iframe = document.getElementById('video-background');
+            var width = window.innerWidth;
+            var height = window.innerHeight;
+            var aspectRatio = 16 / 9;
+
+            if (width / height > aspectRatio) {
+                iframe.style.width = width + 'px';
+                iframe.style.height = (width / aspectRatio) + 'px';
+            } else {
+                iframe.style.width = (height * aspectRatio) + 'px';
+                iframe.style.height = height + 'px';
+            }
+        }
+
+        window.addEventListener('resize', resizeIframe);
+        window.addEventListener('load', resizeIframe);
+    </script>
+</body>
+</html>
