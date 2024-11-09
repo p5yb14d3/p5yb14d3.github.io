@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Plot with Custom Formulas (Dark Mode)</title>
+    <!-- Include Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        /* Dark mode styling */
+        body {
+            background-color: #1e1e2f;
+            color: #f0f0f5;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin: 0;
+        }
+        h2 {
+            color: #e0e0ff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        #plot {
+            width: 600px;
+            height: 600px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background-color: #29293d;
+        }
+        /* Flex container for controls and plot */
+        .container {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        /* Styled input boxes, labels, and form container */
+        .form-container {
+            width: 300px;
+            padding: 20px;
+            background-color: #2c2c3e;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+            box-sizing: border-box;
+        }
+        label {
+            font-size: 1rem;
+            color: #c0c0d0;
+            margin-right: 10px;
+            width: 40%;
+            text-align: right;
+        }
+        .input-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        input[type="text"], input[type="number"], select {
+            width: 55%;
+            padding: 8px;
+            background-color: #333;
+            border: 1px solid #444;
+            border-radius: 5px;
+            color: #e0e0ff;
+            outline: none;
+        }
+        input[type="text"]:focus, input[type="number"]:focus, select:focus {
+            border-color: #56b4e9;
+        }
+        /* Styled buttons */
+        button {
+            padding: 10px 20px;
+            background-color: #56b4e9;
+            color: #1e1e2f;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #3399cc;
+        }
+        #queryResult {
+            color: #56b4e9;
+            margin-top: 10px;
+        }
+        /* Responsive layout adjustments */
+        @media (max-width: 768px) {
+            #plot {
+                width: 100%;
+                height: 400px;
+            }
+            .form-container {
+                width: 100%;
+            }
+        }
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 1.5rem;
+            }
+            label {
+                width: 100%;
+                text-align: left;
+                margin-bottom: 5px;
+            }
+            .input-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            input[type="text"], input[type="number"], select {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h2>3D Plot with Custom Formulas for y and z</h2>
+
+<div class="container">
+    <!-- Controls Section -->
+    <div class="form-container">
+        <h3>Set Formulas</h3>
+        <div class="input-row">
+            <label for="yFormula">y =</label>
+            <input type="text" id="yFormula" value="x*x" placeholder="Formula for y in terms of x">
+        </div>
+        <div class="input-row">
+            <label for="zFormula">z =</label>
+            <input type="text" id="zFormula" value="x*x" placeholder="Formula for z in terms of x">
+        </div>
+        <button onclick="plotGraph()">Plot Graph</button>
+
+        <h3>Query Values</h3>
+        <div class="input-row">
+            <label for="queryType">Query:</label>
+            <select id="queryType">
+                <option value="x">Find x given y and z</option>
+                <option value="y">Find y given x and z</option>
+                <option value="z">Find z given x and y</option>
+            </select>
+        </div>
+        <div class="input-row">
+            <label for="param1">Param 1:</label>
+            <input type="number" id="param1" placeholder="First parameter">
+        </div>
+        <div class="input-row">
+            <label for="param2">Param 2:</label>
+            <input type="number" id="param2" placeholder="Second parameter">
+        </div>
+        <button onclick="queryValues()">Query</button>
+        
+        <div id="queryResult"></div>
+    </div>
+
+    <!-- Plot Section -->
+    <div id="plot"></div>
+</div>
+
+<script>
+    function plotGraph() {
+        const yFormula = document.getElementById("yFormula").value;
+        const zFormula = document.getElementById("zFormula").value;
+
+        let x = [];
+        let y = [];
+        let z = [];
+        
+        for (let i = -10; i <= 10; i++) {
+            x.push(i);
+            y.push(eval(yFormula.replace(/x/g, i)));
+            z.push(eval(zFormula.replace(/x/g, i)));
+        }
+
+        const trace = {
+            x: x,
+            y: y,
+            z: z,
+            mode: 'markers+lines',
+            type: 'scatter3d',
+            marker: {
+                size: 5,
+                color: 'aqua'
+            },
+            line: {
+                width: 2,
+                color: 'aqua'
+            }
+        };
+
+        const layout = {
+            title: `3D Plot of y = ${yFormula} and z = ${zFormula}`,
+            scene: {
+                xaxis: { title: 'X', color: '#ffffff' },
+                yaxis: { title: 'Y', color: '#ffffff' },
+                zaxis: { title: 'Z', color: '#ffffff' },
+                bgcolor: '#1e1e2f'
+            },
+            paper_bgcolor: '#1e1e2f',
+            font: {
+                color: '#e0e0ff'
+            }
+        };
+
+        Plotly.newPlot('plot', [trace], layout);
+    }
+
+    function queryValues() {
+        const queryType = document.getElementById("queryType").value;
+        const param1 = parseFloat(document.getElementById("param1").value);
+        const param2 = parseFloat(document.getElementById("param2").value);
+        let result;
+
+        try {
+            if (queryType === "x") {
+                result = `Finding x given y = ${param1} and z = ${param2} is not possible directly with these formulas.`;
+            } else if (queryType === "y") {
+                const x = param1;
+                result = `y = ${eval(document.getElementById("yFormula").value.replace(/x/g, x))}`;
+            } else if (queryType === "z") {
+                const x = param1;
+                result = `z = ${eval(document.getElementById("zFormula").value.replace(/x/g, x))}`;
+            }
+        } catch (error) {
+            result = "Error: " + error.message;
+        }
+
+        document.getElementById("queryResult").innerText = result;
+    }
+</script>
+
+</body>
+</html>

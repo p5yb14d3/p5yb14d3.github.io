@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Plot of y = x^2 and z = x^2</title>
+    <!-- Include Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+
+<h2>3D Plot of y = x^2 and z = x^2</h2>
+<div id="plot" style="width: 600px; height: 600px;"></div>
+
+<script>
+    // Generate data points for x from -10 to 10
+    let x = [];
+    let y = [];
+    let z = [];
+    
+    for (let i = -10; i <= 10; i++) {
+        x.push(i);
+        y.push(i * i);  // y = x^2
+        z.push(i * i);  // z = x^2
+    }
+
+    // Create the plot with points only
+    const trace = {
+        x: x,
+        y: y,
+        z: z,
+        mode: 'markers+lines',  // Points and lines
+        type: 'scatter3d',
+        marker: {
+            size: 5,
+            color: 'blue'
+        },
+        line: {
+            width: 2,
+            color: 'blue'
+        }
+    };
+
+    const layout = {
+        title: '3D Plot of y = x^2 and z = x^2',
+        scene: {
+            xaxis: { title: 'X' },
+            yaxis: { title: 'Y = x^2' },
+            zaxis: { title: 'Z = x^2' }
+        }
+    };
+
+    Plotly.newPlot('plot', [trace], layout);
+</script>
+
+</body>
+</html>
