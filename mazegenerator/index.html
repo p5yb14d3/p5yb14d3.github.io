@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ant-Like Maze Generator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: black; /* Set the background of the page to black */
+        }
+        canvas {
+            display: block; /* Remove the border and margins */
+        }
+    </style>
+</head>
+<body>
+    <canvas id="mazeCanvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById('mazeCanvas');
+        const ctx = canvas.getContext('2d');
+
+        const gridWidth = Math.floor(Math.random() * 15) + 5;  // Random width (between 5 and 20)
+        const gridHeight = Math.floor(Math.random() * 15) + 5; // Random height (between 5 and 20)
+        const roomSize = 30; // Size of each room
+        const grid = [];
+
+        // Function to initialize the grid with random populated rooms
+        function generateGrid() {
+            for (let y = 0; y < gridHeight; y++) {
+                const row = [];
+                for (let x = 0; x < gridWidth; x++) {
+                    row.push(Math.random() > 0.4);  // 60% chance for a populated room (green)
+                }
+                grid.push(row);
+            }
+        }
+
+        // Function to draw the grid on the canvas
+        function drawGrid() {
+            canvas.width = gridWidth * roomSize;
+            canvas.height = gridHeight * roomSize;
+
+            for (let y = 0; y < gridHeight; y++) {
+                for (let x = 0; x < gridWidth; x++) {
+                    const isPopulated = grid[y][x];
+
+                    // Fill the room (green for populated, black for empty)
+                    ctx.fillStyle = isPopulated ? 'green' : 'black';
+                    ctx.fillRect(x * roomSize, y * roomSize, roomSize, roomSize);
+
+                    // Draw the walls around populated rooms
+                    if (isPopulated) {
+                        ctx.strokeStyle = 'lime';
+                        ctx.lineWidth = 2;
+                        ctx.strokeRect(x * roomSize, y * roomSize, roomSize, roomSize);
+                    } else {
+                        // For empty rooms, draw walls based on neighboring populated rooms
+                        ctx.fillStyle = 'black'; // Default to black for empty rooms
+
+                        // Check north (y-1)
+                        if (y > 0 && grid[y - 1][x]) {
+                            // Room above is populated, draw north wall and south wall of the north room in lime
+                            ctx.fillStyle = 'lime';
+                            ctx.fillRect(x * roomSize, y * roomSize - 1, roomSize, 1); // North wall of the empty room
+
+                            // South wall of the north room
+                            ctx.fillRect(x * roomSize, (y - 1) * roomSize + roomSize, roomSize, 1);
+                        }
+
+                        // Check south (y+1)
+                        if (y < gridHeight - 1 && grid[y + 1][x]) {
+                            // Room below is populated, draw south wall and north wall of the south room in lime
+                            ctx.fillStyle = 'lime';
+                            ctx.fillRect(x * roomSize, (y + 1) * roomSize, roomSize, 1); // South wall of the empty room
+
+                            // North wall of the south room
+                            ctx.fillRect(x * roomSize, (y + 1) * roomSize - 1, roomSize, 1);
+                        }
+
+                        // Check west (x-1)
+                        if (x > 0 && grid[y][x - 1]) {
+                            // Room to the left is populated, draw west wall and east wall of the west room in lime
+                            ctx.fillStyle = 'lime';
+                            ctx.fillRect(x * roomSize - 1, y * roomSize, 1, roomSize); // West wall of the empty room
+
+                            // East wall of the west room
+                            ctx.fillRect((x - 1) * roomSize + roomSize, y * roomSize, 1, roomSize);
+                        }
+
+                        // Check east (x+1)
+                        if (x < gridWidth - 1 && grid[y][x + 1]) {
+                            // Room to the right is populated, draw east wall and west wall of the east room in lime
+                            ctx.fillStyle = 'lime';
+                            ctx.fillRect((x + 1) * roomSize, y * roomSize, 1, roomSize); // East wall of the empty room
+
+                            // West wall of the east room
+                            ctx.fillRect((x + 1) * roomSize - 1, y * roomSize, 1, roomSize);
+                        }
+                    }
+
+                    // Remove walls between populated rooms
+                    if (isPopulated) {
+                        // Check north (y-1)
+                        if (y > 0 && grid[y - 1][x]) {
+                            // Remove the north wall of the current room
+                            ctx.fillStyle = 'black';
+                            ctx.fillRect(x * roomSize, y * roomSize - 1, roomSize, 1); // North wall of the current room
+
+                            // Remove the south wall of the room to the north
+                            ctx.fillRect(x * roomSize, (y - 1) * roomSize + roomSize, roomSize, 1); // South wall of the room to the north
+                        }
+
+                        // Check south (y+1)
+                        if (y < gridHeight - 1 && grid[y + 1][x]) {
+                            // Remove the south wall of the current room
+                            ctx.fillStyle = 'black';
+                            ctx.fillRect(x * roomSize, (y + 1) * roomSize, roomSize, 1); // South wall of the current room
+
+                            // Remove the north wall of the room to the south
+                            ctx.fillRect(x * roomSize, (y + 1) * roomSize - 1, roomSize, 1); // North wall of the room to the south
+                        }
+
+                        // Check west (x-1)
+                        if (x > 0 && grid[y][x - 1]) {
+                            // Remove the west wall of the current room
+                            ctx.fillStyle = 'black';
+                            ctx.fillRect(x * roomSize - 1, y * roomSize, 1, roomSize); // West wall of the current room
+
+                            // Remove the east wall of the room to the west
+                            ctx.fillRect((x - 1) * roomSize + roomSize, y * roomSize, 1, roomSize); // East wall of the room to the west
+                        }
+
+                        // Check east (x+1)
+                        if (x < gridWidth - 1 && grid[y][x + 1]) {
+                            // Remove the east wall of the current room
+                            ctx.fillStyle = 'black';
+                            ctx.fillRect((x + 1) * roomSize, y * roomSize, 1, roomSize); // East wall of the current room
+
+                            // Remove the west wall of the room to the east
+                            ctx.fillRect((x + 1) * roomSize - 1, y * roomSize, 1, roomSize); // West wall of the room to the east
+                        }
+                    }
+                }
+            }
+        }
+
+        // Initialize the maze and draw it
+        generateGrid();
+        drawGrid();
+    </script>
+</body>
+</html>
