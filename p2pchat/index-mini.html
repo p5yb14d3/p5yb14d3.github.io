@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P2P Chat - Retro CRT Style</title>
+    <style>
+        /* Base styles */
+        body {
+            font-family: 'Courier New', monospace; /* Monospaced font for retro look */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #000; /* Dark background */
+            color: #33ff33; /* Neon green color typical of old CRTs */
+            text-shadow: 0 0 5px rgba(51, 255, 51, 0.8), 0 0 10px rgba(51, 255, 51, 0.6);
+        }
+
+        h1 {
+            color: #33ff33;
+            font-size: 24px;
+            text-shadow: inherit;
+            margin-bottom: 20px;
+        }
+
+        /* Container styles */
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            background-color: #001100; /* Very dark green to give CRT feel */
+            border-radius: 5px;
+            box-shadow: 0px 0px 20px rgba(0, 255, 0, 0.2);
+            text-align: center;
+            border: 2px solid #33ff33; /* Green border to simulate old screens */
+        }
+
+        /* Scanline effect */
+        .container:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0) 0px,
+                rgba(0, 0, 0, 0) 1px,
+                rgba(0, 255, 0, 0.03) 2px
+            );
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        /* Chat box styles */
+        #chat {
+            height: 300px;
+            overflow-y: auto;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #001100;
+            border: 1px solid #33ff33;
+            box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.2);
+            margin: 20px 0;
+            font-size: 14px; /* Smaller, pixelated text for retro effect */
+        }
+
+        #chat p {
+            padding: 8px;
+            margin: 4px 0;
+            border-radius: 2px;
+            color: #33ff33;
+            text-align: left;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Alternating messages with slightly different colors */
+        #chat p:nth-child(odd) {
+            background-color: rgba(0, 255, 0, 0.1);
+        }
+
+        #chat p:nth-child(even) {
+            background-color: rgba(0, 255, 0, 0.2);
+        }
+
+        /* System message styling */
+        #chat p.system {
+            background-color: rgba(255, 0, 0, 0.2); /* Red-tinted for system messages */
+            color: #ff6666;
+        }
+
+        /* Container for IP input and Connect button */
+        .ip-container,
+		.input-container {
+            display: flex;
+            width: 100%;
+            gap: 8px; /* Space between IP input and Connect button */
+        }
+
+        /* Ensure IP input and Connect button are equal in width */
+        .ip-container input,
+        .input-container input {
+            flex: 1; /* Take up equal space */
+		}
+		
+        .ip-container input,
+        .ip-container button,
+        .input-container input,
+        .input-container button {
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid #33ff33;
+            background-color: #000;
+            color: #33ff33;
+            outline: none;
+            font-size: 16px;
+            font-family: 'Courier New', monospace;
+            text-shadow: 0 0 5px rgba(51, 255, 51, 0.8);
+            box-shadow: inset 0 0 8px rgba(0, 255, 0, 0.4);
+            transition: 0.2s;
+        }
+		
+		.ip-container button,
+		.input-container button {
+			width:25%;
+		}
+
+        /* Focus and hover styles */
+        .ip-container input:focus,
+        .input-container input:focus {
+            border-color: #00ff00;
+            box-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
+        }
+
+        .ip-container button,
+        .input-container button {
+            background-color: #001100;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-shadow: 0 0 5px rgba(51, 255, 51, 0.8);
+        }
+
+        .ip-container button:hover,
+        .input-container button:hover {
+            background-color: #003300;
+            animation: flicker 1s infinite alternate;
+        }
+
+        .ip-container button:active,
+        .input-container button:active {
+            transform: scale(0.98);
+        }
+
+        /* Flicker effect on button hover */
+        @keyframes flicker {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% {
+                opacity: 1;
+            }
+            20%, 24%, 55% {
+                opacity: 0.4;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>P2P Chat</h1>
+
+        <!-- IP Input and Connect Button -->
+		<div id="ipDisplay"></div>
+        <label for="ipInput">Other User's IP Address:</label>
+        <div class="ip-container">
+            <input type="text" id="ipInput" value="ws://localhost">
+            <button onclick="connectPeer()">Connect</button>
+        </div>
+
+        <!-- Chat Box -->
+        <div id="chat"></div>
+
+        <!-- Message Input and Send Button -->
+        <div class="input-container">
+            <input type="text" id="messageInput" placeholder="Type your message and press Enter">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        // Example JavaScript to handle chat and P2P connection
+        function logMessage(message, sender = "You") {
+            const chatBox = document.getElementById("chat");
+            const p = document.createElement('p');
+            p.textContent = `${sender}: ${message}`;
+            if (sender === "System") {
+                p.classList.add("system");
+            }
+            chatBox.appendChild(p);
+            chatBox.scrollTop = chatBox.scrollHeight;
+			messageInput.focus();
+        }
+
+		function sendMessage() {
+			const message = messageInput.value;
+			if (message && dataChannel && dataChannel.readyState === 'open') {
+				dataChannel.send(message);
+				logMessage(message);
+				messageInput.value = '';
+			} else {
+				logMessage('Connection not ready or message empty.', "System");
+			}
+			messageInput.focus();  // Focus message input after connecting
+		}
+
+		async function connectPeer() {
+			const ipInput = document.getElementById('ipInput').value;
+			if (!ipInput) {
+				alert('Please enter a valid IP address.');
+				return;
+			}
+
+			localConnection = new RTCPeerConnection();
+			dataChannel = localConnection.createDataChannel("chatChannel");
+
+			dataChannel.onopen = () => logMessage('Connection established.', "System");
+			dataChannel.onmessage = (event) => logMessage(event.data, "Peer");
+
+			localConnection.onicecandidate = (event) => {
+				if (event.candidate) {
+					remoteConnection.addIceCandidate(event.candidate);
+				}
+			};
+
+			remoteConnection = new RTCPeerConnection();
+			remoteConnection.ondatachannel = (event) => {
+				dataChannel = event.channel;
+				dataChannel.onmessage = (event) => logMessage(event.data, "Peer");
+			};
+
+			remoteConnection.onicecandidate = (event) => {
+				if (event.candidate) {
+					localConnection.addIceCandidate(event.candidate);
+				}
+			};
+
+			const offer = await localConnection.createOffer();
+			await localConnection.setLocalDescription(offer);
+			await remoteConnection.setRemoteDescription(offer);
+
+			const answer = await remoteConnection.createAnswer();
+			await remoteConnection.setLocalDescription(answer);
+			await localConnection.setRemoteDescription(answer);
+
+			logMessage('Connected to peer!', "System");
+			
+			messageInput.focus();  // Focus message input after connecting
+		}
+		
+		async function getLocalIPs() {
+			const ipDetails = [];
+			const pc = new RTCPeerConnection();
+			pc.createDataChannel("");  // Create a data channel
+
+			const offer = await pc.createOffer();
+			await pc.setLocalDescription(offer);
+
+			pc.onicecandidate = (event) => {
+				if (event.candidate) {
+					const candidate = event.candidate.candidate;
+					const ipRegex = /([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})/;
+					const ipMatch = candidate.match(ipRegex);
+					if (ipMatch) {
+						const ip = ipMatch[1];
+						if (!ipDetails.includes(ip)) {
+							ipDetails.push(ip);
+							document.getElementById("ipDisplay").innerText = `Local IP(s): ${ipDetails.join(", ")}`;
+						}
+					}
+				}
+			};
+		}
+
+		async function getPublicIP() {
+			try {
+				const response = await fetch("https://api.ipify.org?format=json");
+				const data = await response.json();
+				document.getElementById("ipDisplay").innerText += `Your IP: ${data.ip}`;
+			} catch (error) {
+				document.getElementById("ipDisplay").innerText += " | Unable to retrieve Public IP address.";
+			}
+		}
+
+		getLocalIPs();
+		getPublicIP();
+		
+        // Send message on Enter key press in the message input field
+        document.getElementById("messageInput").addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        });
+
+        // Connect peer on Enter key press in the IP input field
+        document.getElementById("ipInput").addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                connectPeer();
+				messageInput.focus();  // Focus message input after connecting
+            }
+        });
+    </script>
+</body>
+</html>
