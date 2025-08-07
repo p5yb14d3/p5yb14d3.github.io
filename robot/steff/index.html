@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Terminal</title>
+    <style>
+        body {
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'VT323', monospace;
+        }
+        @font-face {
+            font-family: 'VT323';
+            src: url('https://fonts.gstatic.com/s/vt323/v17/pxiKyp0ihIEF2isfFJU.woff2') format('woff2');
+        }
+        #terminal {
+            background-color: #000020;
+            color: #8989db;
+            width: 80%;
+            height: 80%;
+            padding: 20px;
+            font-size: 36px;
+            line-height: 1.4;
+            overflow-y: scroll;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            border: 2px solid #4040ff;
+            box-shadow: 0 0 10px #4040ff, 0 0 20px #4040ff inset;
+            position: relative;
+            animation: textShadowPulse 2s infinite;
+			word-wrap: break-word;
+			overflow-wrap: break-word;
+        }
+        #terminal::-webkit-scrollbar {
+            display: none;
+        }
+        #terminal::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: 
+                linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 4px, 3px 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+		#terminal:focus {
+            outline: none;
+        }
+        #cursor {
+            display: inline-block;
+            width: 18px;
+            height: 36px;
+            background-color: #8989db;
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        @keyframes textShadowPulse {
+            0% { text-shadow: 0 0 4px #4040ff; }
+            50% { text-shadow: 0 0 4px #4040ff, 0 0 10px #4040ff; }
+            100% { text-shadow: 0 0 4px #4040ff; }
+        }
+		#hiddenInput {
+			position: absolute;
+			opacity: 0;
+			height: 0;
+			width: 0;
+		}
+		
+		#fullscreen-button {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: transparent;
+			border: 0;
+			cursor: pointer;
+			z-index:100;
+		}
+
+    </style>
+</head>
+<body>
+    <button id="fullscreen-button" onclick="speaktts()"></button><br>
+    <div id="terminal" tabindex="0">
+        <div id="content">
+            <span id="text"></span><span id="cursor"></span>
+        </div>
+    </div>
+    <input type="text" id="hiddenInput" autocomplete="off">
+	
+	<audio id="printSound" src="../sounds/!sci_fi_computer_text-long.wav" preload="auto"></audio>
+    <audio id="typeSound" src="../sounds/keyboard-typing-5997.mp3" preload="auto"></audio>
+
+    <script>
+const _0x1256ee=_0x2fce;(function(_0xc688ff,_0x5cfe93){const _0x4c8d25=_0x2fce,_0x4504d8=_0xc688ff();while(!![]){try{const _0x528522=parseInt(_0x4c8d25(0x1d8))/0x1+-parseInt(_0x4c8d25(0x234))/0x2*(parseInt(_0x4c8d25(0x1ec))/0x3)+parseInt(_0x4c8d25(0x250))/0x4*(-parseInt(_0x4c8d25(0x1d3))/0x5)+-parseInt(_0x4c8d25(0x20b))/0x6+-parseInt(_0x4c8d25(0x23f))/0x7*(-parseInt(_0x4c8d25(0x1ef))/0x8)+-parseInt(_0x4c8d25(0x1fd))/0x9*(-parseInt(_0x4c8d25(0x219))/0xa)+-parseInt(_0x4c8d25(0x1dd))/0xb*(parseInt(_0x4c8d25(0x211))/0xc);if(_0x528522===_0x5cfe93)break;else _0x4504d8['push'](_0x4504d8['shift']());}catch(_0x5116df){_0x4504d8['push'](_0x4504d8['shift']());}}}(_0x4bbc,0x75646));const username=_0x1256ee(0x21f),birthday_month=0xa,birthday_date=0x18,now=new Date(),options={'timeZone':_0x1256ee(0x20f),'weekday':'long','year':_0x1256ee(0x1d4),'month':'long','day':_0x1256ee(0x1d4),'hour12':!![],'hour':_0x1256ee(0x1d4),'minute':'numeric'},malaysiaDate=now['toLocaleDateString']('en-US',options),malaysiaTime=now[_0x1256ee(0x1f3)](_0x1256ee(0x24d),options);class Terminal{constructor(_0x421578,_0x143aa8){const _0x466c87=_0x1256ee;this[_0x466c87(0x213)]=document[_0x466c87(0x20c)](_0x421578),this[_0x466c87(0x232)]=document['getElementById']('content'),this[_0x466c87(0x263)]=document[_0x466c87(0x20c)](_0x466c87(0x21b)),this[_0x466c87(0x244)]=document[_0x466c87(0x20c)](_0x466c87(0x244)),this[_0x466c87(0x21b)]='',this[_0x466c87(0x1ea)]=![],this[_0x466c87(0x242)]=![],this[_0x466c87(0x1eb)]=![],this[_0x466c87(0x214)]=![],this[_0x466c87(0x1f4)]=document[_0x466c87(0x20c)](_0x466c87(0x1f4)),this['typeSound']=document['getElementById'](_0x466c87(0x257)),this['printSound'][_0x466c87(0x25d)]=!![],this[_0x466c87(0x257)][_0x466c87(0x25d)]=!![],this[_0x466c87(0x1e6)]=null,this[_0x466c87(0x1ed)]=null,this[_0x466c87(0x1da)]=0x0,this[_0x466c87(0x208)]=window[_0x466c87(0x208)],this['speechUtterance']=new SpeechSynthesisUtterance(),this[_0x466c87(0x21d)]=_0x143aa8,this[_0x466c87(0x1e8)]='',this[_0x466c87(0x240)]=[],this[_0x466c87(0x246)]=[{'role':_0x466c87(0x1f8),'content':_0x466c87(0x21c)+malaysiaTime+_0x466c87(0x210)+malaysiaDate}],this[_0x466c87(0x248)]()?(this[_0x466c87(0x213)][_0x466c87(0x205)](_0x466c87(0x24f),this[_0x466c87(0x236)][_0x466c87(0x204)](this)),this[_0x466c87(0x244)]['addEventListener'](_0x466c87(0x1f0),this['handleInput'][_0x466c87(0x204)](this)),this['hiddenInput'][_0x466c87(0x205)](_0x466c87(0x1e1),this['handleKeyDown']['bind'](this))):(this[_0x466c87(0x213)][_0x466c87(0x205)](_0x466c87(0x1e1),this[_0x466c87(0x262)]['bind'](this)),this[_0x466c87(0x213)][_0x466c87(0x205)](_0x466c87(0x203),this[_0x466c87(0x218)]['bind'](this)),this[_0x466c87(0x213)][_0x466c87(0x205)](_0x466c87(0x24f),()=>this[_0x466c87(0x213)]['focus']())),this[_0x466c87(0x248)]=this[_0x466c87(0x248)][_0x466c87(0x204)](this),this[_0x466c87(0x24c)]=this[_0x466c87(0x24c)]['bind'](this),this[_0x466c87(0x25f)]=this[_0x466c87(0x25f)][_0x466c87(0x204)](this),this['focusHiddenInput']();}[_0x1256ee(0x254)](){const _0x2cf02d=_0x1256ee;if(this[_0x2cf02d(0x248)]())console[_0x2cf02d(0x1d9)](_0x2cf02d(0x1e9));else{console['log'](_0x2cf02d(0x256));var _0x42b7d2=document[_0x2cf02d(0x20c)](_0x2cf02d(0x225));_0x42b7d2[_0x2cf02d(0x221)][_0x2cf02d(0x216)]=_0x2cf02d(0x23a);const _0x4ada94=new Date(),_0x2d8493=_0x4ada94[_0x2cf02d(0x264)]()===birthday_month-0x1&&_0x4ada94[_0x2cf02d(0x252)]()===birthday_date,_0x15e1f2=_0x4ada94[_0x2cf02d(0x20e)](),_0x1e0c0e=_0x15e1f2>=0x5&&_0x15e1f2<0xc;if(_0x2d8493)term[_0x2cf02d(0x25e)]('Hello\x20'+username+'...\x0a\x0aToday\x20is\x20your\x20Birthday.\x20I\x20am\x20asked\x20by\x20Ed\x20to\x20wish\x20you\x20Happy\x20Birthday.\x0a\x0a');else _0x1e0c0e?term[_0x2cf02d(0x25e)](_0x2cf02d(0x1d1)+username+'...\x20What\x20can\x20I\x20do\x20for\x20you\x20today?\x0a\x0a'):term['print'](_0x2cf02d(0x22a)+username+_0x2cf02d(0x22b));this[_0x2cf02d(0x236)](),this[_0x2cf02d(0x213)][_0x2cf02d(0x1fa)]();}var _0x5adc72=this[_0x2cf02d(0x213)][_0x2cf02d(0x253)](),_0x4d3a51=window['pageYOffset']||document[_0x2cf02d(0x22d)][_0x2cf02d(0x258)];this[_0x2cf02d(0x1da)]=Math[_0x2cf02d(0x1e7)](_0x5adc72[_0x2cf02d(0x25c)]+_0x4d3a51),console['log'](_0x2cf02d(0x20d),this['marginTop']);}[_0x1256ee(0x248)](){const _0x22b968=_0x1256ee;var _0x590865=navigator[_0x22b968(0x22c)]||navigator[_0x22b968(0x200)]||window[_0x22b968(0x21e)];return/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i[_0x22b968(0x1e2)](_0x590865[_0x22b968(0x1d0)]());}[_0x1256ee(0x24c)](){const _0x27980e=_0x1256ee;if(this[_0x27980e(0x248)]()){const _0x292258=Math[_0x27980e(0x1e7)](document[_0x27980e(0x22d)]['clientHeight']/0x2*0.8);this[_0x27980e(0x213)][_0x27980e(0x221)][_0x27980e(0x23b)]=_0x292258+'px',this[_0x27980e(0x213)][_0x27980e(0x221)]['position']=_0x27980e(0x245),console[_0x27980e(0x1d9)](_0x27980e(0x20d),this['marginTop']),this['terminal']['style'][_0x27980e(0x25c)]=this[_0x27980e(0x1da)]+'px',this[_0x27980e(0x222)]();}}[_0x1256ee(0x25f)](){const _0x3d01cb=_0x1256ee;this[_0x3d01cb(0x248)]()&&(this[_0x3d01cb(0x213)][_0x3d01cb(0x221)][_0x3d01cb(0x24e)]='absolute',this[_0x3d01cb(0x213)][_0x3d01cb(0x221)]['height']=_0x3d01cb(0x231),console['log'](_0x3d01cb(0x20d),this['marginTop']),this[_0x3d01cb(0x213)]['style']['top']=this[_0x3d01cb(0x1da)]+'px',this[_0x3d01cb(0x222)]());}[_0x1256ee(0x236)](){this['hiddenInput']['focus']();}[_0x1256ee(0x1f7)](_0x353035){const _0x32c635=_0x1256ee;if(this[_0x32c635(0x1eb)]||this['isProcessing']){_0x353035[_0x32c635(0x260)]();return;}const _0x146577=_0x353035['target'][_0x32c635(0x1d6)];this[_0x32c635(0x1e8)]+=_0x146577,_0x146577==='\x0a'?this['text']+=_0x32c635(0x1f2):this[_0x32c635(0x21b)]+=_0x146577,this[_0x32c635(0x263)][_0x32c635(0x251)]=this[_0x32c635(0x21b)][_0x32c635(0x22e)](/\n/g,_0x32c635(0x1f2)),this[_0x32c635(0x222)](),this[_0x32c635(0x235)](),this[_0x32c635(0x244)][_0x32c635(0x1d6)]='';}[_0x1256ee(0x262)](_0x13fc0b){const _0x48c20f=_0x1256ee;if(_0x13fc0b[_0x48c20f(0x239)]==='\x20'&&this[_0x48c20f(0x1eb)]){_0x13fc0b[_0x48c20f(0x260)](),this['isInterupted']=!![],this[_0x48c20f(0x1d2)]();return;}if(this[_0x48c20f(0x1eb)]||this[_0x48c20f(0x242)]){_0x13fc0b[_0x48c20f(0x260)]();return;}if(this[_0x48c20f(0x248)]()){if(_0x13fc0b[_0x48c20f(0x239)]===_0x48c20f(0x209))_0x13fc0b[_0x48c20f(0x260)](),this[_0x48c20f(0x235)](),this[_0x48c20f(0x1e8)]=this[_0x48c20f(0x1e8)][_0x48c20f(0x228)](0x0,-0x1),this[_0x48c20f(0x21b)]=this['text'][_0x48c20f(0x228)](0x0,-0x1);else _0x13fc0b[_0x48c20f(0x239)]==='Enter'&&(_0x13fc0b[_0x48c20f(0x260)](),this['text']+='\x0a',this[_0x48c20f(0x235)](),this['sendToAPI'](this['userInput']),this[_0x48c20f(0x1e8)]='');}else{if(_0x13fc0b[_0x48c20f(0x239)]===_0x48c20f(0x209))this[_0x48c20f(0x21b)]=this['text'][_0x48c20f(0x228)](0x0,-0x1);else{if(_0x13fc0b[_0x48c20f(0x239)]===_0x48c20f(0x1db))this[_0x48c20f(0x21b)]+='\x0a',this[_0x48c20f(0x235)](),this[_0x48c20f(0x20a)](this[_0x48c20f(0x1e8)]),this[_0x48c20f(0x1e8)]='';else _0x13fc0b[_0x48c20f(0x239)][_0x48c20f(0x1f9)]===0x1&&(this['userInput']+=_0x13fc0b[_0x48c20f(0x239)],this['text']+=_0x13fc0b['key'],this['startTypeSound']());}}this['textSpan'][_0x48c20f(0x251)]=this[_0x48c20f(0x21b)][_0x48c20f(0x22e)](/\n/g,_0x48c20f(0x1f2)),this[_0x48c20f(0x222)]();}[_0x1256ee(0x218)](){}['interruptPrinting'](){const _0xa099f=_0x1256ee;this[_0xa099f(0x1eb)]=![],this[_0xa099f(0x212)](),this[_0xa099f(0x208)][_0xa099f(0x1ee)]&&this[_0xa099f(0x208)][_0xa099f(0x249)]();}[_0x1256ee(0x222)](){const _0x814915=_0x1256ee;this[_0x814915(0x213)][_0x814915(0x258)]=this[_0x814915(0x213)][_0x814915(0x238)];}[_0x1256ee(0x22f)](){const _0x1c1fa7=_0x1256ee;console['log'](_0x1c1fa7(0x1fb),!this[_0x1c1fa7(0x1ed)]),!this['isPrinting']&&this[_0x1c1fa7(0x207)]();}[_0x1256ee(0x212)](){const _0x1fa953=_0x1256ee;this[_0x1fa953(0x1f4)]['pause']();}[_0x1256ee(0x235)](){const _0x4ca52e=_0x1256ee;console[_0x4ca52e(0x1d9)](_0x4ca52e(0x259),this[_0x4ca52e(0x1e6)]),this[_0x4ca52e(0x1e6)]==null&&(console[_0x4ca52e(0x1d9)](_0x4ca52e(0x259),this[_0x4ca52e(0x1e6)]),this[_0x4ca52e(0x21a)]()),clearTimeout(this['typingTimer']),this[_0x4ca52e(0x1e6)]=setTimeout(()=>this['stopTypeSound'](),0x12c);}[_0x1256ee(0x1e4)](){const _0xf55bfd=_0x1256ee;console[_0xf55bfd(0x1d9)](_0xf55bfd(0x224)),this[_0xf55bfd(0x257)][_0xf55bfd(0x206)]=0x0,this[_0xf55bfd(0x257)]['pause'](),this[_0xf55bfd(0x1e6)]=null;}[_0x1256ee(0x207)](){const _0x449934=_0x1256ee;this[_0x449934(0x1f4)]['currentTime']=0x0,this[_0x449934(0x1f4)]['play']();}['playTypeSound'](){const _0x2cbc77=_0x1256ee;this['typeSound'][_0x2cbc77(0x206)]=0x0,this[_0x2cbc77(0x257)][_0x2cbc77(0x23c)]();}[_0x1256ee(0x1f5)](_0x1f7e5d){const _0x5e229e=_0x1256ee;_0x5e229e(0x208)in window?(this['speechUtterance'][_0x5e229e(0x255)]=_0x5e229e(0x24d),this['speechUtterance'][_0x5e229e(0x227)]=0x1,this['speechUtterance'][_0x5e229e(0x1f1)]=0x1,this['speechUtterance'][_0x5e229e(0x241)]=0x1,this['speechUtterance']['text']=_0x1f7e5d,this['speechUtterance'][_0x5e229e(0x1dc)]=()=>{const _0x1878b9=_0x5e229e;this[_0x1878b9(0x1eb)]=![];},this[_0x5e229e(0x208)][_0x5e229e(0x249)](),this[_0x5e229e(0x208)][_0x5e229e(0x1f5)](this[_0x5e229e(0x226)])):alert('Sorry,\x20your\x20browser\x20does\x20not\x20support\x20text-to-speech.');}['queuePrint'](_0x3b0fdc,_0x5543d5=0x32){const _0x20e141=_0x1256ee;this[_0x20e141(0x240)]['push']({'text':_0x3b0fdc,'speed':_0x5543d5}),!this[_0x20e141(0x1eb)]&&this[_0x20e141(0x233)]();}async['processQueue'](){const _0x2d6649=_0x1256ee;while(this[_0x2d6649(0x240)][_0x2d6649(0x1f9)]>0x0){const {text:_0xb0367b,speed:_0x524be9}=this['printQueue']['shift']();await this[_0x2d6649(0x25e)](_0xb0367b,_0x524be9);if(this['isInterupted']){this['isInterupted']=![],this[_0x2d6649(0x240)]=[];break;}}}async[_0x1256ee(0x25e)](_0x50998a,_0x5f58fa=0x32){const _0x29a7fc=_0x1256ee;console[_0x29a7fc(0x1d9)](_0x50998a);_0x50998a[_0x29a7fc(0x22e)](/\n/g,'')!=_0x29a7fc(0x25a)&&(console[_0x29a7fc(0x1d9)]('speaking:','\x27'+_0x50998a+'\x27'),this[_0x29a7fc(0x1f5)](_0x50998a));this['isPrinting']=!![],this[_0x29a7fc(0x207)]();for(let _0x49f642 of _0x50998a){console[_0x29a7fc(0x1d9)](_0x29a7fc(0x1d7),this['isPrinting']);if(!this[_0x29a7fc(0x1eb)]){this[_0x29a7fc(0x21b)]+='...\x0a\x0a',this[_0x29a7fc(0x263)][_0x29a7fc(0x251)]=this[_0x29a7fc(0x21b)]['replace'](/\n/g,'<br>'),this[_0x29a7fc(0x222)]();break;}_0x49f642==='\x0a'?this['text']+=_0x29a7fc(0x1f2):this['text']+=_0x49f642,this[_0x29a7fc(0x263)]['innerHTML']=this[_0x29a7fc(0x21b)][_0x29a7fc(0x22e)](/\n/g,_0x29a7fc(0x1f2)),this[_0x29a7fc(0x222)](),await new Promise(_0x5898e2=>setTimeout(_0x5898e2,_0x5f58fa));}this[_0x29a7fc(0x1de)]();}[_0x1256ee(0x1de)](){const _0x32bf56=_0x1256ee;console[_0x32bf56(0x1d9)](_0x32bf56(0x1f6)),this[_0x32bf56(0x1eb)]=![],this[_0x32bf56(0x242)]=![],this[_0x32bf56(0x212)](),this['speechSynthesis']['speaking']&&this[_0x32bf56(0x1ea)]&&this[_0x32bf56(0x208)][_0x32bf56(0x249)]();}async[_0x1256ee(0x20a)](_0x412e22){const _0xcee90f=_0x1256ee;this['isProcessing']=!![],this[_0xcee90f(0x24a)]('\x0aprocessing...\x0a');try{this[_0xcee90f(0x246)][_0xcee90f(0x223)]({'role':_0xcee90f(0x1d5),'content':_0x412e22});const _0x57427f=await fetch(_0xcee90f(0x1e3),{'method':_0xcee90f(0x237),'headers':{'Content-Type':_0xcee90f(0x25b),'Authorization':_0xcee90f(0x23d)+this[_0xcee90f(0x21d)]},'body':JSON[_0xcee90f(0x215)]({'model':'gpt-3.5-turbo','messages':this[_0xcee90f(0x246)]})});if(!_0x57427f['ok']){console[_0xcee90f(0x1d9)](_0xcee90f(0x24b)+_0x57427f[_0xcee90f(0x1e5)]);throw new Error(_0xcee90f(0x230)+_0x57427f[_0xcee90f(0x1e5)]);}const _0x56f69b=await _0x57427f['json'](),_0x39b1e0=_0x56f69b[_0xcee90f(0x229)][0x0][_0xcee90f(0x1fe)][_0xcee90f(0x232)];console[_0xcee90f(0x1d9)]('Data:'+_0x56f69b),this[_0xcee90f(0x246)]['push']({'role':_0xcee90f(0x217),'content':_0x39b1e0}),console['log']('aiResponse:'+_0x39b1e0),this[_0xcee90f(0x24a)](_0x39b1e0+'\x0a\x0a');}catch(_0x66f580){console[_0xcee90f(0x1df)](_0xcee90f(0x220),_0x66f580),this[_0xcee90f(0x24a)]('\x0aAn\x20error\x20occurred\x20while\x20communicating\x20with\x20the\x20API.\x0a\x0a');}}}var k4=_0x1256ee(0x247),k1=_0x1256ee(0x1fc),k3=_0x1256ee(0x261),k2='IQtPapmQysK',OPENAI_API_KEY=k1+k2+k3+k4;function _0x4bbc(){const _0x4bf0ce=['floor','userInput','You\x20are\x20using\x20a\x20mobile\x20device','isInterupted','isPrinting','92406ErQfsz','typeInterval','speaking','1024yCMvEH','input','rate','<br>','toLocaleTimeString','printSound','speak','FINISHED\x20PRINTING','handleInput','system','length','focus','this.typeInterval=','sk-d9nDlXz','292428ttNGrJ','message','load','vendor','...\x0a\x0a','input,\x20textarea','keyup','bind','addEventListener','currentTime','playPrintSound','speechSynthesis','Backspace','sendToAPI','2310864mxsasb','getElementById','marginTop:','getHours','Asia/Kuala_Lumpur','.\x20The\x20current\x20date\x20is\x20','2436chTHvQ','stopPrintSound','terminal','isTyping','stringify','display','assistant','handleKeyUp','230HxfDVG','playTypeSound','text','You\x20are\x20a\x20robot\x20programmed\x20by\x20Ed.\x20The\x20current\x20time\x20is\x20','apiKey','opera','Steff','Error:','style','scrollToBottom','push','STOPPING\x20SOUND','fullscreen-button','speechUtterance','pitch','slice','choices','Hello\x20','...\x20What\x20can\x20I\x20do\x20for\x20you\x20today?\x0a\x0a','userAgent','documentElement','replace','startPrintSound','HTTP\x20error!\x20status:\x20','80%','content','processQueue','32kESzEk','startTypeSound','focusHiddenInput','POST','scrollHeight','key','none','height','play','Bearer\x20','blur','18956vKZmWY','printQueue','volume','isProcessing','Sorry,\x20your\x20browser\x20does\x20not\x20support\x20text-to-speech.','hiddenInput','absolute','messageHistory','zSRYw0ajk9MMu2ihOn','isOnMobileDevice','cancel','queuePrint','ERROR!!!\x20','resizeOnFocus','en-US','position','click','1456572bjwTEN','innerHTML','getDate','getBoundingClientRect','init','lang','You\x20are\x20not\x20using\x20a\x20mobile\x20device','typeSound','scrollTop','this.typingTimer=','processing...','application/json','top','loop','print','resizeOnBlur','preventDefault','HJT3BlbkFJVL','handleKeyDown','textSpan','getMonth','forEach','querySelectorAll','toLowerCase','Good\x20morning\x20','interruptPrinting','5GTAZaT','numeric','user','value','this.isPrinting:','780252OqaWEc','log','marginTop','Enter','onend','8195ESUCNa','finishPrinting','error','...','keydown','test','https://api.openai.com/v1/chat/completions','stopTypeSound','status','typingTimer'];_0x4bbc=function(){return _0x4bf0ce;};return _0x4bbc();}const term=new Terminal('terminal',OPENAI_API_KEY);document[_0x1256ee(0x20c)](_0x1256ee(0x225))[_0x1256ee(0x205)](_0x1256ee(0x24f),function(){const _0xa296b3=_0x1256ee;this[_0xa296b3(0x221)][_0xa296b3(0x216)]='none',term[_0xa296b3(0x236)]();});function speaktts(){const _0xdde99c=_0x1256ee,_0x2fbae1='Hello\x20'+username+_0xdde99c(0x1e0);term[_0xdde99c(0x25e)](_0xdde99c(0x22a)+username+_0xdde99c(0x201));if(_0xdde99c(0x208)in window){const _0x5ee5f6=new SpeechSynthesisUtterance(_0x2fbae1);_0x5ee5f6[_0xdde99c(0x255)]=_0xdde99c(0x24d),_0x5ee5f6[_0xdde99c(0x227)]=0x1,_0x5ee5f6[_0xdde99c(0x1f1)]=0x1,_0x5ee5f6[_0xdde99c(0x241)]=0x1,window[_0xdde99c(0x208)]['speak'](_0x5ee5f6);}else alert(_0xdde99c(0x243));}function _0x2fce(_0x131f6f,_0x46982f){const _0x4bbc27=_0x4bbc();return _0x2fce=function(_0x2fce43,_0x1d23fd){_0x2fce43=_0x2fce43-0x1ce;let _0x30b81c=_0x4bbc27[_0x2fce43];return _0x30b81c;},_0x2fce(_0x131f6f,_0x46982f);}document[_0x1256ee(0x1cf)](_0x1256ee(0x202))[_0x1256ee(0x1ce)](_0x4ce35e=>{const _0x4e7c23=_0x1256ee;_0x4ce35e[_0x4e7c23(0x205)](_0x4e7c23(0x1fa),term[_0x4e7c23(0x24c)]),_0x4ce35e[_0x4e7c23(0x205)](_0x4e7c23(0x23e),term[_0x4e7c23(0x25f)]);}),window[_0x1256ee(0x205)](_0x1256ee(0x1ff),term['init'][_0x1256ee(0x204)](term));
+    </script>
+</body>
+</html>
